@@ -14,6 +14,8 @@
     <!-- NavigationDrawerFragment-->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
+    <!--Other  -->
     <string name="title_activity_task_list">TaskListActivity</string>
     <string name="title_activity_master_main">Главное окно мастера</string>
     <string name="title_activity_create_task">Создание задания</string>
@@ -22,6 +24,4 @@
     <string name="whom">Кому</string>
     <string name="what">Что делать</string>
     <string name="where">Где</string>
-
-    <!--Other  -->
 </resources>
