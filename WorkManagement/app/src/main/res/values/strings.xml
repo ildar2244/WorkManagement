@@ -21,4 +21,7 @@
     <string name="title_activity_create_task">Создание задания</string>
     <string name="title_activity_tracking">Отслеживание выполнения</string>
     <string name="title_activity_reports">Отчеты</string>
+    <string name="whom">Кому</string>
+    <string name="what">Что делать</string>
+    <string name="where">Где</string>
 </resources>

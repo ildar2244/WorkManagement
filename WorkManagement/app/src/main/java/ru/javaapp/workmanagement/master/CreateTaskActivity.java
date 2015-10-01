@@ -1,39 +1,63 @@
 package ru.javaapp.workmanagement.master;
 
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.fragments.DatePickerFragmentBefore;
+import ru.javaapp.workmanagement.fragments.TimePickerFragmentBefore;
 
 public class CreateTaskActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
+    TextView tvDateBefore, tvDateAfter, tvTimeBefore, tvTimeAfter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
+
+        toolbarInitialize();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_task, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void toolbarInitialize() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        try {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
-        return super.onOptionsItemSelected(item);
     }
+
+
+    public void onClickDateBefore(View v) {
+        DialogFragment newFragment = new DatePickerFragmentBefore();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    /**
+     * Call TimePicker and setting time
+     * @param v
+     */
+    public void onClickTimeBefore(View v) {
+        DialogFragment newFragment = new TimePickerFragmentBefore();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
 }

@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import ru.javaapp.workmanagement.activities.TaskListActivity;
 import ru.javaapp.workmanagement.fragments.FragmentDrawer;
+import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(workerIntent);
                 }
                 if (usersType.equals("Руководитель")) {
-                    Intent workerIntent = new Intent(MainActivity.this, TaskListActivity.class);
-                    startActivity(workerIntent);
+                    Intent masterIntent = new Intent(MainActivity.this, MasterMainActivity.class);
+                    startActivity(masterIntent);
                 }
             }
         });

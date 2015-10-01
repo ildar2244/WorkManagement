@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,17 +24,32 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
 
         toolbarInitialize();
         componentinitialize();
+        setListeners();
+    }
+
+    private void setListeners(){
+        btn_createTask.setOnClickListener(this);
+        btn_tracking.setOnClickListener(this);
+        btn_reports.setOnClickListener(this);
     }
 
     private void toolbarInitialize() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         try {
+            getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     private void componentinitialize(){
@@ -57,6 +73,16 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
                 Intent reportsActivity = new Intent(getApplicationContext(), ReportsActivity.class);
                 startActivity(reportsActivity);
                 break;
+        }
+    }
+
+    public void onBackPressed() {
+        Log.d("My", "OnBackPressed");
+        try {
+            finish();
+        }
+        catch (Exception e){
+
         }
     }
 }

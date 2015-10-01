@@ -23,10 +23,71 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/whom"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:id="@+id/whomSpinner"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/what"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:id="@+id/whatSpinner"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/where"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:id="@+id/whereSpinner"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Сколько"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:id="@+id/howManySpinner"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="От"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Здесь мастер будет создавать свои задания"/>
+                android:id="@+id/tv_input_dateBefore"
+                android:onClick="onClickDateBefore"
+                android:fontFamily="sans-serif"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextSecondary"
+                android:gravity="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_input_timeBefore"
+                android:onClick="onClickTimeBefore"
+                android:fontFamily="sans-serif"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextSecondary"
+                android:gravity="center" />
+
+
         </LinearLayout>
 
     </LinearLayout>
