@@ -7,7 +7,14 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- MainActivity -->
+    <array name="users_type">
+        <item>Работник</item>
+        <item>Руководитель</item>
+    </array>
+
     <!-- NavigationDrawerFragment-->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="title_activity_task_list">TaskListActivity</string>
 </resources>
