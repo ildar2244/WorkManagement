@@ -1,6 +1,6 @@
 <resources>
-    <string nameMaster="app_name">WorkManagement</string>
+    <string name="app_name">WorkManagement</string>
 
-    <string nameMaster="hello_world">Hello world!</string>
-    <string nameMaster="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>
