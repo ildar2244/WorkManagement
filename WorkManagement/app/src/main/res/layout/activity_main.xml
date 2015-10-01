@@ -15,6 +15,12 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar"/>
+        <!-- Select users type -->
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_user"
+            android:layout_gravity="center_horizontal" />
         <!-- -->
         <TextView
             android:layout_width="wrap_content"
