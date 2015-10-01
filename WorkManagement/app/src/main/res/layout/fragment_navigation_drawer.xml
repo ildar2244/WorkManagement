@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+    <!-- Set header in NavDrawer -->
+    <include
+        android:id="@+id/nav_header"
+        layout="@layout/nav_drawer_header"/>
+    <!-- Users name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nav_header"
+        android:text="Name user"
+        android:id="@+id/tv_user_name" />
+    <!-- Exit from profile -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Exit"
+        android:id="@+id/button_exit" />
+</RelativeLayout>

@@ -1,23 +1,23 @@
-package javaapp.ru.workmanagement.dao;
+package ru.javaapp.workmanagement.dao;
 
 /**
  * Created by User on 30.09.2015.
  */
-public class Place {
+public class What {
 
-    private int idPlace;
+    private int idWhat;
     private int quantumMade;
     private int quantumPlanned;
     private int quantumCurrent;
-    private int idProstoy;
-    private String namePlace;
+    private int idBrak;
+    private String nameWhat;
 
-    public int getIdPlace() {
-        return idPlace;
+    public int getIdWhat() {
+        return idWhat;
     }
 
-    public void setIdPlace(int idPlace) {
-        this.idPlace = idPlace;
+    public void setIdWhat(int idWhat) {
+        this.idWhat = idWhat;
     }
 
     public int getQuantumMade() {
@@ -44,19 +44,19 @@ public class Place {
         this.quantumCurrent = quantumCurrent;
     }
 
-    public int getIdProstoy() {
-        return idProstoy;
+    public int getIdBrak() {
+        return idBrak;
     }
 
-    public void setIdProstoy(int idProstoy) {
-        this.idProstoy = idProstoy;
+    public void setIdBrak(int idBrak) {
+        this.idBrak = idBrak;
     }
 
-    public String getNamePlace() {
-        return namePlace;
+    public String getNameWhat() {
+        return nameWhat;
     }
 
-    public void setNamePlace(String namePlace) {
-        this.namePlace = namePlace;
+    public void setNameWhat(String nameWhat) {
+        this.nameWhat = nameWhat;
     }
 }

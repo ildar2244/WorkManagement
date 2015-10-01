@@ -1,4 +1,4 @@
-package javaapp.ru.workmanagement;
+package ru.javaapp.workmanagement;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package javaapp.ru.workmanagement.dao;
+package ru.javaapp.workmanagement.dao;
 
 /**
  * Created by User on 30.09.2015.
