@@ -8,4 +8,8 @@
 
     <!-- Navigation Drawer -->
     <dimen name="nav_drawer_width">272dp</dimen>
+    <dimen name="main_spinner_margin_top">16dp</dimen>
+    <dimen name="main_elements_margin_top">16dp</dimen>
+    <dimen name="main_elements_width">196dp</dimen>
+    <dimen name="main_elements_heght">48dp</dimen>
 </resources>
