@@ -10,4 +10,8 @@
     <!-- NavigationDrawerFragment-->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="title_activity_master_main">Главное окно мастера</string>
+    <string name="title_activity_create_task">Создание задания</string>
+    <string name="title_activity_tracking">Отслеживание выполнения</string>
+    <string name="title_activity_reports">Отчеты</string>
 </resources>

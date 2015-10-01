@@ -8,13 +8,29 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="ru.javaapp.workmanagement.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".master.MasterMainActivity"
+            android:label="@string/title_activity_master_main" >
+        </activity>
+        <activity
+            android:name=".master.CreateTaskActivity"
+            android:label="@string/title_activity_create_task" >
+        </activity>
+        <activity
+            android:name=".master.TrackingActivity"
+            android:label="@string/title_activity_tracking" >
+        </activity>
+        <activity
+            android:name=".master.ReportsActivity"
+            android:label="@string/title_activity_reports" >
         </activity>
     </application>
 
