@@ -27,68 +27,6 @@
             android:textColor="@color/colorTextPrimary"
             android:fontFamily="sans-serif"
             android:textSize="20dp"/>
-        <!-- Select users type -->
-        <Spinner
-            android:layout_width="@dimen/main_elements_width"
-            android:layout_height="@dimen/main_elements_heght"
-            android:layout_marginTop="@dimen/main_spinner_margin_top"
-            android:id="@+id/spinner_user"
-            android:layout_gravity="center_horizontal" />
-        <!-- -->
-        <TextView
-            android:layout_width="@dimen/main_elements_width"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/main_elements_margin_top"
-            android:text="Введите логин:"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical|left"
-            android:textColor="@color/colorTextPrimary"
-            android:fontFamily="sans-serif"
-            android:textSize="20dp"/>
-        <!-- Input login -->
-        <EditText
-            android:layout_width="@dimen/main_elements_width"
-            android:layout_height="@dimen/main_elements_heght"
-            android:layout_marginTop="@dimen/main_elements_margin_top"
-            android:id="@+id/et_login"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/white"/>
-        <!-- -->
-        <TextView
-            android:layout_width="@dimen/main_elements_width"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/main_elements_margin_top"
-            android:text="Введите пароль:"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical|left"
-            android:textColor="@color/colorTextPrimary"
-            android:fontFamily="sans-serif"
-            android:textSize="20dp" />
-        <!-- Input password -->
-        <EditText
-            android:layout_width="@dimen/main_elements_width"
-            android:layout_height="@dimen/main_elements_heght"
-            android:layout_marginTop="@dimen/main_elements_margin_top"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/et_password"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/white"/>
-        <!-- Enter in TaskList -->
-        <Button
-            android:layout_width="@dimen/main_elements_width"
-            android:layout_height="@dimen/main_elements_heght"
-            android:layout_marginTop="@dimen/main_elements_margin_top"
-            android:text="Войти"
-            android:id="@+id/button_enter"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/colorAccent"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textSize="16dp"/>
     </LinearLayout>
     <!-- Set FragmentDrawer -->
     <fragment

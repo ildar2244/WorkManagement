@@ -2,6 +2,7 @@ package ru.javaapp.workmanagement.fragments;
 
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.activities.LoginActivity;
+import ru.javaapp.workmanagement.activities.TaskListActivity;
+import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,8 +29,7 @@ public class FragmentDrawer extends Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private View containerView;
-    private TextView userName;
-    private Button exitButton;
+    private Button exitButton, authButton;
 
     public FragmentDrawer() {
         // Required empty public constructor
@@ -37,9 +40,21 @@ public class FragmentDrawer extends Fragment {
                              Bundle savedInstanceState) {
         // Inflating View layout
         final View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        userName = (TextView) layout.findViewById(R.id.tv_user_name);
+        authButton = (Button) layout.findViewById(R.id.button_auth);
         exitButton = (Button) layout.findViewById(R.id.button_exit);
+
+        clickListener(); // action to clicking buttons
         return layout;
+    }
+
+    private void clickListener() {
+        authButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(loginIntent);
+            }
+        });
     }
 
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {

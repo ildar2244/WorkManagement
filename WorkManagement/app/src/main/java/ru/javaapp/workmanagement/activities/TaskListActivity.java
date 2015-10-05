@@ -1,5 +1,6 @@
 package ru.javaapp.workmanagement.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TabHost;
 
+import ru.javaapp.workmanagement.MainActivity;
 import ru.javaapp.workmanagement.R;
 
 public class TaskListActivity extends AppCompatActivity {
@@ -74,6 +76,9 @@ public class TaskListActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
-        finish();
+        try {
+            startActivity(new Intent(TaskListActivity.this, MainActivity.class));
+            finish();
+        } catch (Exception e) {}
     }
 }
