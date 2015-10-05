@@ -85,10 +85,12 @@ public class LoginActivity extends AppCompatActivity {
                 if (usersType.equals("Работник")) {
                     Intent workerIntent = new Intent(LoginActivity.this, TaskListActivity.class);
                     startActivity(workerIntent);
+                    finish();
                 }
                 if (usersType.equals("Руководитель")) {
                     Intent masterIntent = new Intent(LoginActivity.this, MasterMainActivity.class);
                     startActivity(masterIntent);
+                    finish();
                 }
             }
         });

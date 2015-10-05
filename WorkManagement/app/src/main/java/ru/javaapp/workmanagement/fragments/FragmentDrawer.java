@@ -53,6 +53,7 @@ public class FragmentDrawer extends Fragment {
             public void onClick(View v) {
                 Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(loginIntent);
+                mDrawerLayout.closeDrawer(containerView);
             }
         });
     }
