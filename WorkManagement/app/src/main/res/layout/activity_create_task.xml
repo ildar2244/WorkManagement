@@ -27,7 +27,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/whom"/>
+                android:text="@string/whom"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/colorTextPrimary"
+                android:fontFamily="sans-serif"
+                android:textSize="20dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +42,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/what"/>
+                android:text="@string/what"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/colorTextPrimary"
+                android:fontFamily="sans-serif"
+                android:textSize="20dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +57,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/where"/>
+                android:text="@string/where"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/colorTextPrimary"
+                android:fontFamily="sans-serif"
+                android:textSize="20dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +72,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Сколько"/>
+                android:text="@string/how_many"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/colorTextPrimary"
+                android:fontFamily="sans-serif"
+                android:textSize="20dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,25 +87,39 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="От"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/tv_input_dateBefore"
-                android:onClick="onClickDateBefore"
+                android:text="@string/from"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/colorTextPrimary"
                 android:fontFamily="sans-serif"
-                android:textSize="16sp"
-                android:textColor="@color/colorTextSecondary"
-                android:gravity="center" />
-            <TextView
+                android:textSize="20dp"/>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/tv_input_timeBefore"
-                android:onClick="onClickTimeBefore"
-                android:fontFamily="sans-serif"
-                android:textSize="16sp"
-                android:textColor="@color/colorTextSecondary"
-                android:gravity="center" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_input_dateBefore"
+                    android:onClick="onClickDateBefore"
+                    android:hint="@string/tv_hint_date"
+                    android:fontFamily="sans-serif"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:gravity="center"
+                    android:layout_weight="1" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_input_timeBefore"
+                    android:onClick="onClickTimeBefore"
+                    android:hint="@string/tv_hint_time"
+                    android:fontFamily="sans-serif"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:gravity="center"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
 
         </LinearLayout>
