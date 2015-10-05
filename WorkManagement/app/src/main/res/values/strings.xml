@@ -25,8 +25,9 @@
     <string name="what">Что делать</string>
     <string name="where">Где</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="from">От</string>
+    <string name="from">Начало</string>
     <string name="how_many">Сколько</string>
     <string name="tv_hint_date">ДД.ММ.ГГ</string>
     <string name="tv_hint_time">ЧЧ:ММ</string>
+    <string name="tv_finish">Конец</string>
 </resources>
