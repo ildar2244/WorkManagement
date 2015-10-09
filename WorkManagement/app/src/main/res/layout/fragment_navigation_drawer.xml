@@ -10,18 +10,26 @@
     <include
         android:id="@+id/nav_header"
         layout="@layout/nav_drawer_header"/>
-    <!-- Authorization button -->
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nav_header"
-        android:text="Авторизация"
-        android:id="@+id/button_auth" />
-    <!-- Exit from profile -->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Exit"
-        android:id="@+id/button_exit" />
+        android:layout_below="@+id/nav_header">
+        <!-- Authorization button -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Авторизация"
+            android:id="@+id/button_auth"
+            android:layout_gravity="center_horizontal" />
+        <!-- Exit from profile -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Изменить пользователя"
+            android:id="@+id/button_exit"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 </RelativeLayout>

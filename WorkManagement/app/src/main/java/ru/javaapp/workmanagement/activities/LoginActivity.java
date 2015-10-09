@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import ru.javaapp.workmanagement.MainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
@@ -114,6 +115,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
-        finish();
+        try {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+        catch (Exception e) {}
     }
 }

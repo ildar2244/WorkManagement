@@ -20,7 +20,7 @@
             android:layout_width="@dimen/main_elements_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/main_elements_margin_top"
-            android:text="Пользователь:"
+            android:text="Текст приветствия"
             android:id="@+id/textView3"
             android:layout_gravity="center_horizontal"
             android:gravity="center_vertical|left"

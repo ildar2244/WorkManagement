@@ -8,7 +8,7 @@ public class Task {
     private int idTask;
     private int idOrganizer;
     private int idPerformer;
-    private int idRabota;
+    private int idWhat;
     private int idMesto;
     private int quantumTask;
     private int idStatus;
@@ -42,12 +42,12 @@ public class Task {
         this.idPerformer = idPerformer;
     }
 
-    public int getIdRabota() {
-        return idRabota;
+    public int getIdWhat() {
+        return idWhat;
     }
 
-    public void setIdRabota(int idRabota) {
-        this.idRabota = idRabota;
+    public void setIdWhat(int idWhat) {
+        this.idWhat = idWhat;
     }
 
     public int getIdMesto() {

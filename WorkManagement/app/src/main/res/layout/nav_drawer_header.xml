@@ -7,11 +7,12 @@
     android:background="?attr/colorPrimaryDark"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:text="Header"
-        android:fontFamily="sens-serif-medium"
+        android:text="Автокомпоненты-Трейд"
+        android:fontFamily="sens-serif"
         android:textColor="@color/white"
-        android:gravity="center_vertical" />
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textStyle="bold" />
 </LinearLayout>
