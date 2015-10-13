@@ -45,7 +45,13 @@
                         android:id="@+id/tab1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"></LinearLayout>
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_json"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hello world"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/tab2"
