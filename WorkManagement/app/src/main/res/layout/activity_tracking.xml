@@ -26,7 +26,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Здесь можно будет отслеживать за выполнением рабочими заданий. Пока еще хрен знает как."/>
+                android:text="Здесь можно будет отслеживать за выполнением рабочими заданий. Пока еще хрен знает как."
+                android:id="@+id/text"/>
         </LinearLayout>
 
     </LinearLayout>
