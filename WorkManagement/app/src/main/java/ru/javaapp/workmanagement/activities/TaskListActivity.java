@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +19,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ru.javaapp.workmanagement.MainActivity;
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
+import ru.javaapp.workmanagement.dao.Task;
+import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.worker.JSONParserWorker;
 
 public class TaskListActivity extends AppCompatActivity {
@@ -26,8 +34,12 @@ public class TaskListActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabHost tabHost;
     private String urlGetTasks = "http://autocomponent.motorcum.ru/get_tasks_by_worker.php";
-
-    private TextView textView;
+    private RecyclerView rvTasksOne;
+    private RecyclerView rvTasksTwo;
+    private RVAdaptersTasks adaptersTasks;
+    private List<Task> taskOne;
+    private List<Task> taskTwo;
+    List statusList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +47,7 @@ public class TaskListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_list);
         toolbarInitialize(); // init toolbar
         componentsInitialize(); //init components in activity
-        new JsonReadByWorker().execute();
+        new JsonReadByWorker().execute(); // start AsyncTask and get JSON from DB
     }
 
     /**
@@ -82,7 +94,11 @@ public class TaskListActivity extends AppCompatActivity {
         tapSpec.setIndicator("THREE");
         tabHost.addTab(tapSpec);
 
-        textView = (TextView) findViewById(R.id.tv_json);
+        rvTasksOne = (RecyclerView) findViewById(R.id.rv_tasks_one);
+        rvTasksOne.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        rvTasksTwo = (RecyclerView) findViewById(R.id.rv_tasks_two);
+        rvTasksTwo.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+
     }
 
     /**
@@ -143,27 +159,54 @@ public class TaskListActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Tasks elements getting from JSONObject to String and create RecyclerView
+     * @param json
+     * @throws JSONException
+     */
     public void ListDrawer(JSONObject json) throws JSONException {
         JSONArray jsonArray = null;
-        String resultText = "";
+        taskOne = new ArrayList<Task>();
+        statusList = new ArrayList();
 
         jsonArray = json.getJSONArray("allTasks_by_worker");
+
         for (int i = 0; i < jsonArray.length(); i++) {
+            Task task = new Task();
+
             JSONObject jsonObject = jsonArray.getJSONObject(i);
+            int id = jsonObject.getInt("id");
             String nameMaster = jsonObject.getString("name");
             String nameWorker = jsonObject.getString("nameWorker");
             String nameWhat = jsonObject.getString("nameWhat");
             String namePlace = jsonObject.getString("namePlace");
-            String countPlan = jsonObject.getString("count_plan");
-            String countCurrent = jsonObject.getString("count_current");
+            int statusId = jsonObject.getInt("id_status");
+            statusList.add(statusId);
+            int countPlan = jsonObject.getInt("count_plan");
+            int countCurrent = jsonObject.getInt("count_current");
             String timeStart = jsonObject.getString("time_start");
             String timeFinish = jsonObject.getString("time_finish");
             String dateStart = jsonObject.getString("date_start");
             String dateFinish = jsonObject.getString("date_finish");
             String comment = jsonObject.getString("comment");
-            resultText += nameMaster + " " + nameWorker + " " + nameWhat + " " + namePlace + " " + countPlan + " " + countCurrent + " " + timeStart + " " + timeFinish + " " + dateStart + " " + dateFinish + " " + comment;
+
+            task.setIdTask(id);
+            task.setIdStatus(statusId);
+            task.setMasterName(nameMaster);
+            task.setWhatName(nameWhat);
+            task.setPlaceName(namePlace);
+            task.setCountPlanTask(countPlan);
+            task.setCountCurrentTask(countCurrent);
+            task.setTimeFinish(timeFinish);
+            task.setDateFinish(dateFinish);
+            task.setCommentTask(comment);
+
+            taskOne.add(task);
 
         }
-        textView.setText(resultText);
+
+        adaptersTasks = new RVAdaptersTasks(getApplicationContext(), taskOne, statusList);
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+
     }
 }

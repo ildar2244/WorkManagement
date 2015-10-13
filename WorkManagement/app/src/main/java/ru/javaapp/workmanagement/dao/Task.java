@@ -6,11 +6,12 @@ package ru.javaapp.workmanagement.dao;
 public class Task {
 
     private int idTask;
-    private int idOrganizer;
+    private String masterName;
     private int idPerformer;
-    private int idWhat;
-    private int idMesto;
-    private int quantumTask;
+    private String whatName;
+    private String placeName;
+    private int countPlanTask;
+    private int countCurrentTask;
     private int idStatus;
     private String dateStart;
     private String dateFinish;
@@ -26,12 +27,12 @@ public class Task {
         this.idTask = idTask;
     }
 
-    public int getIdOrganizer() {
-        return idOrganizer;
+    public String getMasterName() {
+        return masterName;
     }
 
-    public void setIdOrganizer(int idOrganizer) {
-        this.idOrganizer = idOrganizer;
+    public void setMasterName(String masterName) {
+        this.masterName = masterName;
     }
 
     public int getIdPerformer() {
@@ -42,28 +43,36 @@ public class Task {
         this.idPerformer = idPerformer;
     }
 
-    public int getIdWhat() {
-        return idWhat;
+    public String getWhatName() {
+        return whatName;
     }
 
-    public void setIdWhat(int idWhat) {
-        this.idWhat = idWhat;
+    public void setWhatName(String whatName) {
+        this.whatName = whatName;
     }
 
-    public int getIdMesto() {
-        return idMesto;
+    public String getPlaceName() {
+        return placeName;
     }
 
-    public void setIdMesto(int idMesto) {
-        this.idMesto = idMesto;
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
     }
 
-    public int getQuantumTask() {
-        return quantumTask;
+    public int getCountPlanTask() {
+        return countPlanTask;
     }
 
-    public void setQuantumTask(int quantumTask) {
-        this.quantumTask = quantumTask;
+    public void setCountPlanTask(int countPlanTask) {
+        this.countPlanTask = countPlanTask;
+    }
+
+    public int getCountCurrentTask() {
+        return countCurrentTask;
+    }
+
+    public void setCountCurrentTask(int countCurrentTask) {
+        this.countCurrentTask = countCurrentTask;
     }
 
     public int getIdStatus() {
