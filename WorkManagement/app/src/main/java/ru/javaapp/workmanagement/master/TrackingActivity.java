@@ -1,26 +1,16 @@
 package ru.javaapp.workmanagement.master;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.json.JSONParser;
