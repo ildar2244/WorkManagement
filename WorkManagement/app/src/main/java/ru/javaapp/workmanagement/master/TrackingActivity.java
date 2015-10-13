@@ -44,7 +44,7 @@ public class TrackingActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             JSONParser parser = new JSONParser();
-            JSONObject jsonObject = parser.run();
+            JSONObject jsonObject = parser.makeHttpRequest();
 
             return jsonObject;
         }
@@ -90,15 +90,15 @@ public class TrackingActivity extends AppCompatActivity {
             String nameMaster = jsonObject.getString("name");
             String nameWorker = jsonObject.getString("nameWorker");
             String nameWhat = jsonObject.getString("nameWhat");
-            String namePlace = jsonObject.getString("nameWPlace");
-            int countPlan = jsonObject.getInt("count_plan");
-            int countCurrent = jsonObject.getInt("count_current");
+            String namePlace = jsonObject.getString("namePlace");
+            String countPlan = jsonObject.getString("count_plan");
+            String countCurrent = jsonObject.getString("count_current");
             String timeStart = jsonObject.getString("time_start");
             String timeFinish = jsonObject.getString("time_finish");
             String dateStart = jsonObject.getString("date_start");
             String dateFinish = jsonObject.getString("date_finish");
             String comment = jsonObject.getString("comment");
-            resultText += nameMaster + " " + nameWorker + " " + nameWhat + " " + namePlace + " " + Integer.toString(countPlan) + " " + Integer.toString(countCurrent) + " " + timeStart + " " + timeFinish + " " + dateStart + " " + dateFinish + " " + comment;
+            resultText += nameMaster + " " + nameWorker + " " + nameWhat + " " + namePlace + " " + countPlan + " " + countCurrent + " " + timeStart + " " + timeFinish + " " + dateStart + " " + dateFinish + " " + comment;
 
         }
         text.setText(resultText);
