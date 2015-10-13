@@ -30,4 +30,5 @@
     <string name="tv_hint_date">ДД.ММ.ГГ</string>
     <string name="tv_hint_time">ЧЧ:ММ</string>
     <string name="tv_finish">Конец</string>
+    <string name="btn_send">Отправить</string>
 </resources>
