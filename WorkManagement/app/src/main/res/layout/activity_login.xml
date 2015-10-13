@@ -10,17 +10,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
     <!-- -->
-    <TextView
-        android:layout_width="@dimen/main_elements_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/main_elements_margin_top"
-        android:text="Пользователь:"
-        android:id="@+id/textView3"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical|left"
-        android:textColor="@color/colorTextPrimary"
-        android:fontFamily="sans-serif"
-        android:textSize="20dp"/>
     <!-- Select users type -->
     <Spinner
         android:layout_width="@dimen/main_elements_width"
