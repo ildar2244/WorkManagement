@@ -31,4 +31,5 @@
     <string name="tv_hint_time">ЧЧ:ММ</string>
     <string name="tv_finish">Конец</string>
     <string name="btn_send">Отправить</string>
+    <string name="refresh">Обновить</string>
 </resources>
