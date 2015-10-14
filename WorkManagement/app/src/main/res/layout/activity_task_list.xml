@@ -45,19 +45,23 @@
                         android:id="@+id/tab1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"></LinearLayout>
+                        android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_tasks_one"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/tab2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"></LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/tab3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"></LinearLayout>
+                        android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_tasks_two"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </FrameLayout>
             </LinearLayout>
         </TabHost>
