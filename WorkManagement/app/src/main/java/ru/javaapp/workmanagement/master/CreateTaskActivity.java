@@ -80,6 +80,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         setListeners();
     }
 
+    // inin all components
     private void componentsInitialize(){
         whomSpinner = (Spinner) findViewById(R.id.whomSpinner);
         whatSpinner = (Spinner) findViewById(R.id.whatSpinner);
@@ -104,12 +105,14 @@ public class CreateTaskActivity extends AppCompatActivity {
 
         send_btn = (Button) findViewById(R.id.btn_send);
     }
+    // get current date for dates textview
     private  String getCurrentDate(){
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         String formattedDate = df.format(c.getTime());
         return formattedDate;
     }
+    // get current time for times textview
     private String getCurrentTime(){
         Calendar c = Calendar.getInstance();
         StringBuilder timeBuilder = new StringBuilder();
@@ -119,6 +122,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         return formattedTime;
     }
 
+    // fill adapters for our spinners
     private ArrayAdapter fillWhomSpinner(){
         String[] whom = getResources().getStringArray(R.array.workers);
         whomAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, whom);
@@ -138,6 +142,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         return whereAdapter;
     }
 
+    //init toolbar
     private void toolbarInitialize() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -157,6 +162,7 @@ public class CreateTaskActivity extends AppCompatActivity {
 
     }
 
+    // all listeners
     private void setListeners(){
         tvDateBefore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +206,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         });
     }
 
+    // check for filled all fields
     boolean checkFillAllFields(){
         if(
                 countPlan.getText().toString().trim().length() == 0 ||
@@ -215,6 +222,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         }
     }
 
+    // send task on server
     private class InsertData extends AsyncTask<String, Void, String> {
         int workerId = whomSpinner.getSelectedItemPosition() + 1;
         int whatId = whatSpinner.getSelectedItemPosition() + 1;
@@ -244,17 +252,18 @@ public class CreateTaskActivity extends AppCompatActivity {
 
             for (String url : urls) {
                 try {
-                    URL urli = new URL(url);
-                    urlConnection = (HttpURLConnection) urli.openConnection();
-                    urlConnection.setRequestMethod("POST");
-                    urlConnection.setDoInput(true);
-                    OutputStream os = urlConnection.getOutputStream();
+                    URL urli = new URL(url); // our url
+                    urlConnection = (HttpURLConnection) urli.openConnection(); // open connection
+                    urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
+                    urlConnection.setDoInput(true); // use Get request
+                    urlConnection.setDoOutput(true); // use POST request
+                    OutputStream os = urlConnection.getOutputStream(); // get output parameters
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(getQuery(pairs));
+                    writer.write(getQuery(pairs)); // write our pairs
                     writer.flush();
                     writer.close();
                     os.close();
-                    urlConnection.connect();
+                    urlConnection.connect(); // connect with our server
 
                     is = urlConnection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
@@ -337,7 +346,6 @@ public class CreateTaskActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.d("My", "OnBackPressed");
         try {
-            startActivity(new Intent(CreateTaskActivity.this, MainActivity.class));
             finish();
         }
         catch (Exception e){

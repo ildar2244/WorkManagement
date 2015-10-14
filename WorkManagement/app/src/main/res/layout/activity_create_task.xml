@@ -95,6 +95,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:id="@+id/howManyEt"/>
 
             <TextView
@@ -107,7 +108,8 @@
                 android:fontFamily="sans-serif"
                 android:textSize="20dp"
                 android:layout_marginTop="8dp"/>
-            <LinearLayout
+
+                    <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
