@@ -1,6 +1,7 @@
 package ru.javaapp.workmanagement.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,9 +45,15 @@ public class RVAdaptersTasks extends RecyclerView.Adapter<RVAdaptersTasks.EventV
         holder.tvDateFinish.setText(taskList.get(position).getDateFinish());
         if (taskList.get(position).getIdStatus() == 1) {
             holder.tvCount.setText(Integer.toString(taskList.get(position).getCountPlanTask()));
+            holder.tvCount.setBackgroundColor(Color.parseColor("#727272"));
         }
-        else {
+        if (taskList.get(position).getIdStatus() == 2) {
             holder.tvCount.setText(Integer.toString(taskList.get(position).getCountCurrentTask()));
+            holder.tvCount.setBackgroundColor(Color.parseColor("#1976D2"));
+        }
+        if (taskList.get(position).getIdStatus() == 3) {
+            holder.tvCount.setText(Integer.toString(taskList.get(position).getCountCurrentTask()));
+            holder.tvCount.setBackgroundColor(Color.parseColor("#5FB219"));
         }
         holder.tvWhatName.setText(taskList.get(position).getWhatName());
         holder.tvPlaceName.setText(taskList.get(position).getPlaceName());
