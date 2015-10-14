@@ -39,14 +39,14 @@ public class RVAdaptersTasks extends RecyclerView.Adapter<RVAdaptersTasks.EventV
     @Override
     public void onBindViewHolder(EventViewHolder holder, int position) {
 
-        holder.tvNumber.setText(taskList.get(position).getIdTask());
+        holder.tvNumber.setText(Integer.toString(taskList.get(position).getIdTask()));
         holder.tvTimeFinish.setText(taskList.get(position).getTimeFinish());
         holder.tvDateFinish.setText(taskList.get(position).getDateFinish());
-        if (statusTask.get(position) == 1) {
-            holder.tvCount.setText(taskList.get(position).getCountPlanTask());
+        if (taskList.get(position).getIdStatus() == 1) {
+            holder.tvCount.setText(Integer.toString(taskList.get(position).getCountPlanTask()));
         }
         else {
-            holder.tvCount.setText(taskList.get(position).getCountCurrentTask());
+            holder.tvCount.setText(Integer.toString(taskList.get(position).getCountCurrentTask()));
         }
         holder.tvWhatName.setText(taskList.get(position).getWhatName());
         holder.tvPlaceName.setText(taskList.get(position).getPlaceName());

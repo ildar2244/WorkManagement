@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -36,9 +35,10 @@ public class TaskListActivity extends AppCompatActivity {
     private String urlGetTasks = "http://autocomponent.motorcum.ru/get_tasks_by_worker.php";
     private RecyclerView rvTasksOne;
     private RecyclerView rvTasksTwo;
-    private RVAdaptersTasks adaptersTasks;
-    private List<Task> taskOne;
-    private List<Task> taskTwo;
+    private RVAdaptersTasks adaptersTasksOneTwo;
+    private RVAdaptersTasks adaptersTasksThree;
+    private List<Task> taskOneTwo;
+    private List<Task> taskThree;
     List statusList;
 
     @Override
@@ -81,17 +81,12 @@ public class TaskListActivity extends AppCompatActivity {
         tabHost.setup();
         TabHost.TabSpec tapSpec = tabHost.newTabSpec("tabOne");
         tapSpec.setContent(R.id.tab1);
-        tapSpec.setIndicator("ONE");
+        tapSpec.setIndicator("Текущие");
         tabHost.addTab(tapSpec);
 
         tapSpec = tabHost.newTabSpec("tabTwo");
         tapSpec.setContent(R.id.tab2);
-        tapSpec.setIndicator("TWO");
-        tabHost.addTab(tapSpec);
-
-        tapSpec = tabHost.newTabSpec("tabThree");
-        tapSpec.setContent(R.id.tab3);
-        tapSpec.setIndicator("THREE");
+        tapSpec.setIndicator("Выполнено");
         tabHost.addTab(tapSpec);
 
         rvTasksOne = (RecyclerView) findViewById(R.id.rv_tasks_one);
@@ -166,7 +161,8 @@ public class TaskListActivity extends AppCompatActivity {
      */
     public void ListDrawer(JSONObject json) throws JSONException {
         JSONArray jsonArray = null;
-        taskOne = new ArrayList<Task>();
+        taskOneTwo = new ArrayList<Task>();
+        taskThree = new ArrayList<Task>();
         statusList = new ArrayList();
 
         jsonArray = json.getJSONArray("allTasks_by_worker");
@@ -201,12 +197,25 @@ public class TaskListActivity extends AppCompatActivity {
             task.setDateFinish(dateFinish);
             task.setCommentTask(comment);
 
-            taskOne.add(task);
+            // Create Task and add in list
+            if (statusId == 1 || statusId == 2) {
+                taskOneTwo.add(task);
+            }
+            if (statusId == 3) {
+                taskThree.add(task);
+            }
 
         }
 
-        adaptersTasks = new RVAdaptersTasks(getApplicationContext(), taskOne, statusList);
-        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        // Creating 2 adapters and 2 recyclerviews for two Tabs
+        adaptersTasksOneTwo = new RVAdaptersTasks(getApplicationContext(), taskOneTwo, statusList);
+        adaptersTasksThree = new RVAdaptersTasks(getApplicationContext(), taskThree, statusList);
+        LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager llm2 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        rvTasksOne.setAdapter(adaptersTasksOneTwo);
+        rvTasksOne.setLayoutManager(llm1);
+        rvTasksTwo.setAdapter(adaptersTasksThree);
+        rvTasksTwo.setLayoutManager(llm2);
 
     }
 }
