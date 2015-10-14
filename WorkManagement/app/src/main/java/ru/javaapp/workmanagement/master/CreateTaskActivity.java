@@ -36,11 +36,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import ru.javaapp.workmanagement.MainActivity;
@@ -58,6 +67,7 @@ public class CreateTaskActivity extends AppCompatActivity {
     TextView tvDateBefore, tvDateAfter, tvTimeBefore, tvTimeAfter;
     Spinner whomSpinner, whatSpinner, whereSpinner;
     ArrayAdapter whomAdapter, whatAdapter, whereAdapter;
+    HttpURLConnection urlConnection;
     int code;
 
     @Override
@@ -84,11 +94,29 @@ public class CreateTaskActivity extends AppCompatActivity {
         whereSpinner.setFocusable(true);
 
         tvDateBefore = (TextView) findViewById(R.id.tv_input_dateBefore);
+        tvDateBefore.setText(getCurrentDate());
         tvTimeBefore = (TextView) findViewById(R.id.tv_input_timeBefore);
+        tvTimeBefore.setText(getCurrentTime());
         tvDateAfter = (TextView) findViewById(R.id.tv_input_dateAfter);
+        tvDateAfter.setText(getCurrentDate());
         tvTimeAfter = (TextView) findViewById(R.id.tv_input_timeAfter);
+        tvTimeAfter.setText(getCurrentTime());
 
         send_btn = (Button) findViewById(R.id.btn_send);
+    }
+    private  String getCurrentDate(){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        String formattedDate = df.format(c.getTime());
+        return formattedDate;
+    }
+    private String getCurrentTime(){
+        Calendar c = Calendar.getInstance();
+        StringBuilder timeBuilder = new StringBuilder();
+        timeBuilder.append(c.get(Calendar.HOUR_OF_DAY)).append(":");
+        timeBuilder.append(c.get(Calendar.MINUTE));
+        String formattedTime = timeBuilder.toString();
+        return formattedTime;
     }
 
     private ArrayAdapter fillWhomSpinner(){
@@ -201,35 +229,34 @@ public class CreateTaskActivity extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             String result = null;
             InputStream is = null;
-            final int CONN_WAIT_TIME = 8000;
-            final int CONN_DATA_WAIT_TIME = 7000;
+
+            ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+            pairs.add(new BasicNameValuePair("masterId", "1"));
+            pairs.add(new BasicNameValuePair("workerId", Integer.toString(workerId)));
+            pairs.add(new BasicNameValuePair("whatId", Integer.toString(whatId)));
+            pairs.add(new BasicNameValuePair("placeId", Integer.toString(whereId)));
+            pairs.add(new BasicNameValuePair("countPlan", plan));
+            pairs.add(new BasicNameValuePair("timeStart", timeBefore));
+            pairs.add(new BasicNameValuePair("timeFinish", timeAfter));
+            pairs.add(new BasicNameValuePair("dateStart", dateBefore));
+            pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
+            pairs.add(new BasicNameValuePair("comment", "Никаких комментариев"));
 
             for (String url : urls) {
                 try {
-                    ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
-                    pairs.add(new BasicNameValuePair("masterId", "1"));
-                    pairs.add(new BasicNameValuePair("workerId", Integer.toString(workerId)));
-                    pairs.add(new BasicNameValuePair("whatId", Integer.toString(whatId)));
-                    pairs.add(new BasicNameValuePair("placeId", Integer.toString(whereId)));
-                    pairs.add(new BasicNameValuePair("countPlan", plan));
-                    pairs.add(new BasicNameValuePair("timeStart", timeBefore));
-                    pairs.add(new BasicNameValuePair("timeFinish", timeAfter));
-                    pairs.add(new BasicNameValuePair("dateStart", dateBefore));
-                    pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
-                    pairs.add(new BasicNameValuePair("comment", "Никаких комментариев"));
+                    URL urli = new URL(url);
+                    urlConnection = (HttpURLConnection) urli.openConnection();
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setDoInput(true);
+                    OutputStream os = urlConnection.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getQuery(pairs));
+                    writer.flush();
+                    writer.close();
+                    os.close();
+                    urlConnection.connect();
 
-                    HttpParams httpParams = new BasicHttpParams();
-                    HttpConnectionParams.setConnectionTimeout(httpParams, CONN_WAIT_TIME);
-                    HttpConnectionParams.setSoTimeout(httpParams, CONN_DATA_WAIT_TIME);
-
-                    DefaultHttpClient postClient = new DefaultHttpClient(httpParams);
-                    HttpClient client = postClient;
-                    HttpPost post = new HttpPost(url);
-                    post.setEntity(new UrlEncodedFormEntity(pairs, "UTF-8"));
-                    HttpResponse responce = client.execute(post);
-                    HttpEntity entity = responce.getEntity();
-                    is = entity.getContent();
-
+                    is = urlConnection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
                     StringBuilder sb = new StringBuilder();
                     String line = null;
@@ -237,12 +264,14 @@ public class CreateTaskActivity extends AppCompatActivity {
                         sb.append(line + "\n");
                     }
                     result = sb.toString();
-                } catch (ClientProtocolException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    return  null;
+                }
+                finally {
+                    if(urlConnection != null){
+                        urlConnection.disconnect();
+                    }
                 }
             }
             return result;
@@ -287,6 +316,21 @@ public class CreateTaskActivity extends AppCompatActivity {
                 }
             }
 
+        }
+
+        private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
+            StringBuilder result = new StringBuilder();
+            boolean first = true;
+            for(NameValuePair pair : params){
+                if(first)
+                    first = false;
+                else
+                    result.append("&");
+                result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
+                result.append("=");
+                result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
+            }
+            return  result.toString();
         }
     }
 
