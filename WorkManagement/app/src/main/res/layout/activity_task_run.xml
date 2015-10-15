@@ -19,7 +19,31 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar"/>
     </LinearLayout>
-    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/ll_spn_margin_right"
+        android:layout_marginLeft="@dimen/ll_spn_margin_right"
+        android:layout_marginRight="@dimen/ll_spn_margin_right"
+        android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="Скорость (шт.):"
+            android:fontFamily="sans-serif" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="@dimen/ll_spn_margin_right"
+            android:id="@+id/et_speedCount"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:text="30 шт."
-                android:id="@+id/tv_howMatchCountToGo"
+                android:id="@+id/tv_CountToGo"
                 android:fontFamily="sans-serif"
                 android:layout_marginLeft="@dimen/ll_spn_margin_right"/>
             <TextView
@@ -87,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:text="360 мин."
-                android:id="@+id/tv_howMatchTimeToGo"
+                android:id="@+id/tv_TimeToGo"
                 android:fontFamily="sans-serif"
                 android:layout_marginLeft="@dimen/ll_spn_margin_right"
                 android:layout_marginTop="@dimen/ll_spn_margin_right"/>

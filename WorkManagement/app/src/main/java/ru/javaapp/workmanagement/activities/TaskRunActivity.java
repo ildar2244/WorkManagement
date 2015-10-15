@@ -1,20 +1,27 @@
 package ru.javaapp.workmanagement.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.widget.TabHost;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import ru.javaapp.workmanagement.MainActivity;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.list.DividerItemDecoration;
 
 /**
  * Created by User on 15.10.2015.
  */
 public class TaskRunActivity extends AppCompatActivity {
     Toolbar toolbar;
+    ImageButton btnMinus, btnPlus;
+    TextView tvCurrentAdd,tvCountToGo, tvTimeToGo, tvWhatDo, tvWhereDo, tvComment;
+    EditText etSpeedCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,7 @@ public class TaskRunActivity extends AppCompatActivity {
 
         toolbarInitialize(); // init toolbar
         componentsInitialize(); //init components in activity
+        setListeners(); // set all listeners
     }
 
     /**
@@ -49,7 +57,40 @@ public class TaskRunActivity extends AppCompatActivity {
     }
 
     private void componentsInitialize() {
-
-
+        btnMinus = (ImageButton) findViewById(R.id.btn_minus);
+        btnPlus = (ImageButton) findViewById(R.id.btn_plus);
+        tvCurrentAdd = (TextView) findViewById(R.id.tv_currentAdd);
+        tvCountToGo = (TextView) findViewById(R.id.tv_CountToGo);
+        tvTimeToGo = (TextView) findViewById(R.id.tv_TimeToGo);
+        tvWhatDo = (TextView) findViewById(R.id.tv_what);
+        tvWhereDo = (TextView) findViewById(R.id.tv_where);
+        tvComment = (TextView) findViewById(R.id.tv_comment);
+        etSpeedCount = (EditText) findViewById(R.id.et_speedCount);
     }
+
+    private void setListeners() {
+        btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("My", "On Back Pressed");
+        super.onBackPressed();
+        try {
+            finish();
+        } catch (Exception e) {}
+    }
+
 }

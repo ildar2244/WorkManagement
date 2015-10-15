@@ -105,7 +105,6 @@ public class TrackingActivity extends AppCompatActivity {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
         try {
-            startActivity(new Intent(TrackingActivity.this, MainActivity.class));
             finish();
         } catch (Exception e) {}
     }
