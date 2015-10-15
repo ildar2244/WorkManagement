@@ -75,7 +75,11 @@ public class TaskBeginActivity extends AppCompatActivity {
         tbaButtonTake = (Button) findViewById(R.id.tba_btnbegin);
 
         // set data to UI-elements
-        getSupportActionBar().setTitle("№ " + Integer.toString(taskGet.getIdTask()));
+        try {
+            getSupportActionBar().setTitle("№ " + Integer.toString(taskGet.getIdTask()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tbaTimeStart.setText(taskGet.getTimeStart());
         tbaTimeFinish.setText(taskGet.getTimeFinish());
         tbaDateStart.setText(taskGet.getDateStart());

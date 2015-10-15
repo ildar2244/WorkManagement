@@ -36,57 +36,60 @@
             android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
                 <TextView
                     android:id="@+id/tba_timestart"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:gravity="center_vertical" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingLeft="@dimen/tba_tv_padding_left"
                     android:paddingRight="@dimen/tba_tv_padding_left"
                     android:text="-"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:gravity="center_vertical" />
                 <TextView
                     android:id="@+id/tba_timefinish"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:gravity="center_vertical" />
             </LinearLayout>
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
                 <TextView
                     android:id="@+id/tba_datestart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:paddingLeft="@dimen/tba_tv_padding_left"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
-                    android:textSize="16dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/tba_tv_padding_left"
-                    android:paddingRight="@dimen/tba_tv_padding_left"
-                    android:text="-"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"/>
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:gravity="right" />
                 <TextView
                     android:id="@+id/tba_datefinish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:paddingLeft="@dimen/tba_tv_padding_left"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:gravity="right" />
             </LinearLayout>
         </LinearLayout>
         <!-- WHAT name-->
@@ -139,7 +142,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_library_books_black_24dp"/>
+                android:src="@drawable/ic_assignment_black_24dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,11 +166,18 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tba_ll_margin_top"
+            android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_assignment_turned_in_black_24dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Выполнено:"/>
+                android:paddingLeft="@dimen/tba_padding_left_of_iv"
+                android:text="Факт:"/>
             <TextView
                 android:id="@+id/tba_countcurrent"
                 android:layout_width="wrap_content"

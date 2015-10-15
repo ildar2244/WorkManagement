@@ -51,7 +51,11 @@ public class TaskListActivity extends AppCompatActivity {
         toolbarInitialize(); // init toolbar
         componentsInitialize(); //init components in activity
         setListeners(); // rv.items select listener
-        new JsonReadByWorker().execute(); // start AsyncTask and get JSON from DB
+        try {
+            new JsonReadByWorker().execute(); // start AsyncTask and get JSON from DB
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
