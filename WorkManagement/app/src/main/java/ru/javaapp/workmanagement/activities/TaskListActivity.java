@@ -28,6 +28,7 @@ import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
+import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
 import ru.javaapp.workmanagement.worker.JSONParserWorker;
 
 public class TaskListActivity extends AppCompatActivity {
@@ -49,6 +50,7 @@ public class TaskListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_list);
         toolbarInitialize(); // init toolbar
         componentsInitialize(); //init components in activity
+        setListeners(); // rv.items select listener
         new JsonReadByWorker().execute(); // start AsyncTask and get JSON from DB
     }
 
@@ -195,7 +197,9 @@ public class TaskListActivity extends AppCompatActivity {
             task.setPlaceName(namePlace);
             task.setCountPlanTask(countPlan);
             task.setCountCurrentTask(countCurrent);
+            task.setTimeStart(timeStart);
             task.setTimeFinish(timeFinish);
+            task.setDateStart(dateStart);
             task.setDateFinish(dateFinish);
             task.setCommentTask(comment);
 
@@ -238,5 +242,23 @@ public class TaskListActivity extends AppCompatActivity {
             new JsonReadByWorker().execute(); // update RVs - get new data
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Action by clicking on items RV
+     */
+    private void setListeners() {
+        rvTasksOne.addOnItemTouchListener(
+                new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        Task task = taskOneTwo.get(position);
+                        Intent intentTba = new Intent(TaskListActivity.this, TaskBeginActivity.class);
+                        intentTba.putExtra("taskObj", task);
+                        startActivity(intentTba);
+                    }
+                })
+        );
     }
 }

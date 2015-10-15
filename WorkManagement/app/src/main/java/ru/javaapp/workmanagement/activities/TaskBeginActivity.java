@@ -1,8 +1,6 @@
 package ru.javaapp.workmanagement.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.dao.Task;
 
 public class TaskBeginActivity extends AppCompatActivity {
 
@@ -19,7 +18,8 @@ public class TaskBeginActivity extends AppCompatActivity {
     private TextView tbaWhatName, tbaPlaceName, tbaComment;
     private TextView tbaCountPlan, tbaCountCurrent, tbaDiffCount, tbaDiffTime;
     private Button tbaButtonTake;
-    private String diffCount, diffTime;
+    private int diffCount, diffTime;
+    private Task taskGet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class TaskBeginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_begin);
 
         toolbarInitialize(); // init toolbar
+        takeFieldsFromPreviousActivity(); // get data from Intent
         componentsInitialize(); //init components in activity
     }
 
@@ -70,6 +71,27 @@ public class TaskBeginActivity extends AppCompatActivity {
         tbaDiffTime = (TextView) findViewById(R.id.tba_timedifference);
         tbaComment = (TextView) findViewById(R.id.tba_comment);
         tbaButtonTake = (Button) findViewById(R.id.tba_btnbegin);
+
+        tbaTimeStart.setText(taskGet.getTimeStart());
+        tbaTimeFinish.setText(taskGet.getTimeFinish());
+        tbaDateStart.setText(taskGet.getDateStart());
+        tbaDateFinish.setText(taskGet.getDateFinish());
+        tbaWhatName.setText(taskGet.getWhatName());
+        tbaPlaceName.setText(taskGet.getPlaceName());
+        tbaCountPlan.setText(Integer.toString(taskGet.getCountPlanTask()));
+        tbaCountCurrent.setText(Integer.toString(taskGet.getCountCurrentTask()));
+
+        diffCount = taskGet.getCountPlanTask() - taskGet.getCountCurrentTask();
+        tbaDiffCount.setText(Integer.toString(diffCount));
+
+        tbaComment.setText(taskGet.getCommentTask());
+    }
+
+    /**
+     * Get data from previous activity
+     */
+    private void takeFieldsFromPreviousActivity() {
+        taskGet = (Task) getIntent().getSerializableExtra("taskObj");
     }
 
     /**

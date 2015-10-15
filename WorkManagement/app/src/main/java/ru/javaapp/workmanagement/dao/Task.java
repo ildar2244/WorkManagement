@@ -1,9 +1,11 @@
 package ru.javaapp.workmanagement.dao;
 
+import java.io.Serializable;
+
 /**
  * Created by User on 30.09.2015.
  */
-public class Task {
+public class Task implements Serializable {
 
     private int idTask;
     private String masterName;
