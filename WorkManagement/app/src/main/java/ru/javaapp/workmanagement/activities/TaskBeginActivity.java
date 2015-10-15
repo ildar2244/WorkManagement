@@ -116,7 +116,9 @@ public class TaskBeginActivity extends AppCompatActivity {
         tbaButtonTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TaskBeginActivity.this, TaskRunActivity.class));
+                Intent intentTba = new Intent(TaskBeginActivity.this, TaskRunActivity.class);
+                intentTba.putExtra("taskObj", taskGet);
+                startActivity(intentTba);
             }
         });
     }
