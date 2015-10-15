@@ -199,7 +199,7 @@ public class TrackingActivity extends AppCompatActivity {
             task.setCommentTask(comment);
 
             // Create Task and add in list
-            if (statusId == 2) {
+            if (statusId == 1 || statusId == 2) {
                 taskListCurrent.add(task);
             }
             if (statusId == 3) {
