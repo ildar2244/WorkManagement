@@ -41,7 +41,7 @@ public class RVAdaptersTasksForMaster extends RecyclerView.Adapter<RVAdaptersTas
         holder.tvNumber.setText(Integer.toString(taskList.get(position).getIdTask()));
         holder.tvTimeFinish.setText(taskList.get(position).getTimeFinish());
         holder.tvDateFinish.setText(taskList.get(position).getDateFinish());
-        if (taskList.get(position).getIdStatus() == 1) {
+        if (taskList.get(position).getIdStatus() == 3) {
             holder.tvCount.setText(Integer.toString(taskList.get(position).getCountPlanTask()));
         }
         else {
