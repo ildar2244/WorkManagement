@@ -22,12 +22,18 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/container_toolbar">
+        android:layout_below="@id/container_toolbar"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:divider="?android:dividerHorizontal"
+        android:showDividers="middle">
         <!-- Time, Date start-finish -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tba_ll_margin_top"
+            android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
@@ -35,11 +41,25 @@
                 <TextView
                     android:id="@+id/tba_timestart"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/tba_tv_padding_left"
+                    android:paddingRight="@dimen/tba_tv_padding_left"
+                    android:text="-"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/tba_timefinish"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="16dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -48,58 +68,95 @@
                 <TextView
                     android:id="@+id/tba_datestart"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="16dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/tba_tv_padding_left"
+                    android:paddingRight="@dimen/tba_tv_padding_left"
+                    android:text="-"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/tba_datefinish"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="16dp" />
             </LinearLayout>
         </LinearLayout>
         <!-- WHAT name-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tba_ll_margin_top"
+            android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star_black_24dp_1x"/>
             <TextView
                 android:id="@+id/tba_whatname"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_padding_left_of_iv"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
         </LinearLayout>
         <!-- PLACE name-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tba_ll_margin_top"
+            android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place_black_24dp"/>
             <TextView
                 android:id="@+id/tba_placename"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_padding_left_of_iv"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="20dp" />
         </LinearLayout>
         <!-- COUNT_PLAN -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tba_ll_margin_top"
+            android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_library_books_black_24dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_padding_left_of_iv"
                 android:text="План:"/>
             <TextView
                 android:id="@+id/tba_countplan"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_tv_padding_left"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_tv_padding_left"
                 android:text="шт."/>
         </LinearLayout>
         <!-- COUNT_CURRENT -->
@@ -114,23 +171,32 @@
             <TextView
                 android:id="@+id/tba_countcurrent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_tv_padding_left"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="16dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_tv_padding_left"
                 android:text="шт."/>
         </LinearLayout>
         <!-- COUNT_DIFFERENCE -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tba_ll_margin_top"
+            android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_access_time_black_24dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_padding_left_of_iv"
                 android:text="Осталось:"/>
             <LinearLayout
                 android:orientation="vertical"
@@ -143,10 +209,15 @@
                     <TextView
                         android:id="@+id/tba_countdifference"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:textSize="16dp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:text="шт."/>
                 </LinearLayout>
                 <LinearLayout
@@ -156,10 +227,12 @@
                     <TextView
                         android:id="@+id/tba_timedifference"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:text="ч."/>
                 </LinearLayout>
             </LinearLayout>
@@ -168,14 +241,18 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tba_ll_margin_top"
+            android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_comment_24dp"/>
             <TextView
                 android:id="@+id/tba_comment"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/tba_padding_left_of_iv" />
         </LinearLayout>
     </LinearLayout>
     <!-- BTN take Task and change statusId=2 -->
@@ -184,5 +261,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="выполнить" />
+        android:background="@color/colorPrimary"
+        android:text="выполнить"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
 </RelativeLayout>

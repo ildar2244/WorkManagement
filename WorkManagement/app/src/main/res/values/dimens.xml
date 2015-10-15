@@ -17,5 +17,9 @@
     <dimen name="ll_spn_margin_right">16dp</dimen>
     <dimen name="ll_spn_margin_bottom">16dp</dimen>
     <dimen name="ll_spn_margin_top">24dp</dimen>
+    <dimen name="tba_padding_left_of_iv">8dp</dimen>
+    <dimen name="tba_tv_padding_left">4dp</dimen>
+    <dimen name="tba_ll_margin_top">4dp</dimen>
+    <dimen name="tba_ll_margin_bottom">4dp</dimen>
 
 </resources>
