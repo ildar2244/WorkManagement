@@ -109,10 +109,7 @@ public class TaskBeginActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
-        /*try {
-            startActivity(new Intent(TaskListActivity.this, MainActivity.class));
-            finish();
-        } catch (Exception e) {}*/
+        finish();
     }
 
     /**
