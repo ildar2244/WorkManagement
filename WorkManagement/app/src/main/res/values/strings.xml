@@ -11,6 +11,26 @@
         <item>Руководитель</item>
     </array>
 
+    <array name="workers">
+        <item>Михайлов Михаил Михайлович</item>
+        <item>Петров Петр Петрович</item>
+        <item>Сидоров Сидор Сидорович</item>
+    </array>
+
+    <!-- Что делать -->
+    <array name="whatDo">
+        <item>Стойка 5350-25</item>
+        <item>Стойка 5350-110</item>
+        <item>Стойка 6520-110</item>
+    </array>
+
+    <!-- Где делать -->
+    <array name="whereDo">
+        <item>Гильотина</item>
+        <item>Пресс</item>
+        <item>Пила отрезная0</item>
+    </array>
+
     <!-- NavigationDrawerFragment-->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -31,6 +51,9 @@
     <string name="tv_hint_time">ЧЧ:ММ</string>
     <string name="tv_finish">Конец</string>
     <string name="btn_send">Отправить</string>
+    <string name="error_sending_data_to_Db">Не удалось отправить задание на сервер</string>
+    <string name="task_sending_succesful">Задание успешно отправлено на сервер</string>
     <string name="refresh">Обновить</string>
+    <string name="task_sending_wrong">Ошибка при отправке задания</string>
     <string name="title_activity_task_begin">TaskBeginActivity</string>
 </resources>

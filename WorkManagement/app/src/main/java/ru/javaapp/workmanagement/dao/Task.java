@@ -9,7 +9,7 @@ public class Task implements Serializable {
 
     private int idTask;
     private String masterName;
-    private int idPerformer;
+    private String Performer;
     private String whatName;
     private String placeName;
     private int countPlanTask;
@@ -37,12 +37,12 @@ public class Task implements Serializable {
         this.masterName = masterName;
     }
 
-    public int getIdPerformer() {
-        return idPerformer;
+    public String getPerformer() {
+        return Performer;
     }
 
-    public void setIdPerformer(int idPerformer) {
-        this.idPerformer = idPerformer;
+    public void setIdPerformer(String Performer) {
+        this.Performer = Performer;
     }
 
     public String getWhatName() {

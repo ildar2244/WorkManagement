@@ -1,35 +1,70 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="ru.javaapp.workmanagement.activities.TrackingActivity"
     android:fitsSystemWindows="true">
-
+    <!-- Set Toolbar in AddEventsActivity-->
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
-        <!-- Set Toolbar in MainActivity-->
+        android:layout_height="wrap_content">
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar"/>
-        <!-- -->
+    </LinearLayout>
+    <!-- Set TABs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <TabHost
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="40dp">
-            <TextView
+            android:id="@+id/tabHost">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Здесь можно будет отслеживать за выполнением рабочими заданий. Пока еще хрен знает как."
-                android:id="@+id/text"/>
-        </LinearLayout>
+                android:orientation="vertical">
 
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TabWidget>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/tabCurrent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_tasks_current"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tabFinish"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_tasks_finish"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
     </LinearLayout>
-
 </LinearLayout>
+
