@@ -1,5 +1,6 @@
 package ru.javaapp.workmanagement.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,7 @@ public class TaskBeginActivity extends AppCompatActivity {
         toolbarInitialize(); // init toolbar
         takeFieldsFromPreviousActivity(); // get data from Intent
         componentsInitialize(); //init components in activity
+        setListeners(); // button select listener
     }
 
     /**
@@ -105,6 +107,18 @@ public class TaskBeginActivity extends AppCompatActivity {
             startActivity(new Intent(TaskListActivity.this, MainActivity.class));
             finish();
         } catch (Exception e) {}*/
+    }
+
+    /**
+     * Action by clicking on button
+     */
+    private void setListeners() {
+        tbaButtonTake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TaskBeginActivity.this, TaskRunActivity.class));
+            }
+        });
     }
 
 }

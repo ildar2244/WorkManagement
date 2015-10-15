@@ -56,4 +56,5 @@
     <string name="refresh">Обновить</string>
     <string name="task_sending_wrong">Ошибка при отправке задания</string>
     <string name="title_activity_task_begin">TaskBeginActivity</string>
+    <string name="title_activity_task_run">TaskRunActivity</string>
 </resources>

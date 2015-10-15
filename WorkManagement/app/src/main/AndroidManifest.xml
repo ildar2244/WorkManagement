@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activities.TaskRunActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,6 +51,10 @@
             android:name=".activities.TaskBeginActivity"
             android:label="@string/title_activity_task_begin"
             android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".activities.TaskRunActivity"
+            android:label="@string/title_activity_task_run" >
         </activity>
     </application>
 
