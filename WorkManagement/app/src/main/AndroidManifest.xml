@@ -47,6 +47,11 @@
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name=".activities.TaskBeginActivity"
+            android:label="@string/title_activity_task_begin"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

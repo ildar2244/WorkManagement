@@ -1,0 +1,88 @@
+package ru.javaapp.workmanagement.activities;
+
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import ru.javaapp.workmanagement.R;
+
+public class TaskBeginActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    private TextView tbaTimeStart, tbaTimeFinish, tbaDateStart, tbaDateFinish;
+    private TextView tbaWhatName, tbaPlaceName, tbaComment;
+    private TextView tbaCountPlan, tbaCountCurrent, tbaDiffCount, tbaDiffTime;
+    private Button tbaButtonTake;
+    private String diffCount, diffTime;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_task_begin);
+
+        toolbarInitialize(); // init toolbar
+        componentsInitialize(); //init components in activity
+    }
+
+    /**
+     * initialize toolbar
+     */
+    private void toolbarInitialize() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        try {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        // Click Listener
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+    /**
+     * Initialize all components in UI
+     */
+    private void componentsInitialize() {
+
+        tbaTimeStart = (TextView) findViewById(R.id.tba_timestart);
+        tbaTimeFinish = (TextView) findViewById(R.id.tba_timefinish);
+        tbaDateStart = (TextView) findViewById(R.id.tba_datestart);
+        tbaDateFinish = (TextView) findViewById(R.id.tba_datefinish);
+        tbaWhatName = (TextView) findViewById(R.id.tba_whatname);
+        tbaPlaceName = (TextView) findViewById(R.id.tba_placename);
+        tbaCountPlan = (TextView) findViewById(R.id.tba_countplan);
+        tbaCountCurrent = (TextView) findViewById(R.id.tba_countcurrent);
+        tbaDiffCount = (TextView) findViewById(R.id.tba_countdifference);
+        tbaDiffTime = (TextView) findViewById(R.id.tba_timedifference);
+        tbaComment = (TextView) findViewById(R.id.tba_comment);
+        tbaButtonTake = (Button) findViewById(R.id.tba_btnbegin);
+    }
+
+    /**
+     * Action for the "Back"
+     */
+    @Override
+    public void onBackPressed() {
+        Log.d("My", "On Back Pressed");
+        super.onBackPressed();
+        /*try {
+            startActivity(new Intent(TaskListActivity.this, MainActivity.class));
+            finish();
+        } catch (Exception e) {}*/
+    }
+
+}
