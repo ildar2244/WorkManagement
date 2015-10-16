@@ -8,6 +8,7 @@ import ru.javaapp.workmanagement.fragments.FragmentDrawer;
 
 public class MainActivity extends AppCompatActivity {
 
+    // v.1.1
     private Toolbar toolbar;
     private FragmentDrawer drawerFragment;
 
