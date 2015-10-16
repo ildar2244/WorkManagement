@@ -33,6 +33,7 @@ import java.util.List;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
+import ru.javaapp.workmanagement.worker.JSONUpdateTaskStatus;
 
 public class TaskBeginActivity extends AppCompatActivity {
 
@@ -126,10 +127,11 @@ public class TaskBeginActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
-        /*try {
-            startActivity(new Intent(TaskListActivity.this, MainActivity.class));
+        try {
             finish();
-        } catch (Exception e) {}*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -139,10 +141,10 @@ public class TaskBeginActivity extends AppCompatActivity {
         tbaButtonTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                statusId = 2;
+                int taskId = taskGet.getIdTask();
+                int statusid = 2;
                 try {
-                    UpdateData task1 = new UpdateData();
-                    task1.execute(new String[]{"http://autocomponent.motorcum.ru/update_statusId_by_task.php"});
+                    new JSONUpdateTaskStatus(taskId, statusid, getApplicationContext()).execute(new String[]{"http://autocomponent.motorcum.ru/update_statusId_by_task.php"});
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -153,112 +155,6 @@ public class TaskBeginActivity extends AppCompatActivity {
                 startActivity(intentTba);
             }
         });
-    }
-
-    // send task on server
-    private class UpdateData extends AsyncTask<String, Void, String> {
-        int taskId = taskGet.getIdTask();
-        int statusid = statusId;
-
-        @Override
-        protected String doInBackground(String... urls) {
-            String result = null;
-            InputStream is = null;
-
-            ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
-            pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
-            pairs.add(new BasicNameValuePair("statusId", Integer.toString(statusid)));
-
-            for (String url : urls) {
-                try {
-                    URL urli = new URL(url); // our url
-                    urlConnection = (HttpURLConnection) urli.openConnection(); // open connection
-                    urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
-                    urlConnection.setDoInput(true); // use Get request
-                    urlConnection.setDoOutput(true); // use POST request
-                    OutputStream os = urlConnection.getOutputStream(); // get output parameters
-                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(getQuery(pairs)); // write our pairs
-                    writer.flush();
-                    writer.close();
-                    os.close();
-                    urlConnection.connect(); // connect with our server
-
-                    is = urlConnection.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    result = sb.toString();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return  null;
-                }
-                finally {
-                    if(urlConnection != null){
-                        urlConnection.disconnect();
-                    }
-                }
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if(result == null){
-                AlertDialog.Builder builder = new AlertDialog.Builder(TaskBeginActivity.this,  R.style.AlertDialogStyle);
-                builder.setCancelable(false);
-                builder.setTitle("Ошибка");
-                builder.setMessage("Нет соединения с интернетом.");
-                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss(); // Отпускает диалоговое окно
-                    }
-                });
-                builder.show();
-            }
-            else{
-                try {
-                    JSONObject json_data = new JSONObject(result);
-                    code=json_data.getInt("code");
-                } catch (JSONException e) {
-                    Toast.makeText(getBaseContext(), R.string.error_sending_data_to_Db,
-                            Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-
-                if(code==1)
-                {
-                    Toast.makeText(getBaseContext(), "С заданием ознакомлен.",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(getBaseContext(), "Что то пошло не так.",
-                            Toast.LENGTH_LONG).show();
-                    return;
-                }
-            }
-
-        }
-
-        private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
-            StringBuilder result = new StringBuilder();
-            boolean first = true;
-            for(NameValuePair pair : params){
-                if(first)
-                    first = false;
-                else
-                    result.append("&");
-                result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
-            }
-            return  result.toString();
-        }
     }
 
 }

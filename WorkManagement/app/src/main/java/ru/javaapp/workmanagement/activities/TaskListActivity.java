@@ -29,7 +29,7 @@ import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
-import ru.javaapp.workmanagement.worker.JSONParserWorker;
+import ru.javaapp.workmanagement.worker.JSONGetTasksByWorker;
 
 public class TaskListActivity extends AppCompatActivity {
 
@@ -125,7 +125,7 @@ public class TaskListActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONParserWorker parserWorker = new JSONParserWorker();
+                JSONGetTasksByWorker parserWorker = new JSONGetTasksByWorker();
                 object = parserWorker.makeHttpRequest(urlGetTasks);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -252,11 +252,19 @@ public class TaskListActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-
                         Task task = taskOneTwo.get(position);
-                        Intent intentTba = new Intent(TaskListActivity.this, TaskBeginActivity.class);
-                        intentTba.putExtra("taskObj", task);
-                        startActivity(intentTba);
+                        int statusId = taskOneTwo.get(position).getIdStatus();
+                        if(statusId == 1) {
+                            Intent intentTba = new Intent(TaskListActivity.this, TaskBeginActivity.class);
+                            intentTba.putExtra("taskObj", task);
+                            startActivity(intentTba);
+                        }
+                        if(statusId == 2){
+                            Intent intentTba = new Intent(TaskListActivity.this, TaskRunActivity.class);
+                            intentTba.putExtra("taskObj", task);
+                            startActivity(intentTba);
+                            finish();
+                        }
                     }
                 })
         );

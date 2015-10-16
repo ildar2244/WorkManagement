@@ -14,7 +14,7 @@ import java.net.URL;
 /**
  * Created by User on 13.10.2015.
  */
-public class JSONParserWorker {
+public class JSONGetTasksByWorker {
 
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
