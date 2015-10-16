@@ -29,7 +29,7 @@ import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
-import ru.javaapp.workmanagement.worker.JSONGetTasksByWorker;
+import ru.javaapp.workmanagement.worker.JSONSelectTasksByWorker;
 
 public class TaskListActivity extends AppCompatActivity {
 
@@ -125,7 +125,7 @@ public class TaskListActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONGetTasksByWorker parserWorker = new JSONGetTasksByWorker();
+                JSONSelectTasksByWorker parserWorker = new JSONSelectTasksByWorker();
                 object = parserWorker.makeHttpRequest(urlGetTasks);
             } catch (Exception e) {
                 e.printStackTrace();

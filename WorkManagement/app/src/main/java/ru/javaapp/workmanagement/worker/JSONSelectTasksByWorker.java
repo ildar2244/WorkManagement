@@ -14,7 +14,7 @@ import java.net.URL;
 /**
  * Created by User on 13.10.2015.
  */
-public class JSONGetTasksByWorker {
+public class JSONSelectTasksByWorker {
 
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();

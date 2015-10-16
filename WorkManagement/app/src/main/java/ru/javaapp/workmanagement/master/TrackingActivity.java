@@ -24,7 +24,7 @@ import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
-import ru.javaapp.workmanagement.worker.JSONGetTasksByWorker;
+import ru.javaapp.workmanagement.worker.JSONSelectTasksByWorker;
 
 public class TrackingActivity extends AppCompatActivity {
 
@@ -118,7 +118,7 @@ public class TrackingActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONGetTasksByWorker parserWorker = new JSONGetTasksByWorker();
+                JSONSelectTasksByWorker parserWorker = new JSONSelectTasksByWorker();
                 object = parserWorker.makeHttpRequest(urlGetTasks);
             } catch (Exception e) {
                 e.printStackTrace();
