@@ -137,7 +137,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         try {
             getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -217,6 +217,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         int whatId = whatSpinner.getSelectedItemPosition() + 1;
         int whereId = whereSpinner.getSelectedItemPosition() + 1;
         String plan = countPlan.getText().toString();
+        String commentEdit = comment.getText().toString();
         String timeBefore = tvTimeBefore.getText().toString();
         String timeAfter = tvTimeAfter.getText().toString();
         String dateBefore = tvDateBefore.getText().toString();
@@ -237,7 +238,7 @@ public class CreateTaskActivity extends AppCompatActivity {
             pairs.add(new BasicNameValuePair("timeFinish", timeAfter));
             pairs.add(new BasicNameValuePair("dateStart", dateBefore));
             pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
-            pairs.add(new BasicNameValuePair("comment", "Никаких комментариев"));
+            pairs.add(new BasicNameValuePair("comment", commentEdit));
 
             for (String url : urls) {
                 try {
