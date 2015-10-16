@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.worker;
+package ru.javaapp.workmanagement.jsons;
 
 import org.json.JSONException;
 import org.json.JSONObject;

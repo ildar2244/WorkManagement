@@ -1,7 +1,9 @@
 package ru.javaapp.workmanagement.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,12 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.net.HttpURLConnection;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.worker.JSONUpdateCurrentCount;
-import ru.javaapp.workmanagement.worker.JSONUpdateTaskStatus;
+import ru.javaapp.workmanagement.jsons.JSONUpdateCountAndStatus;
+import ru.javaapp.workmanagement.jsons.JSONUpdateCurrentCount;
 
 /**
  * Created by User on 15.10.2015.
@@ -188,20 +189,38 @@ public class TaskRunActivity extends AppCompatActivity {
     }
 
     private void finishTask(){
-        int taskId = taskGet.getIdTask();
-        int statusid = 3;
-        int currentcount = currentCount;
-        try {
-            /*
-            new JSONUpdateTaskStatus(taskId, statusid, currentcount, getApplicationContext()).execute(new String[]{"http://autocomponent.motorcum.ru/update_statusId_by_task.php"});
-            startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
-            finish();
-            */
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return;
-        }
+
+        final AlertDialog.Builder quitDialog = new AlertDialog.Builder(
+                TaskRunActivity.this);
+        quitDialog.setTitle(getString(R.string.finish_task));
+
+        quitDialog.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int taskId = taskGet.getIdTask();
+                int statusid = 3;
+                int currentcount = currentCount;
+
+                try {
+                    new JSONUpdateCountAndStatus(taskId, currentcount,statusid, getApplicationContext()).execute(new String[]{"http://autocomponent.motorcum.ru/update_count_and_status.php"});
+                    startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
+                    finish();
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        });
+
+        quitDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+
+        quitDialog.show();
 
     }
 

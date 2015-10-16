@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.worker;
+package ru.javaapp.workmanagement.jsons;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,15 +29,15 @@ import ru.javaapp.workmanagement.R;
 /**
  * Created by User on 16.10.2015.
  */
-public class JSONUpdateCurrentCount extends AsyncTask<String, Void, String> {
-
-    HttpURLConnection urlConnection;
-    int taskId, currentcount, code;
+public class JSONUpdateTaskStatus extends AsyncTask<String, Void, String> {
+    int taskId, statusid;
     Context context;
+    HttpURLConnection urlConnection;
+    int code;
 
-    public JSONUpdateCurrentCount(int taskId, int currentcount, Context context){
+    public JSONUpdateTaskStatus(int taskId, int statusId, Context context) {
         this.taskId = taskId;
-        this.currentcount = currentcount;
+        this.statusid = statusId;
         this.context = context;
     }
 
@@ -49,7 +49,7 @@ public class JSONUpdateCurrentCount extends AsyncTask<String, Void, String> {
 
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
-        pairs.add(new BasicNameValuePair("currentCount", Integer.toString(currentcount)));
+        pairs.add(new BasicNameValuePair("statusId", Integer.toString(statusid)));
 
         for (String url : urls) {
             try {
@@ -89,17 +89,7 @@ public class JSONUpdateCurrentCount extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if (result == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
-            builder.setCancelable(false);
-            builder.setTitle("Ошибка");
-            builder.setMessage("Нет соединения с интернетом.");
-            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss(); // Отпускает диалоговое окно
-                }
-            });
-            builder.show();
+            Toast.makeText(context, "Нет соединения с интернетом", Toast.LENGTH_SHORT).show();
         } else {
             try {
                 JSONObject json_data = new JSONObject(result);
@@ -111,7 +101,7 @@ public class JSONUpdateCurrentCount extends AsyncTask<String, Void, String> {
             }
 
             if (code == 1) {
-                Toast.makeText(context, "Текущие данные отправлены на сервер.",
+                Toast.makeText(context, "С заданием ознакомлен.",
                         Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Что то пошло не так.",
@@ -119,13 +109,14 @@ public class JSONUpdateCurrentCount extends AsyncTask<String, Void, String> {
                 return;
             }
         }
+
     }
 
     private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;
-        for (NameValuePair pair : params) {
-            if (first)
+        for(NameValuePair pair : params){
+            if(first)
                 first = false;
             else
                 result.append("&");
@@ -133,6 +124,6 @@ public class JSONUpdateCurrentCount extends AsyncTask<String, Void, String> {
             result.append("=");
             result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
         }
-        return result.toString();
+        return  result.toString();
     }
 }

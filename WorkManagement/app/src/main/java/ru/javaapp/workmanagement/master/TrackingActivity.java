@@ -24,7 +24,7 @@ import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
-import ru.javaapp.workmanagement.worker.JSONSelectTasksByWorker;
+import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 
 public class TrackingActivity extends AppCompatActivity {
 

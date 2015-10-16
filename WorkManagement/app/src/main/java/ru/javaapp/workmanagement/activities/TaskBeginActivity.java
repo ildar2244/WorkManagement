@@ -8,11 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import java.net.HttpURLConnection;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.worker.JSONUpdateTaskStatus;
+import ru.javaapp.workmanagement.jsons.JSONUpdateTaskStatus;
 
 public class TaskBeginActivity extends AppCompatActivity {
 

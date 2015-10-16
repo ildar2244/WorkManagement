@@ -29,7 +29,7 @@ import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
-import ru.javaapp.workmanagement.worker.JSONSelectTasksByWorker;
+import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 
 public class TaskListActivity extends AppCompatActivity {
 
