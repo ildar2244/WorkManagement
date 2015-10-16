@@ -101,6 +101,7 @@ public class TaskRunActivity extends AppCompatActivity {
         currentCount = getCountCurrentTask;
     }
 
+    // проверка полей на заполненность
     private boolean checkFillField(){
         if(!etSpeedCount.getText().toString().equals(""))
             return true;
@@ -131,6 +132,7 @@ public class TaskRunActivity extends AppCompatActivity {
         });
     }
 
+    // алгоритм при плюсе
     private String mathPlus() {
         myTemp = Integer.parseInt(etSpeedCount.getText().toString());
         currentCount = Integer.parseInt(tvCurrentAdd.getText().toString());
@@ -146,6 +148,7 @@ public class TaskRunActivity extends AppCompatActivity {
         }
     }
 
+    // алгоритм при минусе
     private String mathMinus() {
         myTemp = Integer.parseInt(etSpeedCount.getText().toString());
         currentCount = Integer.parseInt(tvCurrentAdd.getText().toString());
@@ -173,6 +176,7 @@ public class TaskRunActivity extends AppCompatActivity {
         }
     }
 
+    // возврат в список всех заданий
     private void backTaskList(){
         int taskId = taskGet.getIdTask();
         int currentcount = currentCount;
@@ -188,6 +192,7 @@ public class TaskRunActivity extends AppCompatActivity {
 
     }
 
+    // завершение задания
     private void finishTask(){
 
         final AlertDialog.Builder quitDialog = new AlertDialog.Builder(
@@ -224,6 +229,7 @@ public class TaskRunActivity extends AppCompatActivity {
 
     }
 
+    // делать минус
     private void doMinus(){
         if(checkFillField()){
             String text = mathMinus();
@@ -242,6 +248,7 @@ public class TaskRunActivity extends AppCompatActivity {
         }
     }
 
+    // делать плюс
     private void doPlus(){
         if(checkFillField()){
             String text = mathPlus();
