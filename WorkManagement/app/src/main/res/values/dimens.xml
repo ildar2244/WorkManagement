@@ -22,5 +22,7 @@
     <dimen name="tba_ll_margin_top">4dp</dimen>
     <dimen name="tba_ll_margin_bottom">4dp</dimen>
     <dimen name="main_iv_size">60dp</dimen>
+    <dimen name="cta_spn_padding_lr">6dp</dimen>
+    <dimen name="cta_bloc_margin_bottom">12dp</dimen>
 
 </resources>

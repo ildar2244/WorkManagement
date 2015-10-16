@@ -45,11 +45,11 @@
     <string name="what">Что делать</string>
     <string name="where">Где</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="from">Начало</string>
+    <string name="from">От:</string>
     <string name="how_many">Сколько</string>
     <string name="tv_hint_date">ДД.ММ.ГГ</string>
     <string name="tv_hint_time">ЧЧ:ММ</string>
-    <string name="tv_finish">Конец</string>
+    <string name="tv_finish">По:</string>
     <string name="btn_send">Отправить</string>
     <string name="error_sending_data_to_Db">Не удалось отправить задание на сервер</string>
     <string name="task_sending_succesful">Задание успешно отправлено на сервер</string>

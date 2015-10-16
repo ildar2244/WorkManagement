@@ -9,8 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,18 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -62,7 +50,7 @@ import ru.javaapp.workmanagement.fragments.TimePickerFragmentBefore;
 public class CreateTaskActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    EditText countPlan;
+    EditText countPlan, comment;
     Button send_btn;
     TextView tvDateBefore, tvDateAfter, tvTimeBefore, tvTimeAfter;
     Spinner whomSpinner, whatSpinner, whereSpinner;
@@ -86,6 +74,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         whatSpinner = (Spinner) findViewById(R.id.whatSpinner);
         whereSpinner = (Spinner) findViewById(R.id.whereSpinner);
         countPlan = (EditText) findViewById(R.id.howManyEt);
+        comment = (EditText) findViewById(R.id.cta_comment);
 
         whomSpinner.setAdapter(fillWhomSpinner());
         whomSpinner.setFocusable(true);
