@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
+import ru.javaapp.workmanagement.jsons.JSONUpdateTaskStatus;
 
 public class TaskBeginActivity extends AppCompatActivity {
 
@@ -109,7 +110,11 @@ public class TaskBeginActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
-        finish();
+        try {
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -119,7 +124,18 @@ public class TaskBeginActivity extends AppCompatActivity {
         tbaButtonTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TaskBeginActivity.this, TaskRunActivity.class));
+                int taskId = taskGet.getIdTask();
+                int statusid = 2;
+                try {
+                    new JSONUpdateTaskStatus(taskId, statusid, getApplicationContext()).execute(new String[]{"http://autocomponent.motorcum.ru/update_statusId_by_task.php"});
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    return;
+                }
+                Intent intentTba = new Intent(TaskBeginActivity.this, TaskRunActivity.class);
+                intentTba.putExtra("taskObj", taskGet);
+                startActivity(intentTba);
             }
         });
     }

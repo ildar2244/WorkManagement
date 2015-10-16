@@ -1,7 +1,6 @@
 package ru.javaapp.workmanagement.master;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,13 +20,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.javaapp.workmanagement.MainActivity;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
-import ru.javaapp.workmanagement.worker.JSONParserWorker;
+import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 
 public class TrackingActivity extends AppCompatActivity {
 
@@ -121,7 +118,7 @@ public class TrackingActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONParserWorker parserWorker = new JSONParserWorker();
+                JSONSelectTasksByWorker parserWorker = new JSONSelectTasksByWorker();
                 object = parserWorker.makeHttpRequest(urlGetTasks);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -199,7 +196,7 @@ public class TrackingActivity extends AppCompatActivity {
             task.setCommentTask(comment);
 
             // Create Task and add in list
-            if (statusId == 2) {
+            if (statusId == 1 || statusId == 2) {
                 taskListCurrent.add(task);
             }
             if (statusId == 3) {

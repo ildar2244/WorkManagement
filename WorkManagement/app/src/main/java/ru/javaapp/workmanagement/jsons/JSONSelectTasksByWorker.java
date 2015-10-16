@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.worker;
+package ru.javaapp.workmanagement.jsons;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +14,7 @@ import java.net.URL;
 /**
  * Created by User on 13.10.2015.
  */
-public class JSONParserWorker {
+public class JSONSelectTasksByWorker {
 
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();

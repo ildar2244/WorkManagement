@@ -57,4 +57,5 @@
     <string name="task_sending_wrong">Ошибка при отправке задания</string>
     <string name="title_activity_task_begin">TaskBeginActivity</string>
     <string name="title_activity_task_run">TaskRunActivity</string>
+    <string name="finish_task">Завершить задание</string>
 </resources>

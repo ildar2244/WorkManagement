@@ -7,6 +7,7 @@
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#727272</color>
     <color name="divider">#B6B6B6</color>
+    <color name="red">#FFFF0204</color>
 
     <!-- Navigation Drawer -->
     <color name="backOne">#F05A1B</color>
