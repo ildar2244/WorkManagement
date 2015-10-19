@@ -25,7 +25,7 @@ import ru.javaapp.workmanagement.jsons.JSONUpdateCurrentCount;
 public class TaskRunActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton btnMinus, btnPlus;
-    Button btnFinish;
+    Button btnFinish, btnAbout;
     TextView tvCurrentAdd,tvCountToGo, tvTimeToGo, tvWhatDo, tvWhereDo, tvComment;
     EditText etSpeedCount;
     Task taskGet; // Наше задание
@@ -82,6 +82,7 @@ public class TaskRunActivity extends AppCompatActivity {
         btnFinish = (Button) findViewById(R.id.btn_finish);
         btnMinus = (ImageButton) findViewById(R.id.btn_minus);
         btnPlus = (ImageButton) findViewById(R.id.btn_plus);
+        btnAbout = (Button) findViewById(R.id.btn_about);
         tvCurrentAdd = (TextView) findViewById(R.id.tv_currentAdd);
         tvCountToGo = (TextView) findViewById(R.id.tv_CountToGo);
         tvTimeToGo = (TextView) findViewById(R.id.tv_TimeToGo);
