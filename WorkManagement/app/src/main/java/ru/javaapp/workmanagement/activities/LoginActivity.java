@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isAuthorize;
     private String role;
     private String name, surname, sessionKey;
+    String urlWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
+    String urlMaster = "http://autocomponent.motorcum.ru/update_currentCount_by_task.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +107,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (usersType.equals("Работник")) {
                     role = "Работник";
-                    Intent workerIntent = new Intent(LoginActivity.this, WorkerMainActivity.class);
-                    startActivity(workerIntent);
-                    finish();
+                    JSONAuthorize jsonAuthorize = new JSONAuthorize(getApplicationContext(), role,
+                            inputLogin.getText().toString(), inputPassword.getText().toString(), urlWorker);
                 }
                 if (usersType.equals("Руководитель")) {
                     role = "Руководитель";
@@ -117,47 +118,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public class JsonAuthorize extends AsyncTask<String, String, JSONObject> {
-
-        JSONObject object;
-
-        @Override
-        protected JSONObject doInBackground(String... params) {
-
-            try {
-                JSONAuthorize auth = new JSONAuthorize(role);
-                object =  auth.makeHttpRequest();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return object;
-        }
-
-        protected void onPostExecute(JSONObject json) {
-            try {
-                JSONObject json_data = json;
-                if(role.equals("Работник")){
-                    name = json_data.getString("name");
-                    surname = json_data.getString("surname");
-                    sessionKey = json_data.getString("sessionKey");
-                }
-                else {
-                    name = json_data.getString("name");
-                    sessionKey = json_data.getString("sessionKey");
-                }
-                if(name.equals("")){
-                    Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Имя: " + name + " " + surname, Toast.LENGTH_SHORT).show();
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     /**
