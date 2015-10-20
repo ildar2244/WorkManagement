@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         try {
-            //toolbar.setTitle("Авторизация");
+            toolbar.setSubtitle("Войти");
             /*getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
         }

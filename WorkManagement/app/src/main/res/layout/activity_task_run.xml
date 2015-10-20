@@ -18,12 +18,14 @@
     </LinearLayout>
     <!-- main UI-elements -->
     <LinearLayout
+        android:id="@+id/tra_layout_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/container_toolbar">
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -150,39 +152,45 @@
                             android:gravity="bottom|right" />
                     </LinearLayout>
                 </LinearLayout>
-                <Button
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tra_btn_margin_lr"
-                    android:layout_marginRight="@dimen/tra_btn_margin_lr"
-                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
-                    android:layout_marginTop="@dimen/main_elements_margin_top"
-                    android:text="подробно"
-                    android:id="@+id/btn_about"
-                    android:background="@drawable/xml_main_rectangle"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    android:layout_gravity="center_horizontal" />
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tra_btn_margin_lr"
-                    android:layout_marginRight="@dimen/tra_btn_margin_lr"
-                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
-                    android:layout_marginTop="@dimen/main_elements_margin_top"
-                    android:text="ЗАВЕРШИТЬ"
-                    android:id="@+id/btn_finish"
-                    android:background="@drawable/xml_main_rectangle"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+                        android:layout_marginRight="@dimen/tra_btn_margin_lr"
+                        android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                        android:layout_marginTop="@dimen/main_elements_margin_top"
+                        android:text="подробно"
+                        android:id="@+id/btn_about"
+                        android:background="@drawable/xml_main_rectangle"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:layout_gravity="center_horizontal" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+                        android:layout_marginRight="@dimen/tra_btn_margin_lr"
+                        android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                        android:layout_marginTop="@dimen/main_elements_margin_top"
+                        android:text="ЗАВЕРШИТЬ"
+                        android:id="@+id/btn_finish"
+                        android:background="@drawable/xml_main_rectangle"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
     <!-- always visible on bottom buttons -->
     <LinearLayout
+        android:id="@+id/tra_layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
