@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context="ru.javaapp.workmanagement.activities.TrackingActivity"
-    android:fitsSystemWindows="true"
-    android:divider="?android:dividerHorizontal"
-    android:dividerPadding="16dp"
-    android:showDividers="middle">
+    android:fitsSystemWindows="true">
     <!-- Set Toolbar in AddEventsActivity-->
     <LinearLayout
         android:id="@+id/container_toolbar"
@@ -19,222 +16,207 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar"/>
     </LinearLayout>
-
-    <ScrollView
+    <!-- main UI-elements -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_below="@id/container_toolbar">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/ll_spn_margin_right"
-            android:layout_marginLeft="@dimen/ll_spn_margin_right"
-            android:layout_marginRight="@dimen/ll_spn_margin_right"
-            android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Добавить "
-                android:fontFamily="sans-serif" />
-            <EditText
+            android:layout_height="wrap_content">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textSize="20sp"
-                android:fontFamily="sans-serif"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:id="@+id/et_speedCount"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text=" шт."
-                android:fontFamily="sans-serif" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/ll_spn_margin_right"
-            android:layout_marginRight="@dimen/ll_spn_margin_right"
-            android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/btn_minus"
-                android:layout_weight="0.3"
-                android:id="@+id/btn_minus"/>
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="40dp"
-                android:id="@+id/tv_currentAdd"
-                android:layout_weight="1"
-                android:background="@color/buttonInTasRun"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="#ff080f"
-                android:textStyle="bold" />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/btn_plus"
-                android:layout_weight="0.3"
-                android:id="@+id/btn_plus"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/main_elements_margin_top"
-            android:layout_marginLeft="@dimen/ll_spn_margin_right"
-            android:layout_marginRight="@dimen/ll_spn_margin_right"
-            android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_access_time_black_24dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Осталось:"
-                android:fontFamily="sans-serif"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical"
+                android:divider="?android:dividerHorizontal"
+                android:dividerPadding="16dp"
+                android:showDividers="middle">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:id="@+id/tv_CountToGo"
-                    android:fontFamily="sans-serif"
-                    android:layout_marginLeft="@dimen/ll_spn_margin_right"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:textSize="22sp"
+                        android:text="Добавить "
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_gravity="center" />
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="8dp"
+                        android:id="@+id/et_speedCount" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="шт."
+                        android:textSize="18dp"
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="360 мин."
-                    android:id="@+id/tv_TimeToGo"
-                    android:fontFamily="sans-serif"
-                    android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                    android:layout_marginTop="@dimen/ll_spn_margin_right"/>
-            </LinearLayout>
-        </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/main_elements_margin_top"
+                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_minus"
+                        android:layout_weight="0.2"
+                        android:adjustViewBounds="true"
+                        android:id="@+id/btn_minus"
+                        android:background="@drawable/xml_tra_button"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:textSize="30dp"
+                        android:id="@+id/tv_currentAdd"
+                        android:layout_weight="0.8"
+                        android:background="@drawable/xml_tra_tv_currentcount"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_plus"
+                        android:layout_weight="0.2"
+                        android:adjustViewBounds="true"
+                        android:id="@+id/btn_plus"
+                        android:background="@drawable/xml_tra_button"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/main_elements_margin_top"
+                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                    android:layout_marginLeft="8dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_access_time_black_24dp"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:textSize="22sp"
+                        android:text="Осталось:"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_gravity="bottom" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24dp"
+                            android:textStyle="bold"
+                            android:id="@+id/tv_CountToGo"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/tba_tv_padding_left"
+                            android:text="шт."
+                            android:textSize="16dp"
+                            android:textColor="@color/colorTextPrimary"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:gravity="bottom|right" />
+                    </LinearLayout>
+                </LinearLayout>
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+                    android:layout_marginRight="@dimen/tra_btn_margin_lr"
+                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                    android:layout_marginTop="@dimen/main_elements_margin_top"
+                    android:text="подробно"
+                    android:id="@+id/btn_about"
+                    android:background="@drawable/xml_main_rectangle"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_gravity="center_horizontal" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+                    android:layout_marginRight="@dimen/tra_btn_margin_lr"
+                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                    android:layout_marginTop="@dimen/main_elements_margin_top"
                     android:text="ЗАВЕРШИТЬ"
                     android:id="@+id/btn_finish"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@color/colorPrimary"/>
+                    android:background="@drawable/xml_main_rectangle"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_gravity="center_horizontal" />
             </LinearLayout>
-        <LinearLayout
+        </ScrollView>
+    </LinearLayout>
+    <!-- always visible on bottom buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_star_black_24dp_1x"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:layout_marginTop="@dimen/ll_spn_margin_top"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:id="@+id/tv_what"
-                android:fontFamily="sans-serif"
-                android:textStyle="bold"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:layout_marginTop="@dimen/ll_spn_margin_top"/>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="match_parent"
+            android:id="@+id/btn_stop"
+            android:text="STOP"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@color/red"
+            android:layout_weight="1"/>
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_place_black_24dp"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:layout_marginTop="@dimen/ll_spn_margin_top"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:id="@+id/tv_where"
-                android:fontFamily="sans-serif"
-                android:textStyle="bold"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:layout_marginTop="@dimen/ll_spn_margin_top"/>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="match_parent"
+            android:id="@+id/btn_brak"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@color/colorAccent"
+            android:layout_weight="1"
+            android:text="БРАК"/>
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_comment_24dp"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:layout_marginTop="@dimen/ll_spn_margin_top"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:id="@+id/tv_comment"
-                android:fontFamily="sans-serif"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:layout_marginTop="@dimen/ll_spn_margin_top"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="@dimen/ll_spn_margin_right"
-                android:layout_marginRight="@dimen/ll_spn_margin_right">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:id="@+id/btn_stop"
-                    android:text="STOP"
-                    android:background="@color/red"
-                    android:layout_weight="1"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:id="@+id/btn_brak"
-                    android:background="@color/colorAccent"
-                    android:layout_weight="1"
-                    android:text="БРАК"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:id="@+id/btn_sos"
-                    android:background="@color/colorPrimary"
-                    android:layout_weight="1"
-                    android:text="SOS"/>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
-
-</LinearLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/btn_sos"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@color/colorPrimary"
+            android:layout_weight="1"
+            android:text="SOS"/>
+    </LinearLayout>
+</RelativeLayout>
 

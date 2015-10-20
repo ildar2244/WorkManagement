@@ -25,8 +25,8 @@ import ru.javaapp.workmanagement.jsons.JSONUpdateCurrentCount;
 public class TaskRunActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton btnMinus, btnPlus;
-    Button btnFinish;
-    TextView tvCurrentAdd,tvCountToGo, tvTimeToGo, tvWhatDo, tvWhereDo, tvComment;
+    Button btnFinish, btnAbout;
+    TextView tvCurrentAdd,tvCountToGo;
     EditText etSpeedCount;
     Task taskGet; // Наше задание
     int myTemp; // Текущий темп инкремента
@@ -82,12 +82,9 @@ public class TaskRunActivity extends AppCompatActivity {
         btnFinish = (Button) findViewById(R.id.btn_finish);
         btnMinus = (ImageButton) findViewById(R.id.btn_minus);
         btnPlus = (ImageButton) findViewById(R.id.btn_plus);
+        btnAbout = (Button) findViewById(R.id.btn_about);
         tvCurrentAdd = (TextView) findViewById(R.id.tv_currentAdd);
         tvCountToGo = (TextView) findViewById(R.id.tv_CountToGo);
-        tvTimeToGo = (TextView) findViewById(R.id.tv_TimeToGo);
-        tvWhatDo = (TextView) findViewById(R.id.tv_what);
-        tvWhereDo = (TextView) findViewById(R.id.tv_where);
-        tvComment = (TextView) findViewById(R.id.tv_comment);
         etSpeedCount = (EditText) findViewById(R.id.et_speedCount);
 
         int getCountCurrentTask = taskGet.getCountCurrentTask(); // Текущее количество штук
@@ -95,9 +92,6 @@ public class TaskRunActivity extends AppCompatActivity {
         int count = getCountToGo - getCountCurrentTask;
         tvCurrentAdd.setText(Integer.toString(getCountCurrentTask));
         tvCountToGo.setText(Integer.toString(count));
-        tvWhatDo.setText(taskGet.getWhatName());
-        tvWhereDo.setText(taskGet.getPlaceName());
-        tvComment.setText(taskGet.getCommentTask());
         currentCount = getCountCurrentTask;
     }
 
@@ -157,7 +151,7 @@ public class TaskRunActivity extends AppCompatActivity {
         currentCount = currentCount - myTemp;
         if(currentCount < 0) {
             currentCount = currentCount + myTemp;
-            Toast.makeText(TaskRunActivity.this, "Введите другую скорость", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_LONG).show();
             return null;
         }
         currentCountToGo = Integer.parseInt(tvCountToGo.getText().toString()) + myTemp;
@@ -245,7 +239,7 @@ public class TaskRunActivity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(TaskRunActivity.this, "Заполните свою скорость", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_SHORT).show();
             return;
         }
     }
@@ -263,7 +257,7 @@ public class TaskRunActivity extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(TaskRunActivity.this, "Заполните свою скорость", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_SHORT).show();
             return;
         }
     }

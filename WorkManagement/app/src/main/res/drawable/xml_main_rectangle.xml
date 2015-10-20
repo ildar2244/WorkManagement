@@ -10,8 +10,8 @@
         android:angle="270"
         android:startColor="#36bcff"
         android:endColor="#078af5"
-        android:centerColor="#078af5"
-        />
+        android:centerColor="#078af5"/>
+
     <corners android:radius="15dp"
         android:topLeftRadius="15dp"
         android:topRightRadius="15dp"
