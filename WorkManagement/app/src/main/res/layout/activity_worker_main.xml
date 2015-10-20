@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-        <!-- Set Toolbar in MainActivity-->
+        <!-- Set Toolbar in WorkerMainActivity-->
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar"/>
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-                <ImageView
+                <ImageButton
                     android:id="@+id/main_iv_task"
                     android:layout_width="@dimen/main_iv_size"
                     android:layout_height="@dimen/main_iv_size"
@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-                <ImageView
+                <ImageButton
                     android:id="@+id/main_iv_kaydzen"
                     android:layout_width="@dimen/main_iv_size"
                     android:layout_height="@dimen/main_iv_size"
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-                <ImageView
+                <ImageButton
                     android:id="@+id/main_iv_trm"
                     android:layout_width="@dimen/main_iv_size"
                     android:layout_height="@dimen/main_iv_size"
@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-                <ImageView
+                <ImageButton
                     android:id="@+id/main_iv_kanban"
                     android:layout_width="@dimen/main_iv_size"
                     android:layout_height="@dimen/main_iv_size"
@@ -132,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-                <ImageView
+                <ImageButton
                     android:id="@+id/main_iv_5c"
                     android:layout_width="@dimen/main_iv_size"
                     android:layout_height="@dimen/main_iv_size"
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-                <ImageView
+                <ImageButton
                     android:id="@+id/main_iv_smed"
                     android:layout_width="@dimen/main_iv_size"
                     android:layout_height="@dimen/main_iv_size"

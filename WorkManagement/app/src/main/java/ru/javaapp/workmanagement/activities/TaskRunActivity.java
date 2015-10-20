@@ -137,15 +137,17 @@ public class TaskRunActivity extends AppCompatActivity {
         myTemp = Integer.parseInt(etSpeedCount.getText().toString());
         currentCount = Integer.parseInt(tvCurrentAdd.getText().toString());
         currentCount = currentCount + myTemp;
+        /*
         if(currentCount > getCountToGo) {
             currentCount = currentCount - myTemp;
             Toast.makeText(TaskRunActivity.this, "Введите другую скорость", Toast.LENGTH_SHORT).show();
             return null;
         }
         else {
+        */
             currentCountToGo = Integer.parseInt(tvCountToGo.getText().toString()) - myTemp;
             return Integer.toString(currentCount);
-        }
+
     }
 
     // алгоритм при минусе

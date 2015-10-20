@@ -1,17 +1,14 @@
 package ru.javaapp.workmanagement.master;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import ru.javaapp.workmanagement.MainActivity;
+import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 
 public class MasterMainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -80,7 +77,7 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
     public void onBackPressed() {
         Log.d("My", "OnBackPressed");
         try {
-            startActivity(new Intent(MasterMainActivity.this, MainActivity.class));
+            startActivity(new Intent(MasterMainActivity.this, WorkerMainActivity.class));
             finish();
         }
         catch (Exception e){

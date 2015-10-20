@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import ru.javaapp.workmanagement.MainActivity;
+import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
@@ -25,14 +25,22 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputPassword;
     private Button buttonEnter;
     private String usersType;
+    private boolean isAuthorize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        toolbarInitialize(); // init toolbar
-        componentsInitialize(); //init components in activity
+
+        if(isAuthorize){
+            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
+            finish();
+        }
+        else {
+            toolbarInitialize(); // init toolbar
+            componentsInitialize(); //init components in activity
+        }
     }
 
     /**
@@ -42,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         try {
+            toolbar.setTitle("Авторизация");
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -84,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (usersType.equals("Работник")) {
-                    Intent workerIntent = new Intent(LoginActivity.this, TaskListActivity.class);
+                    Intent workerIntent = new Intent(LoginActivity.this, WorkerMainActivity.class);
                     startActivity(workerIntent);
                     finish();
                 }
@@ -116,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
         try {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
             finish();
         }
         catch (Exception e) {}

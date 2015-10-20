@@ -5,30 +5,71 @@
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- MainActivity -->
+    <!-- WorkerMainActivity -->
     <array name="users_type">
         <item>Работник</item>
         <item>Руководитель</item>
     </array>
 
     <array name="workers">
-        <item>Михайлов Михаил Михайлович</item>
-        <item>Петров Петр Петрович</item>
-        <item>Сидоров Сидор Сидорович</item>
+        <item>Домнин И.И.</item>
+        <item>Киреев В. Ю.</item>
+        <item>Зарипов А. А.</item>
     </array>
 
     <!-- Что делать -->
     <array name="whatDo">
-        <item>Стойка 5350-25</item>
-        <item>Стойка 5350-110</item>
-        <item>Стойка 6520-110</item>
+        <item>Заглушка 6350-1109 140-10</item>
+        <item>Упор 53605-1109 136-10</item>
+        <item>Планка 6350-1109 136-10</item>
+        <item>Труба 5350-1109 132-25</item>
+        <item>Стойка с амортизатором 5350-1109130-25</item>
+        <item>Накладка 6520-1109142-10</item>
+        <item>Косынка 5350-1109139-20</item>
+        <item>Заглушка 6350-1109140-10</item>
+        <item>Упор 6520-1109134-20</item>
+        <item>Планка 6350-1109136-10</item>
+        <item>Труба 5350-1109132-20</item>
+        <item>Стойка с амортизатором 5350-1109110</item>
+        <item>Накладка 6520-1109142-10</item>
+        <item>Укос 6520-1109142-10</item>
+        <item>Упор 6520-1109134-20</item>
+        <item>Усилитель 6520-1109144</item>
+        <item>Планка 6520-1109 136</item>
+        <item>Труба 6520-1109132-30</item>
+        <item>Стойка с амортизатором 6520-1109110</item>
+        <item>Заглушка 6350-1109140-10</item>
+        <item>Упор 53605-1109140-10</item>
+        <item>Труба 65115-1109132-75</item>
+        <item>Стойка 65115-1109130-75</item>
+        <item>Кронштейн 65115-3506185</item>
+        <item>Кронштейн 65115-3419030</item>
+        <item>Кронштейн 53205-8120032</item>
+        <item>Кронштейн 54115-1302047-10</item>
+        <item>Скоба</item>
+        <item>Втулка</item>
     </array>
 
     <!-- Где делать -->
     <array name="whereDo">
-        <item>Гильотина</item>
-        <item>Пресс</item>
-        <item>Пила отрезная0</item>
+        <item>Рубка</item>
+        <item>Рубка полос</item>
+        <item>Штамповка</item>
+        <item>Нарезка</item>
+        <item>Зачистка заусенец</item>
+        <item>Сверление отверстий</item>
+        <item>Приварка</item>
+        <item>Зачистка сварочных швов</item>
+        <item>Приварка стержня</item>
+        <item>Снятие фаски с отверстий</item>
+        <item>Фрезеровка паза</item>
+        <item>Вырубка</item>
+        <item>Гибка</item>
+        <item>Приварка гайки</item>
+        <item>Сжатие трубки</item>
+        <item>Вставка амортизаторов</item>
+        <item>Комплектовка болтами</item>
+        <item>Упаковка</item>
     </array>
 
     <!-- NavigationDrawerFragment-->
@@ -44,7 +85,7 @@
     <string name="whom">Кому</string>
     <string name="what">Что делать</string>
     <string name="where">Где</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">iLean</string>
     <string name="from">От:</string>
     <string name="how_many">Сколько</string>
     <string name="tv_hint_date">ДД.ММ.ГГ</string>
