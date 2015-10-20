@@ -26,7 +26,7 @@ public class TaskRunActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton btnMinus, btnPlus;
     Button btnFinish, btnAbout;
-    TextView tvCurrentAdd,tvCountToGo, tvTimeToGo, tvWhatDo, tvWhereDo, tvComment;
+    TextView tvCurrentAdd,tvCountToGo;
     EditText etSpeedCount;
     Task taskGet; // Наше задание
     int myTemp; // Текущий темп инкремента
@@ -85,10 +85,6 @@ public class TaskRunActivity extends AppCompatActivity {
         btnAbout = (Button) findViewById(R.id.btn_about);
         tvCurrentAdd = (TextView) findViewById(R.id.tv_currentAdd);
         tvCountToGo = (TextView) findViewById(R.id.tv_CountToGo);
-        tvTimeToGo = (TextView) findViewById(R.id.tv_TimeToGo);
-        tvWhatDo = (TextView) findViewById(R.id.tv_what);
-        tvWhereDo = (TextView) findViewById(R.id.tv_where);
-        tvComment = (TextView) findViewById(R.id.tv_comment);
         etSpeedCount = (EditText) findViewById(R.id.et_speedCount);
 
         int getCountCurrentTask = taskGet.getCountCurrentTask(); // Текущее количество штук
@@ -96,9 +92,6 @@ public class TaskRunActivity extends AppCompatActivity {
         int count = getCountToGo - getCountCurrentTask;
         tvCurrentAdd.setText(Integer.toString(getCountCurrentTask));
         tvCountToGo.setText(Integer.toString(count));
-        tvWhatDo.setText(taskGet.getWhatName());
-        tvWhereDo.setText(taskGet.getPlaceName());
-        tvComment.setText(taskGet.getCommentTask());
         currentCount = getCountCurrentTask;
     }
 
