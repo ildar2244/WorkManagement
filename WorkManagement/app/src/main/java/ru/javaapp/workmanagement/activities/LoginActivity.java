@@ -1,7 +1,10 @@
 package ru.javaapp.workmanagement.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,9 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import ru.javaapp.workmanagement.MainActivity;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.jsons.JSONAuthorize;
+import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,14 +34,24 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputPassword;
     private Button buttonEnter;
     private String usersType;
+    private boolean isAuthorize;
+    private String role;
+    private String name, surname, sessionKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        toolbarInitialize(); // init toolbar
-        componentsInitialize(); //init components in activity
+
+        if(isAuthorize){
+            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
+            finish();
+        }
+        else {
+            toolbarInitialize(); // init toolbar
+            componentsInitialize(); //init components in activity
+        }
     }
 
     /**
@@ -42,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         try {
+            toolbar.setTitle("Авторизация");
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -84,17 +104,60 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (usersType.equals("Работник")) {
-                    Intent workerIntent = new Intent(LoginActivity.this, TaskListActivity.class);
+                    role = "Работник";
+                    Intent workerIntent = new Intent(LoginActivity.this, WorkerMainActivity.class);
                     startActivity(workerIntent);
                     finish();
                 }
                 if (usersType.equals("Руководитель")) {
+                    role = "Руководитель";
                     Intent masterIntent = new Intent(LoginActivity.this, MasterMainActivity.class);
                     startActivity(masterIntent);
                     finish();
                 }
             }
         });
+    }
+
+    public class JsonAuthorize extends AsyncTask<String, String, JSONObject> {
+
+        JSONObject object;
+
+        @Override
+        protected JSONObject doInBackground(String... params) {
+
+            try {
+                JSONAuthorize auth = new JSONAuthorize(role);
+                object =  auth.makeHttpRequest();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return object;
+        }
+
+        protected void onPostExecute(JSONObject json) {
+            try {
+                JSONObject json_data = json;
+                if(role.equals("Работник")){
+                    name = json_data.getString("name");
+                    surname = json_data.getString("surname");
+                    sessionKey = json_data.getString("sessionKey");
+                }
+                else {
+                    name = json_data.getString("name");
+                    sessionKey = json_data.getString("sessionKey");
+                }
+                if(name.equals("")){
+                    Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Имя: " + name + " " + surname, Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -116,7 +179,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
         try {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
             finish();
         }
         catch (Exception e) {}

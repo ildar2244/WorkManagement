@@ -23,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.javaapp.workmanagement.MainActivity;
+import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
@@ -112,7 +112,7 @@ public class TaskListActivity extends AppCompatActivity {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
         try {
-            startActivity(new Intent(TaskListActivity.this, MainActivity.class));
+            startActivity(new Intent(TaskListActivity.this, WorkerMainActivity.class));
             finish();
         } catch (Exception e) {}
     }
