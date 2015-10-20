@@ -151,7 +151,7 @@ public class TaskRunActivity extends AppCompatActivity {
         currentCount = currentCount - myTemp;
         if(currentCount < 0) {
             currentCount = currentCount + myTemp;
-            Toast.makeText(TaskRunActivity.this, "Введите другую скорость", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_LONG).show();
             return null;
         }
         currentCountToGo = Integer.parseInt(tvCountToGo.getText().toString()) + myTemp;
@@ -239,7 +239,7 @@ public class TaskRunActivity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(TaskRunActivity.this, "Заполните свою скорость", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_SHORT).show();
             return;
         }
     }
@@ -257,7 +257,7 @@ public class TaskRunActivity extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(TaskRunActivity.this, "Заполните свою скорость", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_SHORT).show();
             return;
         }
     }
