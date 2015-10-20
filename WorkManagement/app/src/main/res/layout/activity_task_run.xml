@@ -77,8 +77,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_minus"
+                        android:layout_weight="0.2"
                         android:adjustViewBounds="true"
-                        android:layout_weight="0.3"
                         android:id="@+id/btn_minus"
                         android:background="@drawable/xml_tra_button"/>
                     <TextView
@@ -88,7 +88,7 @@
                         android:layout_marginRight="4dp"
                         android:textSize="30dp"
                         android:id="@+id/tv_currentAdd"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:background="@drawable/xml_tra_tv_currentcount"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -97,8 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_plus"
+                        android:layout_weight="0.2"
                         android:adjustViewBounds="true"
-                        android:layout_weight="0.3"
                         android:id="@+id/btn_plus"
                         android:background="@drawable/xml_tra_button"/>
                 </LinearLayout>
@@ -107,43 +107,47 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/main_elements_margin_top"
-                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
+                    android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                    android:layout_marginLeft="8dp">
                     <ImageView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_access_time_black_24dp"
-                        android:layout_weight="0.9"
                         android:layout_gravity="center" />
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="8dp"
                         android:textSize="22sp"
                         android:text="Осталось:"
                         android:fontFamily="sans-serif"
                         android:textColor="@color/colorTextPrimary"
-                        android:layout_weight="0.7"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="bottom" />
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="0.4"
+                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
+                            android:textSize="24dp"
+                            android:textStyle="bold"
                             android:id="@+id/tv_CountToGo"
                             android:fontFamily="sans-serif"
-                            android:textColor="@color/colorPrimaryDark" />
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:gravity="center" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
-                            android:text=""
-                            android:id="@+id/tv_TimeToGo"
-                            android:fontFamily="sans-serif"/>
+                            android:paddingLeft="@dimen/tba_tv_padding_left"
+                            android:text="шт."
+                            android:textSize="16dp"
+                            android:textColor="@color/colorTextPrimary"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:gravity="bottom|right" />
                     </LinearLayout>
                 </LinearLayout>
                 <Button
@@ -166,6 +170,7 @@
                     android:layout_marginLeft="@dimen/tra_btn_margin_lr"
                     android:layout_marginRight="@dimen/tra_btn_margin_lr"
                     android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                    android:layout_marginTop="@dimen/main_elements_margin_top"
                     android:text="ЗАВЕРШИТЬ"
                     android:id="@+id/btn_finish"
                     android:background="@drawable/xml_main_rectangle"
