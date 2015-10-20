@@ -77,7 +77,6 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
     public void onBackPressed() {
         Log.d("My", "OnBackPressed");
         try {
-            startActivity(new Intent(MasterMainActivity.this, WorkerMainActivity.class));
             finish();
         }
         catch (Exception e){

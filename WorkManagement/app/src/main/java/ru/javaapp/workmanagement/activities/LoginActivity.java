@@ -1,10 +1,8 @@
 package ru.javaapp.workmanagement.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -22,7 +20,6 @@ import org.json.JSONObject;
 import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.jsons.JSONAuthorize;
-import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,25 +32,17 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonEnter;
     private String usersType;
     private boolean isAuthorize;
-    private String role;
-    private String name, surname, sessionKey;
-    String urlWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
-    String urlMaster = "http://autocomponent.motorcum.ru/update_currentCount_by_task.php";
+    private String role, name, sessionKey;
+    private final String urlWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
+    private final String urlMaster = "http://autocomponent.motorcum.ru/select_master_auth.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        if(isAuthorize){
-            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
-            finish();
-        }
-        else {
-            toolbarInitialize(); // init toolbar
-            componentsInitialize(); //init components in activity
-        }
+        toolbarInitialize(); // init toolbar
+        componentsInitialize(); //init components in activity
     }
 
     /**
@@ -62,22 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     private void toolbarInitialize() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        try {
-            //toolbar.setTitle("Авторизация");
-            /*getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        // Click Listener
-        /*toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });*/
     }
 
     /**
@@ -107,17 +80,85 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (usersType.equals("Работник")) {
                     role = "Работник";
-                    JSONAuthorize jsonAuthorize = new JSONAuthorize(getApplicationContext(), role,
-                            inputLogin.getText().toString(), inputPassword.getText().toString(), urlWorker);
+                    if (!checkFields()) {
+                        new AuthorizeAsyncTask().execute();
+                    }
+                    else{
+                        return;
+                    }
                 }
+
                 if (usersType.equals("Руководитель")) {
                     role = "Руководитель";
-                    Intent masterIntent = new Intent(LoginActivity.this, MasterMainActivity.class);
-                    startActivity(masterIntent);
-                    finish();
+                    if (!checkFields()) {
+                        new AuthorizeAsyncTask().execute();
+                    }
+                    else{
+                        return;
+                    }
                 }
             }
         });
+    }
+
+    private boolean checkFields(){
+        if(inputLogin.getText().toString().trim().length() == 0 ||
+                inputPassword.getText().toString().trim().length() == 0){
+            Toast.makeText(getApplicationContext(), "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show();
+            inputPassword.getText().clear();
+            inputLogin.getText().clear();
+
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private class AuthorizeAsyncTask extends AsyncTask<Void, Void, String> {
+
+        String login = inputLogin.getText().toString();
+        String password = inputPassword.getText().toString();
+
+        @Override
+        protected String doInBackground(Void... urls) {
+            JSONAuthorize jsonAuthorize = new JSONAuthorize(login, password);
+            if(role.equals("Работник")){
+                return jsonAuthorize.makeHttpRequest(urlWorker);
+            }
+            else{
+                return jsonAuthorize.makeHttpRequest(urlMaster);
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONObject json_data = new JSONObject(result);
+                name = json_data.getString("name");
+                sessionKey = json_data.getString("sessionKey");
+                if(!name.equals("")) {
+                    isAuthorize = true;
+                }
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), R.string.no_find_worker, Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            if (isAuthorize) {
+                if(role.equals("Работник")) {
+                    startActivity(new Intent(getApplicationContext(), WorkerMainActivity.class));
+                    finish();
+                }
+                else{
+                    startActivity(new Intent(getApplicationContext(), MasterMainActivity.class));
+                    finish();
+                }
+
+            }
+            else{
+                return;
+            }
+        }
     }
 
     /**
@@ -139,7 +180,6 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
         try {
-            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
             finish();
         }
         catch (Exception e) {}
