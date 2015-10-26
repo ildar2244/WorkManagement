@@ -27,15 +27,14 @@ import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
+import ru.javaapp.workmanagement.jsons.JSONResponce;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
-import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 
 public class TaskListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabHost tabHost;
-    private String urlGetTasks = "http://autocomponent.motorcum.ru/get_tasks_by_worker.php";
     private RecyclerView rvTasksOne;
     private RecyclerView rvTasksTwo;
     private RVAdaptersTasks adaptersTasksOneTwo;
@@ -129,8 +128,8 @@ public class TaskListActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONSelectTasksByWorker parserWorker = new JSONSelectTasksByWorker();
-                object = parserWorker.makeHttpRequest(urlGetTasks);
+                JSONResponce responce = new JSONResponce();
+                object = responce.getTasksForWorker();
             } catch (Exception e) {
                 e.printStackTrace();
             }

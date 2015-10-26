@@ -23,8 +23,8 @@ import java.util.List;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
 import ru.javaapp.workmanagement.dao.Task;
+import ru.javaapp.workmanagement.jsons.JSONResponce;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
-import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 
 public class TrackingActivity extends AppCompatActivity {
 
@@ -118,8 +118,8 @@ public class TrackingActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONSelectTasksByWorker parserWorker = new JSONSelectTasksByWorker();
-                object = parserWorker.makeHttpRequest(urlGetTasks);
+                JSONResponce responce = new JSONResponce();
+                object = responce.getTasksForMaster();
             } catch (Exception e) {
                 e.printStackTrace();
             }

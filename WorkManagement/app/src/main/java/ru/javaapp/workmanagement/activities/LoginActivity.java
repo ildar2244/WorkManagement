@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.jsons.JSONAuthorize;
+import ru.javaapp.workmanagement.jsons.JSONResponce;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private String usersType;
     private boolean isAuthorize;
     private String role, name, sessionKey;
-    private final String urlWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
-    private final String urlMaster = "http://autocomponent.motorcum.ru/select_master_auth.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,13 +120,8 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... urls) {
-            JSONAuthorize jsonAuthorize = new JSONAuthorize(login, password);
-            if(role.equals("Работник")){
-                return jsonAuthorize.makeHttpRequest(urlWorker);
-            }
-            else{
-                return jsonAuthorize.makeHttpRequest(urlMaster);
-            }
+            JSONResponce responce = new JSONResponce();
+            return responce.DoAuthorize(login, password, role);
         }
 
         @Override
