@@ -4,7 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="app_label">iLean</string>
+    <string name="app_label">Автокомпонент-Трейд</string>
 
     <!-- WorkerMainActivity -->
     <array name="users_type">
@@ -86,7 +86,7 @@
     <string name="whom">Кому</string>
     <string name="what">Что делать</string>
     <string name="where">Где</string>
-    <string name="title_activity_login">iLean</string>
+    <string name="title_activity_login">ВХОД</string>
     <string name="from">От:</string>
     <string name="how_many">Сколько</string>
     <string name="tv_hint_date">ДД.ММ.ГГ</string>

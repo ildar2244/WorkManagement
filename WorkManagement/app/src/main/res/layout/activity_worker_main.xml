@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
                     android:layout_below="@id/main_iv_task"
-                    android:text="Задания"
+                    android:text="ЗАДАНИЯ"
                     android:fontFamily="sans-serif"
                     android:textSize="18dp"
                     android:textStyle="bold"

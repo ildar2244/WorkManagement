@@ -8,10 +8,10 @@
 
     <!-- Navigation Drawer -->
     <dimen name="nav_drawer_width">272dp</dimen>
-    <dimen name="main_spinner_margin_top">16dp</dimen>
-    <dimen name="main_elements_margin_top">16dp</dimen>
-    <dimen name="main_elements_width">196dp</dimen>
-    <dimen name="main_elements_heght">48dp</dimen>
+    <dimen name="login_spinner_margin_top">16dp</dimen>
+    <dimen name="login_elements_margin_top">8dp</dimen>
+    <dimen name="login_elements_width">252dp</dimen>
+    <dimen name="login_elements_heght">48dp</dimen>
 
     <dimen name="ll_spn_margin_left">16dp</dimen>
     <dimen name="ll_spn_margin_right">16dp</dimen>

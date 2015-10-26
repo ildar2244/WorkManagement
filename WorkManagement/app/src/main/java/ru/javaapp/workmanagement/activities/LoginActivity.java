@@ -1,13 +1,10 @@
 package ru.javaapp.workmanagement.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,10 +16,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.jsons.JSONAuthorize;
-import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -49,33 +45,8 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
         else {
-            toolbarInitialize(); // init toolbar
             componentsInitialize(); //init components in activity
         }
-    }
-
-    /**
-     * initialize toolbar
-     */
-    private void toolbarInitialize() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        try {
-            toolbar.setSubtitle("Войти");
-            /*getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        // Click Listener
-        /*toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });*/
     }
 
     /**
@@ -169,19 +140,5 @@ public class LoginActivity extends AppCompatActivity {
         spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cities);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return spinnerAdapter;
-    }
-
-    /**
-     * Action for the "Back"
-     */
-    @Override
-    public void onBackPressed() {
-        Log.d("My", "On Back Pressed");
-        super.onBackPressed();
-        try {
-            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
-            finish();
-        }
-        catch (Exception e) {}
     }
 }
