@@ -97,7 +97,10 @@ public class Transmission extends AsyncTask<String, Void, String> {
     }
 
     // Запрос на получение задач в системе Работник
-    public JSONObject getTasksForWorker(){
+    public JSONObject getTasksForWorker(String sessionKey, Context context){
+        this.context = context;
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("sessionKey", sessionKey));
         return makeHttpRequestForTask(urlTasksForWorker);
     }
 
@@ -164,17 +167,30 @@ public class Transmission extends AsyncTask<String, Void, String> {
     // Отправка запросов и получение JSON для задач
     private JSONObject makeHttpRequestForTask(String url) {
 
+        String result = null;
+        InputStream is = null;
         try {
             urlGet = new URL(url);
-            urlConnection = (HttpURLConnection) urlGet.openConnection();
+            urlConnection = (HttpURLConnection) urlGet.openConnection(); // open connection
+            urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
+            urlConnection.setDoInput(true); // use Get request
+            urlConnection.setDoOutput(true); // use POST request
+            OutputStream os = urlConnection.getOutputStream(); // get output parameters
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getQuery(pairs)); // write our pairs
+            writer.flush();
+            writer.close();
+            os.close();
+            urlConnection.connect(); // connect with our server
 
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-            String line;
+            is = urlConnection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
             while ((line = reader.readLine()) != null) {
-                result.append(line);
+                sb.append(line + "\n");
             }
+            result = sb.toString();
             jsonObject = new JSONObject(result.toString());
 
         } catch (IOException e) {
