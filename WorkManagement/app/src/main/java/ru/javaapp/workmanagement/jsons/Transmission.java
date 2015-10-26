@@ -1,7 +1,9 @@
 package ru.javaapp.workmanagement.jsons;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -29,7 +31,7 @@ import ru.javaapp.workmanagement.R;
 /**
  * Created by User on 26.10.2015.
  */
-public class JSONResponce extends AsyncTask<String, Void, String> {
+public class Transmission extends AsyncTask<String, Void, String> {
     private final String urlTaskStatus = "http://autocomponent.motorcum.ru/update_statusId_by_task.php";
     private final String urlCountAndStatus = "http://autocomponent.motorcum.ru/update_count_and_status.php";
     private final String urlCurrentCount = "http://autocomponent.motorcum.ru/update_currentCount_by_task.php";
@@ -37,6 +39,7 @@ public class JSONResponce extends AsyncTask<String, Void, String> {
     private final String urlTasksForMaster = "http://autocomponent.motorcum.ru/get_tasks_for_master.php";
     private final String urlAuthWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
     private final String urlAuthMaster = "http://autocomponent.motorcum.ru/select_master_auth.php";
+    private final String urlCreateTask = "http://autocomponent.motorcum.ru/insert_task.php";
     String login, password;
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
@@ -45,6 +48,25 @@ public class JSONResponce extends AsyncTask<String, Void, String> {
     Context context;
     int code;
     ArrayList<NameValuePair> pairs;
+
+    // Запрос на добавления задания
+    public void CreateTask(int masterId, int workerId, int whatId, int whereId, String countPlan,
+                           String commentEdit, String timeBefore,
+                           String timeAfter, String dateBefore, String dateAfter, Context context){
+        this.context = context;
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("masterId", Integer.toString(masterId)));
+        pairs.add(new BasicNameValuePair("workerId", Integer.toString(workerId)));
+        pairs.add(new BasicNameValuePair("whatId", Integer.toString(whatId)));
+        pairs.add(new BasicNameValuePair("placeId", Integer.toString(whereId)));
+        pairs.add(new BasicNameValuePair("countPlan", countPlan));
+        pairs.add(new BasicNameValuePair("timeStart", timeBefore));
+        pairs.add(new BasicNameValuePair("timeFinish", timeAfter));
+        pairs.add(new BasicNameValuePair("dateStart", dateBefore));
+        pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
+        pairs.add(new BasicNameValuePair("comment", commentEdit));
+        execute(urlCreateTask);
+    }
 
     // Запрос на обновление статуса (прочитано, выполнено)
     public void UpdateTaskStatus(int taskId, int statusId, Context context){
@@ -139,7 +161,6 @@ public class JSONResponce extends AsyncTask<String, Void, String> {
         return result;
     }
 
-
     // Отправка запросов и получение JSON для задач
     private JSONObject makeHttpRequestForTask(String url) {
 
@@ -211,7 +232,17 @@ public class JSONResponce extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if (result == null) {
-            Toast.makeText(context, "Попробуйте еще раз", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context,  R.style.AlertDialogStyle);
+            builder.setCancelable(false);
+            builder.setTitle("Ошибка");
+            builder.setMessage("Нет соединения с интернетом.");
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); // Отпускает диалоговое окно
+                }
+            });
+            builder.show();
         } else {
             try {
                 JSONObject json_data = new JSONObject(result);

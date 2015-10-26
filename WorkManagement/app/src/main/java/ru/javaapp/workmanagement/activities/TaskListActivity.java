@@ -27,7 +27,7 @@ import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.JSONResponce;
+import ru.javaapp.workmanagement.jsons.Transmission;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
 
@@ -128,7 +128,7 @@ public class TaskListActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONResponce responce = new JSONResponce();
+                Transmission responce = new Transmission();
                 object = responce.getTasksForWorker();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -144,8 +144,8 @@ public class TaskListActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(TaskListActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setTitle("iLean");
+                    builder.setMessage("Нет текущих заданий.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

@@ -23,7 +23,7 @@ import java.util.List;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.JSONResponce;
+import ru.javaapp.workmanagement.jsons.Transmission;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 
 public class TrackingActivity extends AppCompatActivity {
@@ -118,7 +118,7 @@ public class TrackingActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONResponce responce = new JSONResponce();
+                Transmission responce = new Transmission();
                 object = responce.getTasksForMaster();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -135,7 +135,7 @@ public class TrackingActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(TrackingActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
                     builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setMessage("Нет текущих заданий.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

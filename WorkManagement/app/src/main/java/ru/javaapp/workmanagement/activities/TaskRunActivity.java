@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.JSONResponce;
+import ru.javaapp.workmanagement.jsons.Transmission;
 
 /**
  * Created by User on 15.10.2015.
@@ -168,7 +168,7 @@ public class TaskRunActivity extends AppCompatActivity {
         int taskId = taskGet.getIdTask();
         int currentcount = currentCount;
         try{
-            JSONResponce responce = new JSONResponce();
+            Transmission responce = new Transmission();
             responce.UpdateCurrentCount(taskId, currentcount, getApplicationContext());
             startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
             finish();
@@ -195,7 +195,7 @@ public class TaskRunActivity extends AppCompatActivity {
                 int currentcount = currentCount;
 
                 try {
-                    JSONResponce responce = new JSONResponce();
+                    Transmission responce = new Transmission();
                     responce.UpdateCountAndStatus(taskId, currentcount, statusid, getApplicationContext());
                     startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
                     finish();

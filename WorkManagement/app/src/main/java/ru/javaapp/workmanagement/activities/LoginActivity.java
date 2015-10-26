@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.jsons.JSONResponce;
+import ru.javaapp.workmanagement.jsons.Transmission;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... urls) {
-            JSONResponce responce = new JSONResponce();
+            Transmission responce = new Transmission();
             return responce.DoAuthorize(login, password, role);
         }
 

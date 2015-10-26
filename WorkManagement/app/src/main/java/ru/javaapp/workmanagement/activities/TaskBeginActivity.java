@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.JSONResponce;
+import ru.javaapp.workmanagement.jsons.Transmission;
 
 public class TaskBeginActivity extends AppCompatActivity {
 
@@ -127,7 +127,7 @@ public class TaskBeginActivity extends AppCompatActivity {
                 int taskId = taskGet.getIdTask();
                 int statusid = 2;
                 try {
-                    JSONResponce responce = new JSONResponce();
+                    Transmission responce = new Transmission();
                     responce.UpdateTaskStatus(taskId, statusid, getApplicationContext());
                 }
                 catch (Exception e){
