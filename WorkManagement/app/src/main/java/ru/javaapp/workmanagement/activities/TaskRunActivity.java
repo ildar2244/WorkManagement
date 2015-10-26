@@ -123,6 +123,15 @@ public class TaskRunActivity extends AppCompatActivity {
                 doPlus();
             }
         });
+
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentTaa = new Intent(TaskRunActivity.this, TaskAboutActivity.class);
+                intentTaa.putExtra("taskAbout", taskGet);
+                startActivity(intentTaa);
+            }
+        });
     }
 
     // алгоритм при плюсе

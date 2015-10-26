@@ -25,5 +25,6 @@
     <dimen name="cta_spn_padding_lr">6dp</dimen>
     <dimen name="cta_bloc_margin_bottom">12dp</dimen>
     <dimen name="tra_btn_margin_lr">30dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>
