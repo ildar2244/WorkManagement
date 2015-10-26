@@ -81,8 +81,8 @@ public class TaskAboutActivity extends AppCompatActivity {
         taaDateFinish.setText(taskGetAbout.getDateFinish());
         taaWhatName.setText(taskGetAbout.getWhatName());
         taaPlaceName.setText(taskGetAbout.getPlaceName());
-        taaCountPlan.setText(taskGetAbout.getCountPlanTask());
-        taaCountCurrent.setText(taskGetAbout.getCountCurrentTask());
+        taaCountPlan.setText(Integer.toString(taskGetAbout.getCountPlanTask()));
+        taaCountCurrent.setText(Integer.toString(taskGetAbout.getCountCurrentTask()));
 
         diffCount = taskGetAbout.getCountPlanTask() - taskGetAbout.getCountCurrentTask();
         taaDiffCount.setText(Integer.toString(diffCount));

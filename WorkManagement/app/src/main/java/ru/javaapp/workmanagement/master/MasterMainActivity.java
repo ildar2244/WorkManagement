@@ -1,14 +1,13 @@
 package ru.javaapp.workmanagement.master;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 
 public class MasterMainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,7 +33,7 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
     private void toolbarInitialize() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        try {
+        /*try {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -46,7 +45,7 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        });*/
 
     }
 
