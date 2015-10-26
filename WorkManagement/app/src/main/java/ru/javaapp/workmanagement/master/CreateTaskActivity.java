@@ -1,8 +1,8 @@
 package ru.javaapp.workmanagement.master;
 
+import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -11,9 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.fragments.DatePickerFragmentAfter;
@@ -57,31 +54,11 @@ public class CreateTaskActivity extends AppCompatActivity {
         whereSpinner.setFocusable(true);
 
         tvDateBefore = (TextView) findViewById(R.id.tv_input_dateBefore);
-        tvDateBefore.setText(getCurrentDate());
         tvTimeBefore = (TextView) findViewById(R.id.tv_input_timeBefore);
-        tvTimeBefore.setText(getCurrentTime());
         tvDateAfter = (TextView) findViewById(R.id.tv_input_dateAfter);
-        tvDateAfter.setText(getCurrentDate());
         tvTimeAfter = (TextView) findViewById(R.id.tv_input_timeAfter);
-        tvTimeAfter.setText(getCurrentTime());
 
         send_btn = (Button) findViewById(R.id.btn_send);
-    }
-    // get current date for dates textview
-    private  String getCurrentDate(){
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-        String formattedDate = df.format(c.getTime());
-        return formattedDate;
-    }
-    // get current time for times textview
-    private String getCurrentTime(){
-        Calendar c = Calendar.getInstance();
-        StringBuilder timeBuilder = new StringBuilder();
-        timeBuilder.append(c.get(Calendar.HOUR_OF_DAY)).append(":");
-        timeBuilder.append(c.get(Calendar.MINUTE));
-        String formattedTime = timeBuilder.toString();
-        return formattedTime;
     }
 
     // fill adapters for our spinners

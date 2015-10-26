@@ -18,9 +18,9 @@ public class TaskBeginActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView tbaTimeStart, tbaTimeFinish, tbaDateStart, tbaDateFinish;
     private TextView tbaWhatName, tbaPlaceName, tbaComment;
-    private TextView tbaCountPlan, tbaCountCurrent, tbaDiffCount, tbaDiffTime;
+    private TextView tbaCountPlan, tbaCountCurrent, tbaDiffCount;
     private Button tbaButtonTake;
-    private int diffCount, diffTime;
+    private int diffCount;
     private Task taskGet;
 
     @Override
@@ -71,7 +71,6 @@ public class TaskBeginActivity extends AppCompatActivity {
         tbaCountPlan = (TextView) findViewById(R.id.tba_countplan);
         tbaCountCurrent = (TextView) findViewById(R.id.tba_countcurrent);
         tbaDiffCount = (TextView) findViewById(R.id.tba_countdifference);
-        tbaDiffTime = (TextView) findViewById(R.id.tba_timedifference);
         tbaComment = (TextView) findViewById(R.id.tba_comment);
         tbaButtonTake = (Button) findViewById(R.id.tba_btnbegin);
 
