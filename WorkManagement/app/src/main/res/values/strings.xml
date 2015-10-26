@@ -94,6 +94,7 @@
     <string name="tv_finish">По:</string>
     <string name="btn_send">Отправить</string>
     <string name="error_sending_data_to_Db">Не удалось отправить задание на сервер</string>
+    <string name="no_find_worker">Неправильный пароль или логин</string>
     <string name="task_sending_succesful">Задание успешно отправлено на сервер</string>
     <string name="refresh">Обновить</string>
     <string name="task_sending_wrong">Ошибка при отправке задания</string>

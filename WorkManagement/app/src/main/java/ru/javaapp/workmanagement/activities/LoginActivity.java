@@ -16,9 +16,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.WorkerMainActivity;
-import ru.javaapp.workmanagement.jsons.JSONAuthorize;
+import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.jsons.Transmission;
 import ru.javaapp.workmanagement.master.MasterMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,23 +31,15 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonEnter;
     private String usersType;
     private boolean isAuthorize;
-    private String role;
-    private String name, surname, sessionKey;
+    private String role, name, sessionKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        if(isAuthorize){
-            startActivity(new Intent(LoginActivity.this, WorkerMainActivity.class));
-            finish();
+        componentsInitialize(); //init components in activity
         }
-        else {
-            componentsInitialize(); //init components in activity
-        }
-    }
 
     /**
      * Initialize all components in UI
@@ -76,57 +68,78 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (usersType.equals("Работник")) {
                     role = "Работник";
-                    Intent workerIntent = new Intent(LoginActivity.this, WorkerMainActivity.class);
-                    startActivity(workerIntent);
-                    finish();
+                    if (!checkFields()) {
+                        new AuthorizeAsyncTask().execute();
+                    }
+                    else{
+                        return;
+                    }
                 }
+
                 if (usersType.equals("Руководитель")) {
                     role = "Руководитель";
-                    Intent masterIntent = new Intent(LoginActivity.this, MasterMainActivity.class);
-                    startActivity(masterIntent);
-                    finish();
+                    if (!checkFields()) {
+                        new AuthorizeAsyncTask().execute();
+                    }
+                    else{
+                        return;
+                    }
                 }
             }
         });
     }
 
-    public class JsonAuthorize extends AsyncTask<String, String, JSONObject> {
+    private boolean checkFields(){
+        if(inputLogin.getText().toString().trim().length() == 0 ||
+                inputPassword.getText().toString().trim().length() == 0){
+            Toast.makeText(getApplicationContext(), "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show();
+            inputPassword.getText().clear();
+            inputLogin.getText().clear();
 
-        JSONObject object;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private class AuthorizeAsyncTask extends AsyncTask<Void, Void, String> {
+
+        String login = inputLogin.getText().toString();
+        String password = inputPassword.getText().toString();
 
         @Override
-        protected JSONObject doInBackground(String... params) {
-
-            try {
-                JSONAuthorize auth = new JSONAuthorize(role);
-                object =  auth.makeHttpRequest();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return object;
+        protected String doInBackground(Void... urls) {
+            Transmission responce = new Transmission();
+            return responce.DoAuthorize(login, password, role);
         }
 
-        protected void onPostExecute(JSONObject json) {
+        @Override
+        protected void onPostExecute(String result) {
             try {
-                JSONObject json_data = json;
-                if(role.equals("Работник")){
-                    name = json_data.getString("name");
-                    surname = json_data.getString("surname");
-                    sessionKey = json_data.getString("sessionKey");
+                JSONObject json_data = new JSONObject(result);
+                name = json_data.getString("name");
+                sessionKey = json_data.getString("sessionKey");
+                if(!name.equals("")) {
+                    isAuthorize = true;
                 }
-                else {
-                    name = json_data.getString("name");
-                    sessionKey = json_data.getString("sessionKey");
-                }
-                if(name.equals("")){
-                    Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), R.string.no_find_worker, Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            if (isAuthorize) {
+                if(role.equals("Работник")) {
+                    startActivity(new Intent(getApplicationContext(), WorkerMainActivity.class));
+                    finish();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Имя: " + name + " " + surname, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MasterMainActivity.class));
+                    finish();
                 }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+            }
+            else{
+                return;
             }
         }
     }

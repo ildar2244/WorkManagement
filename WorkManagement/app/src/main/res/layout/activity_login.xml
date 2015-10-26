@@ -29,6 +29,7 @@
         android:layout_height="@dimen/login_elements_heght"
         android:layout_marginTop="@dimen/login_spinner_margin_top"
         android:id="@+id/spinner_user"
+        android:spinnerMode="dropdown"
         android:background="@drawable/xml_la_spn"
         android:layout_gravity="center_horizontal" />
     <!-- -->

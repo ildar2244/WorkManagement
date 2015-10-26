@@ -16,8 +16,7 @@ import android.widget.Toast;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.JSONUpdateCountAndStatus;
-import ru.javaapp.workmanagement.jsons.JSONUpdateCurrentCount;
+import ru.javaapp.workmanagement.jsons.Transmission;
 
 /**
  * Created by User on 15.10.2015.
@@ -131,16 +130,8 @@ public class TaskRunActivity extends AppCompatActivity {
         myTemp = Integer.parseInt(etSpeedCount.getText().toString());
         currentCount = Integer.parseInt(tvCurrentAdd.getText().toString());
         currentCount = currentCount + myTemp;
-        /*
-        if(currentCount > getCountToGo) {
-            currentCount = currentCount - myTemp;
-            Toast.makeText(TaskRunActivity.this, "Введите другую скорость", Toast.LENGTH_SHORT).show();
-            return null;
-        }
-        else {
-        */
-            currentCountToGo = Integer.parseInt(tvCountToGo.getText().toString()) - myTemp;
-            return Integer.toString(currentCount);
+        currentCountToGo = Integer.parseInt(tvCountToGo.getText().toString()) - myTemp;
+        return Integer.toString(currentCount);
 
     }
 
@@ -177,7 +168,8 @@ public class TaskRunActivity extends AppCompatActivity {
         int taskId = taskGet.getIdTask();
         int currentcount = currentCount;
         try{
-            new JSONUpdateCurrentCount(taskId, currentcount, getApplicationContext()).execute(new String[]{"http://autocomponent.motorcum.ru/update_currentCount_by_task.php"});
+            Transmission responce = new Transmission();
+            responce.UpdateCurrentCount(taskId, currentcount, getApplicationContext());
             startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
             finish();
         }
@@ -203,7 +195,8 @@ public class TaskRunActivity extends AppCompatActivity {
                 int currentcount = currentCount;
 
                 try {
-                    new JSONUpdateCountAndStatus(taskId, currentcount,statusid, getApplicationContext()).execute(new String[]{"http://autocomponent.motorcum.ru/update_count_and_status.php"});
+                    Transmission responce = new Transmission();
+                    responce.UpdateCountAndStatus(taskId, currentcount, statusid, getApplicationContext());
                     startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
                     finish();
                 }

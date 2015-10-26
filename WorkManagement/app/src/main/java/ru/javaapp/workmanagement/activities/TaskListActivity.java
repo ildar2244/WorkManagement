@@ -27,15 +27,14 @@ import ru.javaapp.workmanagement.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
+import ru.javaapp.workmanagement.jsons.Transmission;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
-import ru.javaapp.workmanagement.jsons.JSONSelectTasksByWorker;
 
 public class TaskListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabHost tabHost;
-    private String urlGetTasks = "http://autocomponent.motorcum.ru/get_tasks_by_worker.php";
     private RecyclerView rvTasksOne;
     private RecyclerView rvTasksTwo;
     private RVAdaptersTasks adaptersTasksOneTwo;
@@ -129,8 +128,8 @@ public class TaskListActivity extends AppCompatActivity {
         protected JSONObject doInBackground(String... params) {
 
             try {
-                JSONSelectTasksByWorker parserWorker = new JSONSelectTasksByWorker();
-                object = parserWorker.makeHttpRequest(urlGetTasks);
+                Transmission responce = new Transmission();
+                object = responce.getTasksForWorker();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -145,8 +144,8 @@ public class TaskListActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(TaskListActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setTitle("iLean");
+                    builder.setMessage("Нет текущих заданий.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
