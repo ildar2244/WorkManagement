@@ -19,6 +19,10 @@
     <color name="item_two">#1976D2</color>
     <color name="item_three">#5FB219</color>
 
+    <!-- Buttons -->
+    <color name="btn_stop">#c80b18</color>
+    <color name="btn_brak">#f48f02</color>
+
     <!-- Standart color -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
