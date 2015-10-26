@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonEnter;
     private String usersType;
     private boolean isAuthorize;
-    private String role, name, sessionKey;
+    private String role, name;
+    public static String sessionKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

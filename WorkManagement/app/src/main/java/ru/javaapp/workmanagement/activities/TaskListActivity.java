@@ -129,7 +129,7 @@ public class TaskListActivity extends AppCompatActivity {
 
             try {
                 Transmission responce = new Transmission();
-                object = responce.getTasksForWorker();
+                object = responce.getTasksForWorker(LoginActivity.sessionKey, getApplicationContext());
             } catch (Exception e) {
                 e.printStackTrace();
             }
