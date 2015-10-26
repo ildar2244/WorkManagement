@@ -53,7 +53,12 @@ public class RVAdaptersTasks extends RecyclerView.Adapter<RVAdaptersTasks.EventV
         }
         if (taskList.get(position).getIdStatus() == 3) {
             holder.tvCount.setText(Integer.toString(taskList.get(position).getCountCurrentTask()));
-            holder.tvCount.setBackgroundColor(Color.parseColor("#5FB219"));
+            if (taskList.get(position).getCountCurrentTask() < taskList.get(position).getCountPlanTask()) {
+                holder.tvCount.setBackgroundColor(Color.parseColor("#c80b18"));
+            }
+            else {
+                holder.tvCount.setBackgroundColor(Color.parseColor("#5FB219"));
+            }
         }
         holder.tvWhatName.setText(taskList.get(position).getWhatName());
         holder.tvPlaceName.setText(taskList.get(position).getPlaceName());
