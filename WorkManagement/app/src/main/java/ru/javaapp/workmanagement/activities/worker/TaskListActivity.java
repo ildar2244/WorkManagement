@@ -1,5 +1,6 @@
 package ru.javaapp.workmanagement.activities.worker;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.activities.auth.LoginActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
@@ -124,16 +126,37 @@ public class TaskListActivity extends AppCompatActivity {
 
         JSONObject object;
 
+        ProgressDialog dialog = new ProgressDialog(TaskListActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setTitle("Обработка данных");
+            dialog.setMessage("Пожалуйста, подождите...");
+            dialog.setIndeterminate(true);
+            dialog.setCancelable(false);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Отмена", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    cancel(true);
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+
         @Override
         protected JSONObject doInBackground(String... params) {
 
-            try {
+            if(Helper.isConnected(getApplicationContext())) {
                 Transmission responce = new Transmission();
                 object = responce.getTasksForWorker(LoginActivity.sessionKey, getApplicationContext());
-            } catch (Exception e) {
-                e.printStackTrace();
+                return object;
             }
-            return object;
+            else
+            {
+                return null;
+            }
         }
 
         protected void onPostExecute(JSONObject json) {
@@ -144,8 +167,8 @@ public class TaskListActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(TaskListActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("iLean");
-                    builder.setMessage("Нет текущих заданий.");
+                    builder.setTitle("Ошибка");
+                    builder.setMessage("Нет соединения с интернетом.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -153,11 +176,13 @@ public class TaskListActivity extends AppCompatActivity {
                         }
                     });
                     builder.show();
+                    dialog.dismiss();
                 }
             } catch (JSONException e) {
                 Toast.makeText(TaskListActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+            dialog.dismiss();
         }
     }
 
@@ -178,33 +203,20 @@ public class TaskListActivity extends AppCompatActivity {
             Task task = new Task();
 
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            int id = jsonObject.getInt("id");
-            String nameMaster = jsonObject.getString("name");
-            String nameWorker = jsonObject.getString("nameWorker");
-            String nameWhat = jsonObject.getString("nameWhat");
-            String namePlace = jsonObject.getString("namePlace");
             int statusId = jsonObject.getInt("id_status");
             statusList.add(statusId);
-            int countPlan = jsonObject.getInt("count_plan");
-            int countCurrent = jsonObject.getInt("count_current");
-            String timeStart = jsonObject.getString("time_start");
-            String timeFinish = jsonObject.getString("time_finish");
-            String dateStart = jsonObject.getString("date_start");
-            String dateFinish = jsonObject.getString("date_finish");
-            String comment = jsonObject.getString("comment");
-
-            task.setIdTask(id);
+            task.setIdTask(jsonObject.getInt("id"));
             task.setIdStatus(statusId);
-            task.setMasterName(nameMaster);
-            task.setWhatName(nameWhat);
-            task.setPlaceName(namePlace);
-            task.setCountPlanTask(countPlan);
-            task.setCountCurrentTask(countCurrent);
-            task.setTimeStart(timeStart);
-            task.setTimeFinish(timeFinish);
-            task.setDateStart(dateStart);
-            task.setDateFinish(dateFinish);
-            task.setCommentTask(comment);
+            task.setMasterName(jsonObject.getString("name"));
+            task.setWhatName(jsonObject.getString("nameWhat"));
+            task.setPlaceName(jsonObject.getString("namePlace"));
+            task.setCountPlanTask(jsonObject.getInt("count_plan"));
+            task.setCountCurrentTask(jsonObject.getInt("count_current"));
+            task.setTimeStart(jsonObject.getString("time_start"));
+            task.setTimeFinish(jsonObject.getString("time_finish"));
+            task.setDateStart(jsonObject.getString("date_start"));
+            task.setDateFinish(jsonObject.getString("date_finish"));
+            task.setCommentTask(jsonObject.getString("comment"));
 
             // Create Task and add in list
             if (statusId == 1 || statusId == 2) {
