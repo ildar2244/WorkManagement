@@ -1,6 +1,7 @@
 package ru.javaapp.workmanagement.activities.master;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import java.util.List;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
 import ru.javaapp.workmanagement.dao.Task;
+import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
 import ru.javaapp.workmanagement.workDB.Transmission;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 
@@ -47,7 +49,29 @@ public class TrackingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tracking);
         toolbarInitialize(); // init toolbar
         componentsInitialize(); //init components in activity
+        setListeners();
         new JsonReadTasksForMaster().execute(); // start AsyncTask and get JSON from DB
+    }
+
+    private void setListeners() {
+        rvTasksCurrent.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position){
+                Task task = taskListCurrent.get(position);
+                Intent intentTaskAbout = new Intent(TrackingActivity.this, TaskAboutForMasterActivity.class);
+                intentTaskAbout.putExtra("taskObj", task);
+                startActivity(intentTaskAbout);
+            }
+        }));
+        rvTasksFinish.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Task task = taskListFinish.get(position);
+                Intent intentTaskAbout = new Intent(TrackingActivity.this, TaskAboutForMasterActivity.class);
+                intentTaskAbout.putExtra("taskObj", task);
+                startActivity(intentTaskAbout);
+            }
+        }));
     }
 
     /**

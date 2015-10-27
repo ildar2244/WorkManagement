@@ -81,6 +81,11 @@
             android:label="@string/title_activity_task_about"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".activities.master.TaskAboutForMasterActivity"
+            android:label="@string/about_tracking"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>
