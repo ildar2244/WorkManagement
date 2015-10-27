@@ -178,33 +178,20 @@ public class TaskListActivity extends AppCompatActivity {
             Task task = new Task();
 
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            int id = jsonObject.getInt("id");
-            String nameMaster = jsonObject.getString("name");
-            String nameWorker = jsonObject.getString("nameWorker");
-            String nameWhat = jsonObject.getString("nameWhat");
-            String namePlace = jsonObject.getString("namePlace");
             int statusId = jsonObject.getInt("id_status");
             statusList.add(statusId);
-            int countPlan = jsonObject.getInt("count_plan");
-            int countCurrent = jsonObject.getInt("count_current");
-            String timeStart = jsonObject.getString("time_start");
-            String timeFinish = jsonObject.getString("time_finish");
-            String dateStart = jsonObject.getString("date_start");
-            String dateFinish = jsonObject.getString("date_finish");
-            String comment = jsonObject.getString("comment");
-
-            task.setIdTask(id);
+            task.setIdTask(jsonObject.getInt("id"));
             task.setIdStatus(statusId);
-            task.setMasterName(nameMaster);
-            task.setWhatName(nameWhat);
-            task.setPlaceName(namePlace);
-            task.setCountPlanTask(countPlan);
-            task.setCountCurrentTask(countCurrent);
-            task.setTimeStart(timeStart);
-            task.setTimeFinish(timeFinish);
-            task.setDateStart(dateStart);
-            task.setDateFinish(dateFinish);
-            task.setCommentTask(comment);
+            task.setMasterName(jsonObject.getString("name"));
+            task.setWhatName(jsonObject.getString("nameWhat"));
+            task.setPlaceName(jsonObject.getString("namePlace"));
+            task.setCountPlanTask(jsonObject.getInt("count_plan"));
+            task.setCountCurrentTask(jsonObject.getInt("count_current"));
+            task.setTimeStart(jsonObject.getString("time_start"));
+            task.setTimeFinish(jsonObject.getString("time_finish"));
+            task.setDateStart(jsonObject.getString("date_start"));
+            task.setDateFinish(jsonObject.getString("date_finish"));
+            task.setCommentTask(jsonObject.getString("comment"));
 
             // Create Task and add in list
             if (statusId == 1 || statusId == 2) {
