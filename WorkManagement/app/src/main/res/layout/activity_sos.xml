@@ -60,7 +60,7 @@
                 android:layout_marginRight="@dimen/tra_btn_margin_lr"
                 android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
                 android:layout_marginTop="@dimen/login_elements_margin_top"
-                android:text="Вызвать"
+                android:text="Вызов"
                 android:id="@+id/btn_call"
                 android:background="@drawable/xml_main_rectangle"
                 android:textColor="@color/white"

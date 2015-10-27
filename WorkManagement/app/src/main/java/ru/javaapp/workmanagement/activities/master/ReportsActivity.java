@@ -18,6 +18,9 @@ public class ReportsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
+
+        toolbarInitialize(); // init toolbar
+        componentsInitialize(); //init components in activity
     }
 
     /**
