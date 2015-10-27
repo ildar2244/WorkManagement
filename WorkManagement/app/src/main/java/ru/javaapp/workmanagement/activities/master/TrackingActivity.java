@@ -217,7 +217,9 @@ public class TrackingActivity extends AppCompatActivity {
             task.setPlaceName(namePlace);
             task.setCountPlanTask(countPlan);
             task.setCountCurrentTask(countCurrent);
+            task.setTimeStart(timeStart);
             task.setTimeFinish(timeFinish);
+            task.setDateStart(dateStart);
             task.setDateFinish(dateFinish);
             task.setCommentTask(comment);
 
