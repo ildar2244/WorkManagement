@@ -162,7 +162,6 @@ public class TaskRunActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.d("My", "On Back Pressed");
-        super.onBackPressed();
         try {
             backTaskList();
         }
@@ -170,6 +169,7 @@ public class TaskRunActivity extends AppCompatActivity {
             e.printStackTrace();
             return;
         }
+        super.onBackPressed();
     }
 
     // возврат в список всех заданий
@@ -183,6 +183,7 @@ public class TaskRunActivity extends AppCompatActivity {
             finish();
         }
         catch (Exception e){
+            Log.d("My", "On Back Pressed " + e);
             e.printStackTrace();
             return;
         }

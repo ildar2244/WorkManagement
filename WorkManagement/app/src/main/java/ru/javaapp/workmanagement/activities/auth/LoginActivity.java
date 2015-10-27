@@ -1,8 +1,11 @@
 package ru.javaapp.workmanagement.activities.auth;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,10 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.activities.worker.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.workDB.Transmission;
@@ -109,39 +111,81 @@ public class LoginActivity extends AppCompatActivity {
         String login = inputLogin.getText().toString();
         String password = inputPassword.getText().toString();
 
+        ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setTitle("Обработка данных");
+            dialog.setMessage("Пожалуйста, подождите...");
+            dialog.setIndeterminate(true);
+            dialog.setCancelable(false);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Отмена", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    cancel(true);
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+
         @Override
         protected String doInBackground(Void... urls) {
-            Transmission responce = new Transmission();
-            return responce.DoAuthorize(login, password, role);
+            if(Helper.isConnected(getApplicationContext())) {
+                Transmission responce = new Transmission();
+                return responce.DoAuthorize(login, password, role);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         @Override
         protected void onPostExecute(String result) {
-            try {
-                JSONObject json_data = new JSONObject(result);
-                name = json_data.getString("name");
-                sessionKey = json_data.getString("sessionKey");
-                if(!name.equals("")) {
-                    isAuthorize = true;
-                }
-            } catch (JSONException e) {
-                Toast.makeText(getApplicationContext(), R.string.no_find_worker, Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
-            if (isAuthorize) {
-                if(role.equals("Работник")) {
-                    startActivity(new Intent(getApplicationContext(), WorkerMainActivity.class));
-                    finish();
-                }
-                else{
-                    startActivity(new Intent(getApplicationContext(), MasterMainActivity.class));
-                    finish();
-                }
-
-            }
-            else{
+            if(result == null){
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this,  R.style.AlertDialogStyle);
+                builder.setCancelable(false);
+                builder.setTitle("Ошибка");
+                builder.setMessage("Нет соединения с интернетом.");
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss(); // Отпускает диалоговое окно
+                    }
+                });
+                builder.show();
+                dialog.dismiss();
                 return;
             }
+            else {
+                try {
+                    JSONObject json_data = new JSONObject(result);
+                    name = json_data.getString("name");
+                    sessionKey = json_data.getString("sessionKey");
+                    if (!name.equals("")) {
+                        isAuthorize = true;
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), R.string.no_find_worker, Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+                if (isAuthorize) {
+                    if (role.equals("Работник")) {
+                        startActivity(new Intent(getApplicationContext(), WorkerMainActivity.class));
+                        finish();
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), MasterMainActivity.class));
+                        finish();
+                    }
+
+                } else {
+                    return;
+                }
+            }
+
+            dialog.dismiss();
         }
     }
 

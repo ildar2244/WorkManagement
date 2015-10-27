@@ -1,5 +1,6 @@
 package ru.javaapp.workmanagement.activities.worker;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.activities.auth.LoginActivity;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
@@ -124,16 +126,37 @@ public class TaskListActivity extends AppCompatActivity {
 
         JSONObject object;
 
+        ProgressDialog dialog = new ProgressDialog(TaskListActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setTitle("Обработка данных");
+            dialog.setMessage("Пожалуйста, подождите...");
+            dialog.setIndeterminate(true);
+            dialog.setCancelable(false);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Отмена", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    cancel(true);
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+
         @Override
         protected JSONObject doInBackground(String... params) {
 
-            try {
+            if(Helper.isConnected(getApplicationContext())) {
                 Transmission responce = new Transmission();
                 object = responce.getTasksForWorker(LoginActivity.sessionKey, getApplicationContext());
-            } catch (Exception e) {
-                e.printStackTrace();
+                return object;
             }
-            return object;
+            else
+            {
+                return null;
+            }
         }
 
         protected void onPostExecute(JSONObject json) {
@@ -144,8 +167,8 @@ public class TaskListActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(TaskListActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("iLean");
-                    builder.setMessage("Нет текущих заданий.");
+                    builder.setTitle("Ошибка");
+                    builder.setMessage("Нет соединения с интернетом.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -153,11 +176,13 @@ public class TaskListActivity extends AppCompatActivity {
                         }
                     });
                     builder.show();
+                    dialog.dismiss();
                 }
             } catch (JSONException e) {
                 Toast.makeText(TaskListActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+            dialog.dismiss();
         }
     }
 

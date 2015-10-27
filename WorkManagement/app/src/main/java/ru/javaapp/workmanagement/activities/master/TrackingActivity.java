@@ -1,5 +1,6 @@
 package ru.javaapp.workmanagement.activities.master;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
 import ru.javaapp.workmanagement.dao.Task;
@@ -140,16 +142,35 @@ public class TrackingActivity extends AppCompatActivity {
 
         JSONObject object;
 
+        ProgressDialog dialog = new ProgressDialog(TrackingActivity.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setTitle("Обработка данных");
+            dialog.setMessage("Подождите...");
+            dialog.setIndeterminate(true);
+            dialog.setCancelable(false);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Отмена", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    cancel(true);
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+
         @Override
         protected JSONObject doInBackground(String... params) {
 
-            try {
+            if(Helper.isConnected(getApplicationContext())) {
                 Transmission responce = new Transmission();
                 object = responce.getTasksForMaster();
-            } catch (Exception e) {
-                e.printStackTrace();
+                return object;
             }
-            return object;
+            else{
+                return null;
+            }
         }
 
         protected void onPostExecute(JSONObject json) {
@@ -161,7 +182,7 @@ public class TrackingActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(TrackingActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
                     builder.setTitle("Ошибка");
-                    builder.setMessage("Нет текущих заданий.");
+                    builder.setMessage("Нет соединения с интернетом.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -169,11 +190,13 @@ public class TrackingActivity extends AppCompatActivity {
                         }
                     });
                     builder.show();
+                    dialog.dismiss();
                 }
             } catch (JSONException e) {
                 Toast.makeText(TrackingActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+            dialog.dismiss();
         }
     }
 
