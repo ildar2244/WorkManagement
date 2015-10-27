@@ -17,7 +17,7 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.auth.LoginActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
@@ -28,56 +28,56 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WorkerMainActivity"
+            android:name=".activities.worker.WorkerMainActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".master.MasterMainActivity"
+            android:name=".activities.master.MasterMainActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_master_main"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".master.CreateTaskActivity"
+            android:name=".activities.master.CreateTaskActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_create_task"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".master.TrackingActivity"
+            android:name=".activities.master.TrackingActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_tracking"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".master.ReportsActivity"
+            android:name=".activities.master.ReportsActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_reports"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activities.TaskListActivity"
+            android:name=".activities.worker.TaskListActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_task_list"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activities.TaskBeginActivity"
+            android:name=".activities.worker.TaskBeginActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_task_begin"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".activities.TaskRunActivity"
+            android:name=".activities.worker.TaskRunActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_task_run"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activities.TaskAboutActivity"
+            android:name=".activities.worker.TaskAboutActivity"
             android:label="@string/title_activity_task_about"
             android:theme="@style/AppTheme" >
         </activity>

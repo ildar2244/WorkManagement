@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.master;
+package ru.javaapp.workmanagement.activities.master;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

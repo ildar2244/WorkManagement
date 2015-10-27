@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.master;
+package ru.javaapp.workmanagement.activities.master;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -17,7 +17,7 @@ import ru.javaapp.workmanagement.fragments.DatePickerFragmentAfter;
 import ru.javaapp.workmanagement.fragments.DatePickerFragmentBefore;
 import ru.javaapp.workmanagement.fragments.TimePickerFragmentAfter;
 import ru.javaapp.workmanagement.fragments.TimePickerFragmentBefore;
-import ru.javaapp.workmanagement.jsons.Transmission;
+import ru.javaapp.workmanagement.workDB.Transmission;
 
 public class CreateTaskActivity extends AppCompatActivity {
 

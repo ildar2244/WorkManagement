@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.jsons;
+package ru.javaapp.workmanagement.workDB;
 
 import android.content.Context;
 import android.content.DialogInterface;

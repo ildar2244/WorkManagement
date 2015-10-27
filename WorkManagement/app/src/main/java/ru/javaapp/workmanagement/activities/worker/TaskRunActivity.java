@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.activities;
+package ru.javaapp.workmanagement.activities.worker;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.Transmission;
+import ru.javaapp.workmanagement.workDB.Transmission;
 
 /**
  * Created by User on 15.10.2015.

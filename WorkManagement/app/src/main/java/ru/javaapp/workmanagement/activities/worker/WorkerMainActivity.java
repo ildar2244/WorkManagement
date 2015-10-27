@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement;
+package ru.javaapp.workmanagement.activities.worker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
-import ru.javaapp.workmanagement.activities.TaskListActivity;
+import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.fragments.FragmentDrawer;
 
 public class WorkerMainActivity extends AppCompatActivity implements View.OnClickListener {

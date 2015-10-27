@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="ru.javaapp.workmanagement.activities.TaskListActivity"
+    tools:context=".activities.worker.TaskListActivity"
     android:fitsSystemWindows="true">
     <!-- Set Toolbar in AddEventsActivity-->
     <LinearLayout

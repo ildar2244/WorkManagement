@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.activities;
+package ru.javaapp.workmanagement.activities.worker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.Transmission;
+import ru.javaapp.workmanagement.workDB.Transmission;
 
 public class TaskBeginActivity extends AppCompatActivity {
 

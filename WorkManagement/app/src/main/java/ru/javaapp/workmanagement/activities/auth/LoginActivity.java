@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.activities;
+package ru.javaapp.workmanagement.activities.auth;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,10 +16,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ru.javaapp.workmanagement.WorkerMainActivity;
+import ru.javaapp.workmanagement.activities.worker.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.jsons.Transmission;
-import ru.javaapp.workmanagement.master.MasterMainActivity;
+import ru.javaapp.workmanagement.workDB.Transmission;
+import ru.javaapp.workmanagement.activities.master.MasterMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

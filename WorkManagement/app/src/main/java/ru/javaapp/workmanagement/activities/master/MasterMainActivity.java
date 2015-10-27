@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.master;
+package ru.javaapp.workmanagement.activities.master;
 
 import android.content.Intent;
 import android.os.Bundle;

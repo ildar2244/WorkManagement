@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ru.javaapp.workmanagement.activities.TaskAboutActivity">
+    tools:context=".activities.worker.TaskAboutActivity">
     <!-- Set Toolbar in AddEventsActivity-->
     <LinearLayout
         android:id="@+id/taa_toolbar"

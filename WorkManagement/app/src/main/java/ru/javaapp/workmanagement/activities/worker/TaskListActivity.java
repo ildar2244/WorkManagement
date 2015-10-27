@@ -1,10 +1,11 @@
-package ru.javaapp.workmanagement.master;
+package ru.javaapp.workmanagement.activities.worker;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -22,32 +23,38 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.javaapp.workmanagement.activities.auth.LoginActivity;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.adapters.RVAdaptersTasksForMaster;
+import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.jsons.Transmission;
+import ru.javaapp.workmanagement.workDB.Transmission;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
+import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
 
-public class TrackingActivity extends AppCompatActivity {
+public class TaskListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabHost tabHost;
-    private String urlGetTasks = "http://autocomponent.motorcum.ru/get_tasks_for_master.php";
-    private RecyclerView rvTasksCurrent;
-    private RecyclerView rvTasksFinish;
-    private RVAdaptersTasksForMaster adaptersTasksCurrent;
-    private RVAdaptersTasksForMaster adaptersTasksFinish;
-    private List<Task> taskListCurrent;
-    private List<Task> taskListFinish;
+    private RecyclerView rvTasksOne;
+    private RecyclerView rvTasksTwo;
+    private RVAdaptersTasks adaptersTasksOneTwo;
+    private RVAdaptersTasks adaptersTasksThree;
+    private List<Task> taskOneTwo;
+    private List<Task> taskThree;
     List statusList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tracking);
+        setContentView(R.layout.activity_task_list);
         toolbarInitialize(); // init toolbar
         componentsInitialize(); //init components in activity
-        new JsonReadTasksForMaster().execute(); // start AsyncTask and get JSON from DB
+        setListeners(); // rv.items select listener
+        try {
+            new JsonReadByWorker().execute(); // start AsyncTask and get JSON from DB
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -79,20 +86,20 @@ public class TrackingActivity extends AppCompatActivity {
     private void componentsInitialize() {
         tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
-        TabHost.TabSpec tapSpec = tabHost.newTabSpec("Текущие");
-        tapSpec.setContent(R.id.tabCurrent);
+        TabHost.TabSpec tapSpec = tabHost.newTabSpec("tabOne");
+        tapSpec.setContent(R.id.tab1);
         tapSpec.setIndicator("Текущие");
         tabHost.addTab(tapSpec);
 
-        tapSpec = tabHost.newTabSpec("Выполнено");
-        tapSpec.setContent(R.id.tabFinish);
+        tapSpec = tabHost.newTabSpec("tabTwo");
+        tapSpec.setContent(R.id.tab2);
         tapSpec.setIndicator("Выполнено");
         tabHost.addTab(tapSpec);
 
-        rvTasksCurrent = (RecyclerView) findViewById(R.id.rv_tasks_current);
-        rvTasksCurrent.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        rvTasksFinish = (RecyclerView) findViewById(R.id.rv_tasks_finish);
-        rvTasksFinish.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        rvTasksOne = (RecyclerView) findViewById(R.id.rv_tasks_one);
+        rvTasksOne.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        rvTasksTwo = (RecyclerView) findViewById(R.id.rv_tasks_two);
+        rvTasksTwo.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
     }
 
@@ -104,6 +111,7 @@ public class TrackingActivity extends AppCompatActivity {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
         try {
+            startActivity(new Intent(TaskListActivity.this, WorkerMainActivity.class));
             finish();
         } catch (Exception e) {}
     }
@@ -112,7 +120,7 @@ public class TrackingActivity extends AppCompatActivity {
      * We get the Tasks by Worker.
      * Start AsyncTask to DB for getting JSON
      */
-    public class JsonReadTasksForMaster extends AsyncTask<String, String, JSONObject> {
+    public class JsonReadByWorker extends AsyncTask<String, String, JSONObject> {
 
         JSONObject object;
 
@@ -121,7 +129,7 @@ public class TrackingActivity extends AppCompatActivity {
 
             try {
                 Transmission responce = new Transmission();
-                object = responce.getTasksForMaster();
+                object = responce.getTasksForWorker(LoginActivity.sessionKey, getApplicationContext());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -134,9 +142,9 @@ public class TrackingActivity extends AppCompatActivity {
                     ListDrawer(json);
                 }
                 else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(TrackingActivity.this,  R.style.AlertDialogStyle);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TaskListActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Ошибка");
+                    builder.setTitle("iLean");
                     builder.setMessage("Нет текущих заданий.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
@@ -147,7 +155,7 @@ public class TrackingActivity extends AppCompatActivity {
                     builder.show();
                 }
             } catch (JSONException e) {
-                Toast.makeText(TrackingActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaskListActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
@@ -160,11 +168,11 @@ public class TrackingActivity extends AppCompatActivity {
      */
     public void ListDrawer(JSONObject json) throws JSONException {
         JSONArray jsonArray = null;
-        taskListCurrent = new ArrayList<Task>();
-        taskListFinish = new ArrayList<Task>();
+        taskOneTwo = new ArrayList<Task>();
+        taskThree = new ArrayList<Task>();
         statusList = new ArrayList();
 
-        jsonArray = json.getJSONArray("allTasks_for_master");
+        jsonArray = json.getJSONArray("allTasks_by_worker");
 
         for (int i = 0; i < jsonArray.length(); i++) {
             Task task = new Task();
@@ -187,42 +195,43 @@ public class TrackingActivity extends AppCompatActivity {
 
             task.setIdTask(id);
             task.setIdStatus(statusId);
-            task.setIdPerformer(nameWorker);
             task.setMasterName(nameMaster);
             task.setWhatName(nameWhat);
             task.setPlaceName(namePlace);
             task.setCountPlanTask(countPlan);
             task.setCountCurrentTask(countCurrent);
+            task.setTimeStart(timeStart);
             task.setTimeFinish(timeFinish);
+            task.setDateStart(dateStart);
             task.setDateFinish(dateFinish);
             task.setCommentTask(comment);
 
             // Create Task and add in list
             if (statusId == 1 || statusId == 2) {
-                taskListCurrent.add(task);
+                taskOneTwo.add(task);
             }
             if (statusId == 3) {
-                taskListFinish.add(task);
+                taskThree.add(task);
             }
 
         }
 
         // Creating 2 adapters and 2 recyclerviews for two Tabs
-        adaptersTasksCurrent = new RVAdaptersTasksForMaster(getApplicationContext(), taskListCurrent, statusList);
-        adaptersTasksFinish = new RVAdaptersTasksForMaster(getApplicationContext(), taskListFinish, statusList);
+        adaptersTasksOneTwo = new RVAdaptersTasks(getApplicationContext(), taskOneTwo, statusList);
+        adaptersTasksThree = new RVAdaptersTasks(getApplicationContext(), taskThree, statusList);
         LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         LinearLayoutManager llm2 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        rvTasksCurrent.setAdapter(adaptersTasksCurrent);
-        rvTasksCurrent.setLayoutManager(llm1);
-        rvTasksFinish.setAdapter(adaptersTasksFinish);
-        rvTasksFinish.setLayoutManager(llm2);
+        rvTasksOne.setAdapter(adaptersTasksOneTwo);
+        rvTasksOne.setLayoutManager(llm1);
+        rvTasksTwo.setAdapter(adaptersTasksThree);
+        rvTasksTwo.setLayoutManager(llm2);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tracking, menu);
+        getMenuInflater().inflate(R.menu.menu_task_list, menu);
         return true;
     }
 
@@ -233,9 +242,34 @@ public class TrackingActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.sync) {
-            new JsonReadTasksForMaster().execute(); // update RVs - get new data
+            new JsonReadByWorker().execute(); // update RVs - get new data
         }
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Action by clicking on items RV
+     */
+    private void setListeners() {
+        rvTasksOne.addOnItemTouchListener(
+                new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Task task = taskOneTwo.get(position);
+                        int statusId = taskOneTwo.get(position).getIdStatus();
+                        if(statusId == 1) {
+                            Intent intentTba = new Intent(TaskListActivity.this, TaskBeginActivity.class);
+                            intentTba.putExtra("taskObj", task);
+                            startActivity(intentTba);
+                        }
+                        if(statusId == 2){
+                            Intent intentTba = new Intent(TaskListActivity.this, TaskRunActivity.class);
+                            intentTba.putExtra("taskObj", task);
+                            startActivity(intentTba);
+                            finish();
+                        }
+                    }
+                })
+        );
+    }
 }

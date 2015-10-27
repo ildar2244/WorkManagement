@@ -13,12 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.activities.LoginActivity;
-import ru.javaapp.workmanagement.activities.TaskListActivity;
-import ru.javaapp.workmanagement.master.MasterMainActivity;
+import ru.javaapp.workmanagement.activities.auth.LoginActivity;
 
 /**
  * A simple {@link Fragment} subclass.

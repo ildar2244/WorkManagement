@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ru.javaapp.workmanagement.activities.TaskBeginActivity">
+    tools:context=".activities.worker.TaskBeginActivity">
     <!-- Set Toolbar in AddEventsActivity-->
     <LinearLayout
         android:id="@+id/container_toolbar"
