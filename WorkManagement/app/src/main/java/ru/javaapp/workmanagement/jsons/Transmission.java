@@ -11,7 +11,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -27,11 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.interfaces.ITransmission;
 
 /**
  * Created by User on 26.10.2015.
  */
-public class Transmission extends AsyncTask<String, Void, String> {
+public class Transmission implements ITransmission {
     private final String urlTaskStatus = "http://autocomponent.motorcum.ru/update_statusId_by_task.php";
     private final String urlCountAndStatus = "http://autocomponent.motorcum.ru/update_count_and_status.php";
     private final String urlCurrentCount = "http://autocomponent.motorcum.ru/update_currentCount_by_task.php";
@@ -43,13 +43,14 @@ public class Transmission extends AsyncTask<String, Void, String> {
     String login, password;
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
-    URL urlGet;
+    URL urlRequest;
     JSONObject jsonObject;
     Context context;
     int code;
     ArrayList<NameValuePair> pairs;
 
     // Запрос на добавления задания
+    @Override
     public void CreateTask(int masterId, int workerId, int whatId, int whereId, String countPlan,
                            String commentEdit, String timeBefore,
                            String timeAfter, String dateBefore, String dateAfter, Context context){
@@ -65,51 +66,43 @@ public class Transmission extends AsyncTask<String, Void, String> {
         pairs.add(new BasicNameValuePair("dateStart", dateBefore));
         pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
         pairs.add(new BasicNameValuePair("comment", commentEdit));
-        execute(urlCreateTask);
+        new JSONSAsyncTask().execute(urlCreateTask);
     }
 
+
     // Запрос на обновление статуса (прочитано, выполнено)
+    @Override
     public void UpdateTaskStatus(int taskId, int statusId, Context context){
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("statusId", Integer.toString(statusId)));
-        execute(urlTaskStatus);
+        new JSONSAsyncTask().execute(urlTaskStatus);
     }
 
     // Запрос на обновление статуса текущего ко-ва и статуса при завершении задания
+    @Override
     public void UpdateCountAndStatus(int taskId, int currentCount, int statusId, Context context){
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("currentCount", Integer.toString(currentCount)));
         pairs.add(new BasicNameValuePair("statusId", Integer.toString(statusId)));
-        execute(urlCountAndStatus);
+        new JSONSAsyncTask().execute(urlCountAndStatus);
     }
 
     // Запрос на обновление текущего кол-ва при переходе назад
+    @Override
     public void UpdateCurrentCount(int taskId, int currentCount, Context context){
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("currentCount", Integer.toString(currentCount)));
-        execute(urlCurrentCount);
-    }
-
-    // Запрос на получение задач в системе Работник
-    public JSONObject getTasksForWorker(String sessionKey, Context context){
-        this.context = context;
-        pairs = new ArrayList<NameValuePair>();
-        pairs.add(new BasicNameValuePair("sessionKey", sessionKey));
-        return makeHttpRequestForTask(urlTasksForWorker);
-    }
-
-    // Запрос на получение задач в системе Руководитель
-    public JSONObject getTasksForMaster(){
-        return makeHttpRequestForTask(urlTasksForMaster);
+        new JSONSAsyncTask().execute(urlCurrentCount);
     }
 
     // Запрос на авторизацию
+    @Override
     public String DoAuthorize(String login, String password, String role){
         this.login = login;
         this.password = password;
@@ -121,7 +114,21 @@ public class Transmission extends AsyncTask<String, Void, String> {
         }
     }
 
-    public String makeHttpRequestForAuth(String url) {
+    // Запрос на получение задач в системе Работник
+    public JSONObject getTasksForWorker(String sessionKey, Context context){
+        this.context = context;
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("sessionKey", sessionKey));
+        return makeHttpRequestForWorker(urlTasksForWorker);
+    }
+
+    // Запрос на получение задач в системе Руководитель
+    public JSONObject getTasksForMaster(){
+        return makeHttpRequestForMaster(urlTasksForMaster);
+    }
+
+    // Выполнение запроса авторизации
+    private String makeHttpRequestForAuth(String url) {
 
         String result = null;
         InputStream is = null;
@@ -131,8 +138,8 @@ public class Transmission extends AsyncTask<String, Void, String> {
         pairs.add(new BasicNameValuePair("password", password));
 
         try {
-            urlGet = new URL(url);
-            urlConnection = (HttpURLConnection) urlGet.openConnection();
+            urlRequest = new URL(url);
+            urlConnection = (HttpURLConnection) urlRequest.openConnection();
             urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
             urlConnection.setDoInput(true); // use Get request
             urlConnection.setDoOutput(true); // use POST request
@@ -164,14 +171,47 @@ public class Transmission extends AsyncTask<String, Void, String> {
         return result;
     }
 
-    // Отправка запросов и получение JSON для задач
-    private JSONObject makeHttpRequestForTask(String url) {
+    // Выполнение щапроса списка задач на странице мастера
+    private JSONObject makeHttpRequestForMaster(String url){
+        String result = null;
+        InputStream is = null;
+        try {
+            urlRequest = new URL(url);
+            urlConnection = (HttpURLConnection) urlRequest.openConnection(); // open connection
+            urlConnection.setRequestMethod("GET"); // set GET request? because we are send parameters
+            urlConnection.setDoInput(true); // use Get request
+            urlConnection.connect(); // connect with our server
+
+            is = urlConnection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            result = sb.toString();
+            jsonObject = new JSONObject(result.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        finally {
+            urlConnection.disconnect();
+        }
+
+        return jsonObject;
+    }
+
+    // Отправка запросов и получение задач для Работника
+    private JSONObject makeHttpRequestForWorker(String url) {
 
         String result = null;
         InputStream is = null;
         try {
-            urlGet = new URL(url);
-            urlConnection = (HttpURLConnection) urlGet.openConnection(); // open connection
+            urlRequest = new URL(url);
+            urlConnection = (HttpURLConnection) urlRequest.openConnection(); // open connection
             urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
             urlConnection.setDoInput(true); // use Get request
             urlConnection.setDoOutput(true); // use POST request
@@ -205,81 +245,6 @@ public class Transmission extends AsyncTask<String, Void, String> {
         return jsonObject;
     }
 
-    @Override
-    protected String doInBackground(String... urls) {
-        String result = null;
-        InputStream is = null;
-
-        for (String url : urls) {
-            try {
-                URL urli = new URL(url); // our url
-                urlConnection = (HttpURLConnection) urli.openConnection(); // open connection
-                urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
-                urlConnection.setDoInput(true); // use Get request
-                urlConnection.setDoOutput(true); // use POST request
-                OutputStream os = urlConnection.getOutputStream(); // get output parameters
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getQuery(pairs)); // write our pairs
-                writer.flush();
-                writer.close();
-                os.close();
-                urlConnection.connect(); // connect with our server
-
-                is = urlConnection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                result = sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            } finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-            }
-        }
-        return result;
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-        if (result == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context,  R.style.AlertDialogStyle);
-            builder.setCancelable(false);
-            builder.setTitle("Ошибка");
-            builder.setMessage("Нет соединения с интернетом.");
-            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss(); // Отпускает диалоговое окно
-                }
-            });
-            builder.show();
-        } else {
-            try {
-                JSONObject json_data = new JSONObject(result);
-                code = json_data.getInt("code");
-            } catch (JSONException e) {
-                Toast.makeText(context, R.string.error_sending_data_to_Db,
-                        Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
-            if (code == 1) {
-                Toast.makeText(context, "Данные отправлены на сервер.",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Что то пошло не так.",
-                        Toast.LENGTH_LONG).show();
-                return;
-            }
-        }
-
-    }
-
     private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;
@@ -294,4 +259,84 @@ public class Transmission extends AsyncTask<String, Void, String> {
         }
         return  result.toString();
     }
+
+    // Класс выполнения запросов в фоне
+    private class JSONSAsyncTask extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String result = null;
+            InputStream is = null;
+
+            for (String url : urls) {
+                try {
+                    URL urli = new URL(url); // our url
+                    urlConnection = (HttpURLConnection) urli.openConnection(); // open connection
+                    urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
+                    urlConnection.setDoInput(true); // use Get request
+                    urlConnection.setDoOutput(true); // use POST request
+                    OutputStream os = urlConnection.getOutputStream(); // get output parameters
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getQuery(pairs)); // write our pairs
+                    writer.flush();
+                    writer.close();
+                    os.close();
+                    urlConnection.connect(); // connect with our server
+
+                    is = urlConnection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    result = sb.toString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (result == null) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context,  R.style.AlertDialogStyle);
+                builder.setCancelable(false);
+                builder.setTitle("Ошибка");
+                builder.setMessage("Нет соединения с интернетом.");
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss(); // Отпускает диалоговое окно
+                    }
+                });
+                builder.show();
+            } else {
+                try {
+                    JSONObject json_data = new JSONObject(result);
+                    code = json_data.getInt("code");
+                } catch (JSONException e) {
+                    Toast.makeText(context, R.string.error_sending_data_to_Db,
+                            Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+                if (code == 1) {
+                    Toast.makeText(context, "Данные отправлены на сервер.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Что то пошло не так.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+
+        }
+    }
 }
+
