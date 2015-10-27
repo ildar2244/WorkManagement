@@ -1,0 +1,113 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="ru.javaapp.workmanagement.activities.TrackingActivity"
+    android:fitsSystemWindows="true">
+    <!-- Set Toolbar in AddEventsActivity-->
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tra_layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_below="@id/container_toolbar">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/equipment"
+            android:id="@+id/chbx_equipment"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorTextPrimary"
+            android:singleLine="false"
+            android:checked="false"
+            android:clickable="false"
+            android:longClickable="false" />
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tools"
+            android:id="@+id/chbx_tools"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorTextPrimary"
+            android:singleLine="false"
+            android:layout_marginTop="10dp" />
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/harvesting"
+            android:id="@+id/chbx_harvesting"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorTextPrimary"
+            android:singleLine="false"
+            android:layout_marginTop="10dp"
+            android:checked="false" />
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/other"
+            android:id="@+id/chbx_other"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorTextPrimary"
+            android:singleLine="false"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+                android:layout_marginRight="@dimen/tra_btn_margin_lr"
+                android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                android:layout_marginTop="@dimen/login_elements_margin_top"
+                android:text="Отмена"
+                android:id="@+id/btn_cancel"
+                android:background="@drawable/xml_main_rectangle"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+                android:layout_marginRight="@dimen/tra_btn_margin_lr"
+                android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
+                android:layout_marginTop="@dimen/login_elements_margin_top"
+                android:text="Вызвать"
+                android:id="@+id/btn_ok"
+                android:background="@drawable/xml_main_rectangle"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
