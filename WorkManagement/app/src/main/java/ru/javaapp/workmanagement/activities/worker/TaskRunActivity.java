@@ -24,7 +24,7 @@ import ru.javaapp.workmanagement.workDB.Transmission;
 public class TaskRunActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton btnMinus, btnPlus;
-    Button btnFinish, btnAbout;
+    Button btnFinish, btnAbout, btnSos, btnBrak, btnStop;
     TextView tvCurrentAdd,tvCountToGo;
     EditText etSpeedCount;
     Task taskGet; // Наше задание
@@ -82,6 +82,9 @@ public class TaskRunActivity extends AppCompatActivity {
         btnMinus = (ImageButton) findViewById(R.id.btn_minus);
         btnPlus = (ImageButton) findViewById(R.id.btn_plus);
         btnAbout = (Button) findViewById(R.id.btn_about);
+        btnSos = (Button) findViewById(R.id.btn_sos);
+        btnStop = (Button) findViewById(R.id.btn_stop);
+        btnBrak = (Button) findViewById(R.id.btn_brak);
         tvCurrentAdd = (TextView) findViewById(R.id.tv_currentAdd);
         tvCountToGo = (TextView) findViewById(R.id.tv_CountToGo);
         etSpeedCount = (EditText) findViewById(R.id.et_speedCount);
@@ -130,6 +133,13 @@ public class TaskRunActivity extends AppCompatActivity {
                 Intent intentTaa = new Intent(TaskRunActivity.this, TaskAboutActivity.class);
                 intentTaa.putExtra("taskAbout", taskGet);
                 startActivity(intentTaa);
+            }
+        });
+
+        btnSos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TaskRunActivity.this, SosActivity.class));
             }
         });
     }

@@ -103,4 +103,5 @@
     <string name="finish_task">Завершить задание</string>
     <string name="title_activity_task_about">TaskAboutActivity</string>
     <string name="about_tracking">Подробно о выполнении</string>
+    <string name="sos">SOS</string>
 </resources>
