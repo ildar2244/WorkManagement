@@ -2,17 +2,67 @@ package ru.javaapp.workmanagement.activities.master;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import ru.javaapp.workmanagement.R;
 
 public class ReportsActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
+
+        toolbarInitialize(); // init toolbar
+        componentsInitialize(); //init components in activity
+    }
+
+    /**
+     * initialize toolbar
+     */
+    private void toolbarInitialize() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        try {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        // Click Listener
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+    /**
+     * Initialize all components in UI
+     */
+    private void componentsInitialize() {}
+
+    /**
+     * Action for the "Back"
+     */
+    @Override
+    public void onBackPressed() {
+        Log.d("My", "On Back Pressed");
+        super.onBackPressed();
+        try {
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

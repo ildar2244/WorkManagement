@@ -15,8 +15,7 @@ public class TaskAboutActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView taaTimeStart, taaTimeFinish, taaDateStart, taaDateFinish;
     private TextView taaWhatName, taaPlaceName, taaComment;
-    private TextView taaCountPlan, taaCountCurrent, taaDiffCount;
-    private int diffCount;
+    private TextView taaCountPlan;
     private Task taskGetAbout;
 
     @Override
@@ -65,8 +64,6 @@ public class TaskAboutActivity extends AppCompatActivity {
         taaWhatName = (TextView) findViewById(R.id.taa_whatname);
         taaPlaceName = (TextView) findViewById(R.id.taa_placename);
         taaCountPlan = (TextView) findViewById(R.id.taa_countplan);
-        taaCountCurrent = (TextView) findViewById(R.id.taa_countcurrent);
-        taaDiffCount = (TextView) findViewById(R.id.taa_countdifference);
         taaComment = (TextView) findViewById(R.id.taa_comment);
 
         // set data to UI-elements
@@ -82,11 +79,6 @@ public class TaskAboutActivity extends AppCompatActivity {
         taaWhatName.setText(taskGetAbout.getWhatName());
         taaPlaceName.setText(taskGetAbout.getPlaceName());
         taaCountPlan.setText(Integer.toString(taskGetAbout.getCountPlanTask()));
-        taaCountCurrent.setText(Integer.toString(taskGetAbout.getCountCurrentTask()));
-
-        diffCount = taskGetAbout.getCountPlanTask() - taskGetAbout.getCountCurrentTask();
-        taaDiffCount.setText(Integer.toString(diffCount));
-
         taaComment.setText(taskGetAbout.getCommentTask());
     }
 
