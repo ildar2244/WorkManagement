@@ -139,11 +139,19 @@ public class TaskRunActivity extends AppCompatActivity {
         });
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { startActivity(new Intent(TaskRunActivity.this, StopActivity.class));    }
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskRunActivity.this, StopActivity.class);
+                intent.putExtra("taskId", taskGet.getIdTask());
+                startActivity(intent);
+            }
         });
         btnBrak.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { startActivity(new Intent(TaskRunActivity.this, BrakActivity.class));    }
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskRunActivity.this, BrakActivity.class);
+                intent.putExtra("taskId", taskGet.getIdTask());
+                startActivity(intent);
+            }
         });
     }
 

@@ -24,49 +24,12 @@
         android:orientation="vertical"
         android:layout_below="@id/container_toolbar">
 
-        <CheckBox
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/equipment"
-            android:id="@+id/chbx_equipment"
-            android:textSize="22sp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:singleLine="false"
-            android:checked="false"
-            android:clickable="false"
-            android:longClickable="false" />
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tools"
-            android:id="@+id/chbx_tools"
-            android:textSize="22sp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:singleLine="false"
-            android:layout_marginTop="10dp" />
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/harvesting"
-            android:id="@+id/chbx_harvesting"
-            android:textSize="22sp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:singleLine="false"
-            android:layout_marginTop="10dp"
-            android:checked="false" />
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/other"
-            android:id="@+id/chbx_other"
-            android:textSize="22sp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorTextPrimary"
-            android:singleLine="false"
-            android:layout_marginTop="10dp" />
+            android:id="@+id/lvStop"
+            android:choiceMode="singleChoice">
+        </ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,7 +59,7 @@
                 android:layout_marginRight="@dimen/tra_btn_margin_lr"
                 android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
                 android:layout_marginTop="@dimen/login_elements_margin_top"
-                android:text="Вызвать"
+                android:text="OK"
                 android:id="@+id/btn_ok"
                 android:background="@drawable/xml_main_rectangle"
                 android:textColor="@color/white"

@@ -36,6 +36,8 @@ public class Transmission implements ITransmission {
     private final String urlAuthWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
     private final String urlAuthMaster = "http://autocomponent.motorcum.ru/select_master_auth.php";
     private final String urlCreateTask = "http://autocomponent.motorcum.ru/insert_task.php";
+    private final String urlDefect = "http://autocomponent.motorcum.ru/update_defect.php";
+    private final String urlStop = "http://autocomponent.motorcum.ru/update_downtime.php";
     String login, password;
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
@@ -96,6 +98,26 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("currentCount", Integer.toString(currentCount)));
         new JSONSAsyncTask().execute(urlCurrentCount);
     }
+
+    @Override
+    public void UpdateDefect(int taskId, int defectId, int defectCount, Context context) {
+        this.context = context;
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
+        pairs.add(new BasicNameValuePair("defectId", Integer.toString(defectId)));
+        pairs.add(new BasicNameValuePair("defectCount", Integer.toString(defectCount)));
+        new JSONSAsyncTask().execute(urlDefect);
+    }
+
+    @Override
+    public void UpdateDownTime(int taskId, int stopId, Context context) {
+        this.context = context;
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
+        pairs.add(new BasicNameValuePair("stopId", Integer.toString(stopId)));
+        new JSONSAsyncTask().execute(urlStop);
+    }
+
 
     // Запрос на авторизацию
     @Override
