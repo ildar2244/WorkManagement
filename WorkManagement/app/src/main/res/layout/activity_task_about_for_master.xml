@@ -156,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_padding_left_of_iv"
                         android:text="План:"
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:id="@+id/taafm_countplan"
@@ -164,13 +165,14 @@
                         android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:textSize="16dp"
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:text="шт."
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>
                 <!-- COUNT_CURRENT -->
@@ -190,6 +192,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_padding_left_of_iv"
                         android:text="Факт:"
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:id="@+id/taafm_countcurrent"
@@ -198,13 +201,14 @@
                         android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:textSize="16dp"
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:text="шт."
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>
                 <!-- COUNT_DIFFERENCE -->
@@ -224,6 +228,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_padding_left_of_iv"
                         android:text="Осталось:"
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:id="@+id/taafm_countdifference"
@@ -232,13 +237,86 @@
                         android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:textSize="16dp"
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:text="шт."
+                        android:textSize="20dp"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+                <!-- BRAK -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tba_ll_margin_top"
+                    android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/close_circle"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_padding_left_of_iv"
+                        android:text="Брак:"
+                        android:textSize="20dp"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:id="@+id/taafm_brak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left"
+                        android:text="шт."
+                        android:textSize="20dp"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+                <!-- DOWNTIME -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tba_ll_margin_top"
+                    android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/circle"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_padding_left_of_iv"
+                        android:text="Простой:"
+                        android:textSize="20dp"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:id="@+id/taafm_downtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/tba_tv_padding_left"
+                        android:text="шт."
+                        android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>
                 <!-- COMMENT -->
@@ -256,6 +334,7 @@
                         android:id="@+id/taafm_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:paddingLeft="@dimen/tba_padding_left_of_iv" />
                 </LinearLayout>
             </LinearLayout>

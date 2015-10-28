@@ -226,6 +226,9 @@ public class TrackingActivity extends AppCompatActivity {
             task.setMasterName(jsonObject.getString("name"));
             task.setWhatName(jsonObject.getString("nameWhat"));
             task.setPlaceName(jsonObject.getString("namePlace"));
+            task.setDefectName(jsonObject.getString("nameDefect"));
+            task.setDowntimeName(jsonObject.getString("nameDowntime"));
+            task.setDefectCount(jsonObject.getInt("defect_count"));
             task.setCountPlanTask(jsonObject.getInt("count_plan"));
             task.setCountCurrentTask(jsonObject.getInt("count_current"));
             task.setTimeStart(jsonObject.getString("time_start"));

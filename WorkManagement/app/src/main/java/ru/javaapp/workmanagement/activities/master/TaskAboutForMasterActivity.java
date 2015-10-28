@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
 
@@ -18,7 +20,7 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView tvTimeStart, tvTimeFinish, tvDateStart, tvDateFinish;
     private TextView tvWhatName, tvPlaceName, tvComment;
-    private TextView tvCountPlan, tvCountCurrent, tvDiffCount;
+    private TextView tvCountPlan, tvCountCurrent, tvDiffCount, tvBrak, tvDowntime;
     private int diffCount;
     private Task taskGetAbout;
 
@@ -65,6 +67,8 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
         tvCountPlan = (TextView) findViewById(R.id.taafm_countplan);
         tvCountCurrent = (TextView) findViewById(R.id.taafm_countcurrent);
         tvDiffCount = (TextView) findViewById(R.id.taafm_countdifference);
+        tvBrak = (TextView) findViewById(R.id.taafm_brak);
+        tvDowntime = (TextView) findViewById(R.id.taafm_downtime);
         tvComment = (TextView) findViewById(R.id.taafm_comment);
 
         // set data to UI-elements
@@ -84,7 +88,8 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
 
         diffCount = taskGetAbout.getCountPlanTask() - taskGetAbout.getCountCurrentTask();
         tvDiffCount.setText(Integer.toString(diffCount));
-
+        tvBrak.setText(Integer.toString(taskGetAbout.getDefectCount()));
+        tvDowntime.setText(taskGetAbout.getDowntimeName());
         tvComment.setText(taskGetAbout.getCommentTask());
     }
 
