@@ -6,88 +6,73 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".activities.auth.LoginActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="iLean"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="64dp"
-        android:layout_gravity="center_horizontal" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="АВТОКОМПОНЕНТЫ-ТРЕЙД"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:layout_gravity="center_horizontal" />
-    <!-- Select users type -->
-    <Spinner
-        android:layout_width="176dp"
-        android:layout_height="@dimen/login_elements_heght"
-        android:layout_marginTop="@dimen/login_spinner_margin_top"
-        android:id="@+id/spinner_user"
-        android:spinnerMode="dropdown"
-        android:background="@drawable/xml_la_spn"
-        android:layout_gravity="center_horizontal" />
-    <!-- -->
-    <TextView
-        android:layout_width="@dimen/login_elements_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Введите логин:"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical|left"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"
-        android:textSize="20dp"/>
-    <!-- Input login -->
-    <EditText
-        android:layout_width="@dimen/login_elements_width"
-        android:layout_height="@dimen/login_elements_heght"
-        android:layout_marginTop="@dimen/login_elements_margin_top"
-        android:id="@+id/et_login"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/xml_la_et"
-        android:inputType="number" />
-    <!-- -->
-    <TextView
-        android:layout_width="@dimen/login_elements_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_elements_margin_top"
-        android:text="Введите пароль:"
-        android:id="@+id/textView2"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical|left"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"
-        android:textSize="20dp" />
-    <!-- Input password -->
-    <EditText
-        android:layout_width="@dimen/login_elements_width"
-        android:layout_height="@dimen/login_elements_heght"
-        android:layout_marginTop="@dimen/login_elements_margin_top"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/et_password"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/xml_la_et"/>
-    <!-- Enter in TaskList -->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Войти"
-        android:id="@+id/button_enter"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/xml_la_btn_exit"
-        android:textColor="@color/colorPrimary"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:textSize="24dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="iLean"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="64dp"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="АВТОКОМПОНЕНТЫ-ТРЕЙД"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_gravity="center_horizontal" />
+            <!-- Select users type -->
+            <Spinner
+                android:layout_width="176dp"
+                android:layout_height="@dimen/login_elements_heght"
+                android:layout_marginTop="@dimen/login_spinner_margin_top"
+                android:id="@+id/spinner_user"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/xml_la_spn"
+                android:layout_gravity="center_horizontal" />
+            <!-- Input login -->
+            <EditText
+                android:layout_width="@dimen/login_elements_width"
+                android:layout_height="@dimen/login_elements_heght"
+                android:layout_marginTop="@dimen/login_elements_margin_top"
+                android:id="@+id/et_login"
+                android:hint="Логин"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/xml_la_et"
+                android:inputType="number" />
+            <!-- Input password -->
+            <EditText
+                android:layout_width="@dimen/login_elements_width"
+                android:layout_height="@dimen/login_elements_heght"
+                android:layout_marginTop="@dimen/login_elements_margin_top"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/et_password"
+                android:hint="Пароль"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/xml_la_et"/>
+            <!-- Enter in TaskList -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Войти"
+                android:id="@+id/button_enter"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/xml_la_btn_exit"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textSize="24dp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
