@@ -25,7 +25,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:windowSoftInputMode="adjustPan">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -60,6 +61,7 @@
                         android:textColor="@color/colorTextPrimary"
                         android:textStyle="bold"
                         android:layout_marginLeft="8dp"
+                        android:background="@drawable/xml_la_spn"
                         android:id="@+id/et_speedCount" />
                     <TextView
                         android:layout_width="wrap_content"
