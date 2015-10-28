@@ -7,9 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -39,7 +37,6 @@ public class TaskRunActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_run);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         toolbarInitialize(); // init toolbar
         takeFieldsFromPreviousActivity(); // get data from Intent
@@ -98,15 +95,6 @@ public class TaskRunActivity extends AppCompatActivity {
         tvCurrentAdd.setText(Integer.toString(getCountCurrentTask));
         tvCountToGo.setText(Integer.toString(count));
         currentCount = getCountCurrentTask;
-
-        etSpeedCount.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                etSpeedCount.requestLayout();
-                TaskRunActivity.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_UNSPECIFIED);
-                return false;
-            }
-        });
     }
 
     // проверка полей на заполненность
