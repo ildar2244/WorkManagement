@@ -168,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                         isAuthorize = true;
                     }
                 } catch (JSONException e) {
+                    dialog.dismiss();
                     Toast.makeText(getApplicationContext(), R.string.no_find_worker, Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
