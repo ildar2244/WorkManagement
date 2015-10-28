@@ -8,20 +8,24 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import ru.javaapp.workmanagement.Helper;
-import ru.javaapp.workmanagement.activities.worker.WorkerMainActivity;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.workDB.Transmission;
 import ru.javaapp.workmanagement.activities.master.MasterMainActivity;
+import ru.javaapp.workmanagement.activities.worker.WorkerMainActivity;
+import ru.javaapp.workmanagement.workDB.Transmission;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         componentsInitialize(); //init components in activity
         }
@@ -53,6 +58,15 @@ public class LoginActivity extends AppCompatActivity {
         inputLogin = (EditText) findViewById(R.id.et_login);
         inputPassword = (EditText) findViewById(R.id.et_password);
         buttonEnter = (Button) findViewById(R.id.button_enter);
+
+        inputPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                inputPassword.requestLayout();
+                LoginActivity.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_UNSPECIFIED);
+                return false;
+            }
+        });
 
         spinnerUsers.setAdapter(selectSpinner());
         spinnerUsers.setFocusable(true);
@@ -168,6 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                         isAuthorize = true;
                     }
                 } catch (JSONException e) {
+                    dialog.dismiss();
                     Toast.makeText(getApplicationContext(), R.string.no_find_worker, Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }

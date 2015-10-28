@@ -9,7 +9,7 @@
     <!-- Navigation Drawer -->
     <dimen name="nav_drawer_width">272dp</dimen>
     <dimen name="login_spinner_margin_top">16dp</dimen>
-    <dimen name="login_elements_margin_top">8dp</dimen>
+    <dimen name="login_elements_margin_top">16dp</dimen>
     <dimen name="login_elements_width">252dp</dimen>
     <dimen name="login_elements_heght">48dp</dimen>
 
