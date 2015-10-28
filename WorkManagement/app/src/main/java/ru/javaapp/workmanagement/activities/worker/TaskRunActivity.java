@@ -124,21 +124,18 @@ public class TaskRunActivity extends AppCompatActivity {
                 finishTask();
             }
         });
-
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 doMinus();
             }
         });
-
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 doPlus();
             }
         });
-
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,9 +147,15 @@ public class TaskRunActivity extends AppCompatActivity {
 
         btnSos.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TaskRunActivity.this, SosActivity.class));
-            }
+            public void onClick(View v) {startActivity(new Intent(TaskRunActivity.this, SosActivity.class));    }
+        });
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { startActivity(new Intent(TaskRunActivity.this, StopActivity.class));    }
+        });
+        btnBrak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { startActivity(new Intent(TaskRunActivity.this, BrakActivity.class));    }
         });
     }
 

@@ -104,4 +104,10 @@
     <string name="title_activity_task_about">TaskAboutActivity</string>
     <string name="about_tracking">Подробно о выполнении</string>
     <string name="sos">SOS</string>
+    <string name="equipment">Оборудование</string>
+    <string name="tools">Инструмент</string>
+    <string name="harvesting">Заготовка</string>
+    <string name="other">Другое</string>
+    <string name="cause_stop">Причина простоя</string>
+    <string name="cause_brak">Причина</string>
 </resources>
