@@ -17,7 +17,7 @@ public interface ITransmission {
 
     void UpdateCurrentCount(int taskId, int currentCount, Context context);
 
-    void UpdateDefect(int taskId, int defectId, int defectCount, Context context);
+    void UpdateDefect(int taskId, int defectId, int defectCount, Context context, String date, String time);
 
     void UpdateDownTime(int taskId, int stopId, Context context);
 

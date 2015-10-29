@@ -2,6 +2,7 @@ package ru.javaapp.workmanagement.workDB;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.text.format.Time;
 import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -19,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
@@ -100,12 +102,14 @@ public class Transmission implements ITransmission {
     }
 
     @Override
-    public void UpdateDefect(int taskId, int defectId, int defectCount, Context context) {
+    public void UpdateDefect(int taskId, int defectId, int defectCount, Context context, String date, String time) {
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
-        pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
+        pairs.add(new BasicNameValuePair("taskId", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("defectId", Integer.toString(defectId)));
         pairs.add(new BasicNameValuePair("defectCount", Integer.toString(defectCount)));
+        pairs.add(new BasicNameValuePair("defectDate", date));
+        pairs.add(new BasicNameValuePair("defectTime", time));
         new JSONSAsyncTask().execute(urlDefect);
     }
 

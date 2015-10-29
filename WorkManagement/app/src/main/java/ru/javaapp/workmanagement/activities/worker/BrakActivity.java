@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.workDB.Transmission;
 
@@ -83,8 +86,10 @@ public class BrakActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkFields()){
                     if(taskId != 0) {
+                        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                        String time = new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis()));
                         Transmission transmission = new Transmission();
-                        transmission.UpdateDefect(taskId, defectId, Integer.parseInt(etBrakCount.getText().toString()), getApplicationContext());
+                        transmission.UpdateDefect(taskId, defectId, Integer.parseInt(etBrakCount.getText().toString()), getApplicationContext(), date, time);
                         finish();
                     }
                 }
