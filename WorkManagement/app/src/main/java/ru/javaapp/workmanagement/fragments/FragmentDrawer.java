@@ -12,7 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.activities.auth.LoginActivity;
@@ -26,7 +27,8 @@ public class FragmentDrawer extends Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private View containerView;
-    private Button exitButton, authButton;
+    private TextView exitClick, userName;
+    private ImageView iconClose;
 
     public FragmentDrawer() {
         // Required empty public constructor
@@ -37,20 +39,28 @@ public class FragmentDrawer extends Fragment {
                              Bundle savedInstanceState) {
         // Inflating View layout
         final View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        authButton = (Button) layout.findViewById(R.id.button_auth);
-        exitButton = (Button) layout.findViewById(R.id.button_exit);
+        iconClose = (ImageView) layout.findViewById(R.id.nav_iv_close);
+        exitClick = (TextView) layout.findViewById(R.id.nav_tv_exit);
+        userName = (TextView) layout.findViewById(R.id.nav_tv_name);
+        userName.setText(LoginActivity.getName());
 
         clickListener(); // action to clicking buttons
         return layout;
     }
 
     private void clickListener() {
-        authButton.setOnClickListener(new View.OnClickListener() {
+        exitClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mDrawerLayout.closeDrawer(containerView);
                 Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(loginIntent);
-                mDrawerLayout.closeDrawer(containerView);
+            }
+        });
+        iconClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.closeDrawers();
             }
         });
     }

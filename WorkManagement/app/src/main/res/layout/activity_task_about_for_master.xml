@@ -279,7 +279,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_tv_padding_left"
-                        android:text="шт."
+                        android:text=""
                         android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>
@@ -315,7 +315,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/tba_tv_padding_left"
-                        android:text="шт."
+                        android:text=""
                         android:textSize="20dp"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>

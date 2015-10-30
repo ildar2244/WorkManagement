@@ -2,6 +2,7 @@ package ru.javaapp.workmanagement.activities.master;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.widget.Button;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.fragments.FragmentDrawer;
 
 public class MasterMainActivity extends AppCompatActivity implements View.OnClickListener {
     Toolbar toolbar;
+    private FragmentDrawer drawerFragment;
     Button btn_createTask, btn_tracking, btn_reports;
 
     @Override
@@ -20,8 +23,18 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_master_main);
 
         toolbarInitialize();
+        setNavigationDrawer(); // set navigation drawer
         componentinitialize();
         setListeners();
+    }
+
+    /**
+     * initialize navigation drawer fragment
+     */
+    private void setNavigationDrawer() {
+        drawerFragment = (FragmentDrawer)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
     }
 
     private void setListeners(){
@@ -33,6 +46,12 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
     private void toolbarInitialize() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        try {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

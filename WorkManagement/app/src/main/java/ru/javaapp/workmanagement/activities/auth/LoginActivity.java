@@ -37,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonEnter;
     private String usersType;
     private boolean isAuthorize;
-    private String role, name;
+    private String role;
+    public static String name;
     public static String sessionKey;
 
     @Override
@@ -213,5 +214,17 @@ public class LoginActivity extends AppCompatActivity {
         spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cities);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return spinnerAdapter;
+    }
+
+    /**
+     * Getter and Setter for user name
+     * @return
+     */
+    public static String getName() {
+        return name;
+    }
+
+    public static void setName(String name) {
+        LoginActivity.name = name;
     }
 }

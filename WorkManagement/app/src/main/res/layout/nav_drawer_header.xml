@@ -3,16 +3,45 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/toolbar_height"
+    android:layout_height="112dp"
     android:background="?attr/colorPrimaryDark"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Автокомпоненты-Трейд"
-        android:fontFamily="sens-serif"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:textStyle="bold" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.2">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Автокомпоненты-Трейд"
+            android:fontFamily="sens-serif"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:gravity="center|left"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/nav_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sens-serif"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:gravity="center|left"
+            android:textStyle="italic"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/nav_iv_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/ic_clear_white_48dp"
+        android:layout_weight="0.8"
+        android:layout_gravity="center_vertical|top"
+        android:clickable="true"/>
 </LinearLayout>

@@ -10,26 +10,29 @@
     <include
         android:id="@+id/nav_header"
         layout="@layout/nav_drawer_header"/>
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:layout_below="@+id/nav_header">
-        <!-- Authorization button -->
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Авторизация"
-            android:id="@+id/button_auth"
-            android:layout_gravity="center_horizontal" />
-        <!-- Exit from profile -->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Изменить пользователя"
-            android:id="@+id/button_exit"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:id="@+id/nav_tv_exit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Выйти"
+                android:textColor="@color/colorTextPrimary"
+                android:background="@color/colorPrimaryLight"
+                android:textSize="20dp"
+                android:clickable="true"/>
+        </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>
