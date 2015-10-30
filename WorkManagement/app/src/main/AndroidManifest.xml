@@ -101,11 +101,6 @@
             android:label="@string/cause_brak"
             android:theme="@style/AppTheme" >
         </activity>
-        <activity
-            android:name=".activities.master.BrakInfoActivity"
-            android:label="@string/cause_brak"
-            android:theme="@style/AppTheme" >
-        </activity>
     </application>
 
 </manifest>
