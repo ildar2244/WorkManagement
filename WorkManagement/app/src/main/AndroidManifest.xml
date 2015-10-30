@@ -106,6 +106,11 @@
             android:label="@string/cause_brak"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".activities.master.StopInfoActivity"
+            android:label="@string/cause_stop"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

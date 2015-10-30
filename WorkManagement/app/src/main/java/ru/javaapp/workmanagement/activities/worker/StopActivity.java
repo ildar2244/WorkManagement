@@ -12,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.workDB.Transmission;
@@ -70,8 +73,10 @@ public class StopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(taskId != 0) {
+                    String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                    String time = new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis()));
                     Transmission transmission = new Transmission();
-                    transmission.UpdateDownTime(taskId, stopId, getApplicationContext());
+                    transmission.UpdateDownTime(taskId, stopId, getApplicationContext(), date, time);
                     finish();
                 }
             }

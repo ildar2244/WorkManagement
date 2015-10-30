@@ -110,17 +110,17 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("defectCount", Integer.toString(defectCount)));
         pairs.add(new BasicNameValuePair("defectDate", date));
         pairs.add(new BasicNameValuePair("defectTime", time));
-        pairs.add(new BasicNameValuePair("defectDate", date));
-        pairs.add(new BasicNameValuePair("defectTime", time));
         new JSONSAsyncTask().execute(urlUpdateDefect);
     }
 
     @Override
-    public void UpdateDownTime(int taskId, int stopId, Context context) {
+    public void UpdateDownTime(int taskId, int stopId, Context context, String date, String time) {
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
-        pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
+        pairs.add(new BasicNameValuePair("taskId", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("stopId", Integer.toString(stopId)));
+        pairs.add(new BasicNameValuePair("stopDate", date));
+        pairs.add(new BasicNameValuePair("stopTime", time));
         new JSONSAsyncTask().execute(urlStop);
     }
 

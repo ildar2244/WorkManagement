@@ -19,7 +19,7 @@ public interface ITransmission {
 
     void UpdateDefect(int taskId, int defectId, int defectCount, Context context, String date, String time);
 
-    void UpdateDownTime(int taskId, int stopId, Context context);
+    void UpdateDownTime(int taskId, int stopId, Context context, String date, String time);
 
     String DoAuthorize(String login, String password, String role);
 }
