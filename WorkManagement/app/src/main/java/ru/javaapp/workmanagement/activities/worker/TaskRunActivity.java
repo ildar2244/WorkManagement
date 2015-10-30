@@ -3,6 +3,7 @@ package ru.javaapp.workmanagement.activities.worker;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -46,6 +47,34 @@ public class TaskRunActivity extends AppCompatActivity {
         componentsInitialize(); //init components in activity
         setListeners(); // set all listeners
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        handler.removeCallbacks(getResponceAfterInterval);
+        handler.post(getResponceAfterInterval);
+    }
+
+    private final Handler handler = new Handler();
+    private Runnable getResponceAfterInterval = new Runnable() {
+
+        public void run() {
+
+            try
+            {
+                int taskId = taskGet.getIdTask();
+                int currentcount = currentCount;
+                Transmission responce = new Transmission();
+                responce.UpdateCurrentCount(taskId, currentcount, getApplicationContext());
+
+            } catch (Exception e) {
+
+            }
+
+            handler.postDelayed(this, 1000*60);
+
+        }
+    };
 
     /**
      * initialize toolbar
