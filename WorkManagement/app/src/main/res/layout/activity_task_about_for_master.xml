@@ -340,4 +340,31 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tra_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_stopInfo"
+            android:text="СТОП"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@color/btn_stop"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_brakInfo"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@color/btn_brak"
+            android:layout_weight="1"
+            android:text="БРАК"/>
+    </LinearLayout>
 </LinearLayout>

@@ -1,13 +1,13 @@
 package ru.javaapp.workmanagement.activities.master;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
@@ -21,8 +21,9 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
     private TextView tvTimeStart, tvTimeFinish, tvDateStart, tvDateFinish;
     private TextView tvWhatName, tvPlaceName, tvComment;
     private TextView tvCountPlan, tvCountCurrent, tvDiffCount, tvBrak, tvDowntime;
-    private int diffCount;
+    private int diffCount, taskId;
     private Task taskGetAbout;
+    private Button btnStopInfo, btnBrakInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +35,23 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
         toolbarInitialize(); // init toolbar
         takeFieldsFromPreviousActivity(); // get data from Intent
         componentsInitialize(); //init components in activity
+        setListeners();
+    }
+
+    private void setListeners() {
+        btnBrakInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskAboutForMasterActivity.this, BrakInfoActivity.class);
+                intent.putExtra("taskId", taskId);
+                startActivity(intent);
+            }
+        });
     }
 
     private void takeFieldsFromPreviousActivity() {
         taskGetAbout = (Task) getIntent().getSerializableExtra("taskObj");
+        taskId = taskGetAbout.getIdTask();
     }
 
     /**
@@ -70,6 +84,8 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
         tvBrak = (TextView) findViewById(R.id.taafm_brak);
         tvDowntime = (TextView) findViewById(R.id.taafm_downtime);
         tvComment = (TextView) findViewById(R.id.taafm_comment);
+        btnStopInfo = (Button) findViewById(R.id.btn_stopInfo);
+        btnBrakInfo = (Button) findViewById(R.id.btn_brakInfo);
 
         // set data to UI-elements
         try {
@@ -88,9 +104,6 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
 
         diffCount = taskGetAbout.getCountPlanTask() - taskGetAbout.getCountCurrentTask();
         tvDiffCount.setText(Integer.toString(diffCount));
-        tvBrak.setText(Integer.toString(taskGetAbout.getDefectCount()));
-        tvDowntime.setText(taskGetAbout.getDowntimeName());
-        tvComment.setText(taskGetAbout.getCommentTask());
     }
 
     /**
