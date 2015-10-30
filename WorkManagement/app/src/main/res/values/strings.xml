@@ -107,7 +107,7 @@
     <string name="cause_stop">Причина простоя</string>
     <string name="cause_brak">Причина брака</string>
 
-    <array name="brak_cause">
+    <array name="stop_cause">
         <item>Оборудование</item>
         <item>Инструмент</item>
         <item>Заготовка</item>
@@ -116,7 +116,7 @@
         <item>Другое</item>
     </array>
 
-    <array name="stop_cause">
+    <array name="brak_cause">
         <item>Оборудование</item>
         <item>Инструмент</item>
         <item>Заготовка</item>
