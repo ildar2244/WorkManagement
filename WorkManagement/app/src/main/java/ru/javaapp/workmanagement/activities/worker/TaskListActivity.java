@@ -21,7 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ru.javaapp.workmanagement.Helper;
@@ -186,6 +188,7 @@ public class TaskListActivity extends AppCompatActivity {
         }
     }
 
+
     /**
      * Tasks elements getting from JSONObject to String and create RecyclerView
      * @param json
@@ -212,10 +215,10 @@ public class TaskListActivity extends AppCompatActivity {
             task.setPlaceName(jsonObject.getString("namePlace"));
             task.setCountPlanTask(jsonObject.getInt("count_plan"));
             task.setCountCurrentTask(jsonObject.getInt("count_current"));
-            task.setTimeStart(jsonObject.getString("time_start"));
-            task.setTimeFinish(jsonObject.getString("time_finish"));
-            task.setDateStart(jsonObject.getString("date_start"));
-            task.setDateFinish(jsonObject.getString("date_finish"));
+            task.setTimeStart(jsonObject.getString("time_start").substring(0, 5));
+            task.setTimeFinish(jsonObject.getString("time_finish").substring(0, 5));
+            task.setDateStart(Helper.parseDate(jsonObject.getString("date_start")));
+            task.setDateFinish(Helper.parseDate(jsonObject.getString("date_finish")));
             task.setCommentTask(jsonObject.getString("comment"));
 
             // Create Task and add in list

@@ -28,7 +28,7 @@ public class DatePickerFragmentBefore extends DialogFragment implements DatePick
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         TextView tvInputDateBefore = (TextView) getActivity().findViewById(R.id.tv_input_dateBefore);
-        String date = plug(dayOfMonth) + "." + plug(monthOfYear + 1) + "." + year;
+        String date = year + "-" + plug(monthOfYear + 1) + "-" + plug(dayOfMonth);
 
         tvInputDateBefore.setText(date);
     }
