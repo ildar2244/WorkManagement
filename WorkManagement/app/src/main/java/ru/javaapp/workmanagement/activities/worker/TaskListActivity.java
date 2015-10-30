@@ -21,19 +21,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import ru.javaapp.workmanagement.Helper;
-import ru.javaapp.workmanagement.activities.auth.LoginActivity;
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.activities.auth.LoginActivity;
 import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.dao.Task;
-import ru.javaapp.workmanagement.workDB.Transmission;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
+import ru.javaapp.workmanagement.workDB.Transmission;
 
 public class TaskListActivity extends AppCompatActivity {
 
@@ -115,7 +113,6 @@ public class TaskListActivity extends AppCompatActivity {
         Log.d("My", "On Back Pressed");
         super.onBackPressed();
         try {
-            startActivity(new Intent(TaskListActivity.this, WorkerMainActivity.class));
             finish();
         } catch (Exception e) {}
     }

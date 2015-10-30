@@ -20,7 +20,7 @@
         android:id="@+id/tra_layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:layout_below="@id/container_toolbar"
         android:layout_above="@+id/ba_ll_button">
@@ -69,6 +69,8 @@
         android:id="@+id/ba_ll_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
         <Button

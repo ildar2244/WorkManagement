@@ -227,4 +227,6 @@ public class LoginActivity extends AppCompatActivity {
     public static void setName(String name) {
         LoginActivity.name = name;
     }
+
+
 }

@@ -2,7 +2,6 @@ package ru.javaapp.workmanagement.fragments;
 
 
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -52,10 +51,10 @@ public class FragmentDrawer extends Fragment {
         exitClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawerLayout.closeDrawer(containerView);
-                Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(loginIntent);
-                getActivity().finish();
+                //mDrawerLayout.closeDrawer(containerView);
+                //Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
+                //startActivity(loginIntent);
+                System.exit(0);
             }
         });
         iconClose.setOnClickListener(new View.OnClickListener() {
