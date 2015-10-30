@@ -2,7 +2,6 @@ package ru.javaapp.workmanagement.activities.master;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -10,9 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.TabHost;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -24,12 +21,8 @@ import java.util.List;
 
 import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.activities.auth.LoginActivity;
-import ru.javaapp.workmanagement.activities.worker.WorkerMainActivity;
-import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
 import ru.javaapp.workmanagement.adapters.RVBrakInfoMaster;
 import ru.javaapp.workmanagement.dao.Defect;
-import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.workDB.Transmission;
 
