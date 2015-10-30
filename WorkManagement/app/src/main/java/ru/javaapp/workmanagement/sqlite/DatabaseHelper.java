@@ -157,4 +157,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_MASTER, null, values);
         db.close();
     }
+
+    // next coding only WHAT element
 }
