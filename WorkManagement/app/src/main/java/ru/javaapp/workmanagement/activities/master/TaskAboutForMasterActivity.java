@@ -1,5 +1,6 @@
 package ru.javaapp.workmanagement.activities.master;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +21,7 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
     private TextView tvTimeStart, tvTimeFinish, tvDateStart, tvDateFinish;
     private TextView tvWhatName, tvPlaceName, tvComment;
     private TextView tvCountPlan, tvCountCurrent, tvDiffCount, tvBrak, tvDowntime;
-    private int diffCount;
+    private int diffCount, taskId;
     private Task taskGetAbout;
     private Button btnStopInfo, btnBrakInfo;
 
@@ -41,13 +42,16 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
         btnBrakInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(TaskAboutForMasterActivity.this, BrakInfoActivity.class);
+                intent.putExtra("taskId", taskId);
+                startActivity(intent);
             }
         });
     }
 
     private void takeFieldsFromPreviousActivity() {
         taskGetAbout = (Task) getIntent().getSerializableExtra("taskObj");
+        taskId = taskGetAbout.getIdTask();
     }
 
     /**

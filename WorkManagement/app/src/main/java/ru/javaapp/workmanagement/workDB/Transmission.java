@@ -38,8 +38,9 @@ public class Transmission implements ITransmission {
     private final String urlAuthWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
     private final String urlAuthMaster = "http://autocomponent.motorcum.ru/select_master_auth.php";
     private final String urlCreateTask = "http://autocomponent.motorcum.ru/insert_task.php";
-    private final String urlDefect = "http://autocomponent.motorcum.ru/update_defect.php";
+    private final String urlUpdateDefect = "http://autocomponent.motorcum.ru/update_defect.php";
     private final String urlStop = "http://autocomponent.motorcum.ru/update_downtime.php";
+    private final String urlGetDefectForMaster = "http://autocomponent.motorcum.ru/get_brak_for_master.php";
     String login, password;
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
@@ -110,7 +111,9 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("defectCount", Integer.toString(defectCount)));
         pairs.add(new BasicNameValuePair("defectDate", date));
         pairs.add(new BasicNameValuePair("defectTime", time));
-        new JSONSAsyncTask().execute(urlDefect);
+        pairs.add(new BasicNameValuePair("defectDate", date));
+        pairs.add(new BasicNameValuePair("defectTime", time));
+        new JSONSAsyncTask().execute(urlUpdateDefect);
     }
 
     @Override
@@ -147,6 +150,53 @@ public class Transmission implements ITransmission {
     // Запрос на получение задач в системе Руководитель
     public JSONObject getTasksForMaster(){
         return makeHttpRequestForMaster(urlTasksForMaster);
+    }
+    //Запрос на полусение списка браков
+    public JSONObject getBrakForMaster(int taskId){
+        return makeHttpRequestBrak(taskId, urlGetDefectForMaster);
+    }
+
+    // Выполнение щапроса брака по заданию на странице мастера
+    private JSONObject makeHttpRequestBrak(int taskId, String url){
+        String result = null;
+        InputStream is = null;
+
+        ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("taskId", Integer.toString(taskId)));
+
+        try {
+            urlRequest = new URL(url);
+            urlConnection = (HttpURLConnection) urlRequest.openConnection();
+            urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
+            urlConnection.setDoInput(true); // use Get request
+            urlConnection.setDoOutput(true);
+            OutputStream os = urlConnection.getOutputStream(); // get output parameters
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getQuery(pairs)); // write our pairs
+            writer.flush();
+            writer.close();
+            os.close();
+            urlConnection.connect(); // connect with our server
+
+            is = urlConnection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            result = sb.toString();
+            jsonObject = new JSONObject(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+
+        return jsonObject;
     }
 
     // Выполнение запроса авторизации
