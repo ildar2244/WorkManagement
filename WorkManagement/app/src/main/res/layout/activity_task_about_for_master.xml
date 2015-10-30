@@ -350,7 +350,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/btn_stopInfo"
-            android:text="СТОП"
+            android:text="ПРОСТОЙ"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18dp"
