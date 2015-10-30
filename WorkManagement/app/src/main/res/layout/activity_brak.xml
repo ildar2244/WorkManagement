@@ -22,20 +22,19 @@
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
-        android:layout_below="@id/container_toolbar">
-
+        android:layout_below="@id/container_toolbar"
+        android:layout_above="@+id/ba_ll_button">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:orientation="horizontal"
             android:layout_marginBottom="@dimen/ll_spn_margin_bottom">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:textSize="22sp"
+                android:textSize="18dp"
                 android:text="Количество "
-                android:fontFamily="sans-serif"
                 android:textColor="@color/colorTextPrimary"
                 android:layout_gravity="center" />
             <EditText
@@ -58,54 +57,44 @@
                 android:textColor="@color/colorTextPrimary"
                 android:layout_gravity="center" />
         </LinearLayout>
-
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lvBrak"
             android:choiceMode="singleChoice">
         </ListView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/tra_btn_margin_lr"
-                android:layout_marginRight="@dimen/tra_btn_margin_lr"
-                android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
-                android:layout_marginTop="@dimen/login_elements_margin_top"
-                android:text="Отмена"
-                android:id="@+id/btn_brak_cancel"
-                android:background="@drawable/xml_main_rectangle"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/tra_btn_margin_lr"
-                android:layout_marginRight="@dimen/tra_btn_margin_lr"
-                android:layout_marginBottom="@dimen/ll_spn_margin_bottom"
-                android:layout_marginTop="@dimen/login_elements_margin_top"
-                android:text="OK"
-                android:id="@+id/btn_brak_ok"
-                android:background="@drawable/xml_main_rectangle"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_weight="1" />
-        </LinearLayout>
-
     </LinearLayout>
-
-
-
+    <LinearLayout
+        android:id="@+id/ba_ll_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+            android:layout_marginRight="@dimen/tra_btn_margin_lr"
+            android:text="Отмена"
+            android:id="@+id/btn_brak_cancel"
+            android:background="@drawable/xml_main_rectangle"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_weight="1" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tra_btn_margin_lr"
+            android:layout_marginRight="@dimen/tra_btn_margin_lr"
+            android:text="OK"
+            android:id="@+id/btn_brak_ok"
+            android:background="@drawable/xml_main_rectangle"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_weight="1" />
+    </LinearLayout>
 </RelativeLayout>
