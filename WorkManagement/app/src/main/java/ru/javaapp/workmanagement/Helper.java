@@ -28,7 +28,7 @@ public class Helper {
         String month = date.substring(5, 7);
         String day = date.substring(8, 10);
 
-        String newDate = day + "." + month + "." + year;
+        String newDate = day + "/" + month + "/" + year;
         return newDate;
     }
 

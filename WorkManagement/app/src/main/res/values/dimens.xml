@@ -26,5 +26,7 @@
     <dimen name="cta_bloc_margin_bottom">12dp</dimen>
     <dimen name="tra_btn_margin_lr">30dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="taa_font_size">20dp</dimen>
+    <dimen name="tba_font_size">20dp</dimen>
 
 </resources>
