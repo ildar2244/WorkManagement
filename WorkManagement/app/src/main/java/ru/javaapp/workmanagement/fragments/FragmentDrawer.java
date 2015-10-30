@@ -55,6 +55,7 @@ public class FragmentDrawer extends Fragment {
                 mDrawerLayout.closeDrawer(containerView);
                 Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(loginIntent);
+                getActivity().finish();
             }
         });
         iconClose.setOnClickListener(new View.OnClickListener() {

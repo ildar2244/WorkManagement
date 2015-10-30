@@ -54,7 +54,6 @@ public class WorkerMainActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onStop() {
         super.onStop();
-        finish();
     }
 
     /**
