@@ -75,7 +75,7 @@ public class BrakActivity extends AppCompatActivity {
             return true;
         }
         else{
-            Toast.makeText(getApplicationContext(), "Ничего не выбрано", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Введите число", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
