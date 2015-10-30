@@ -115,12 +115,13 @@ public class StopInfoActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(StopInfoActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setTitle("Без простоя");
+                    builder.setMessage("Нет приостановок на производстве.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss(); // Отпускает диалоговое окно
+                            finish();
                         }
                     });
                     builder.show();

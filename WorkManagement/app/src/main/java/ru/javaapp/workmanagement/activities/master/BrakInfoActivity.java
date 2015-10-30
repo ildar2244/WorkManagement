@@ -115,12 +115,13 @@ public class BrakInfoActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(BrakInfoActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setTitle("Без брака");
+                    builder.setMessage("Качество на уровне мировых стандартов.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss(); // Отпускает диалоговое окно
+                            finish();
                         }
                     });
                     builder.show();
