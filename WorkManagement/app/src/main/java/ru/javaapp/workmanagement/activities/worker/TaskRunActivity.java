@@ -71,7 +71,7 @@ public class TaskRunActivity extends AppCompatActivity {
 
             }
 
-            handler.postDelayed(this, 1000*60);
+            handler.postDelayed(this, 10000*60);
 
         }
     };

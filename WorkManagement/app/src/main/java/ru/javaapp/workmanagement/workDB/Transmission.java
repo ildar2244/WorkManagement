@@ -381,10 +381,8 @@ public class Transmission implements ITransmission {
                         Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-            if (code == 1) {
-                Toast.makeText(context, "Данные отправлены на сервер",
-                        Toast.LENGTH_SHORT).show();
-            } else {
+            if (code == 1) {}
+            else {
                 Toast.makeText(context, "Что-то пошло не так",
                         Toast.LENGTH_LONG).show();
                 return;
