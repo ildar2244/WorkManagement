@@ -79,37 +79,51 @@
         <activity
             android:name=".activities.worker.TaskAboutActivity"
             android:label="@string/title_activity_task_about"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.master.TaskAboutForMasterActivity"
             android:label="@string/about_tracking"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.worker.SosActivity"
             android:label="@string/sos"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.worker.StopActivity"
             android:label="@string/cause_stop"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.worker.BrakActivity"
             android:label="@string/cause_brak"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.master.BrakInfoActivity"
             android:label="@string/cause_brak"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.master.StopInfoActivity"
             android:label="@string/cause_stop"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

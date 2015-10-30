@@ -382,10 +382,10 @@ public class Transmission implements ITransmission {
                 e.printStackTrace();
             }
             if (code == 1) {
-                Toast.makeText(context, "Данные отправлены на сервер.",
+                Toast.makeText(context, "Данные отправлены на сервер",
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Что то пошло не так.",
+                Toast.makeText(context, "Что-то пошло не так",
                         Toast.LENGTH_LONG).show();
                 return;
             }
