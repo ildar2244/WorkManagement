@@ -149,9 +149,9 @@ public class StopInfoActivity extends AppCompatActivity {
             Downtime stop = new Downtime();
 
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            stop.setNameDowntime(jsonObject.getString("cause_name"));
-            String date = jsonObject.getString("stop_date").replace("-", ".");
-            String time = jsonObject.getString("stop_time").substring(0, 5);
+            stop.setNameDowntime(jsonObject.getString("downtime_name"));
+            String date = jsonObject.getString("downtime_date").replace("-", ".");
+            String time = jsonObject.getString("downtime_time").substring(0, 5);
             stop.setDate(date);
             stop.setTime(time);
 

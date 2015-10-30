@@ -28,19 +28,7 @@ import ru.javaapp.workmanagement.interfaces.ITransmission;
  * Created by User on 26.10.2015.
  */
 public class Transmission implements ITransmission {
-    private final String urlTaskStatus = "http://autocomponent.motorcum.ru/update_statusId_by_task.php";
-    private final String urlCountAndStatus = "http://autocomponent.motorcum.ru/update_count_and_status.php";
-    private final String urlCurrentCount = "http://autocomponent.motorcum.ru/update_currentCount_by_task.php";
-    private final String urlTasksForWorker = "http://autocomponent.motorcum.ru/get_tasks_by_worker.php";
-    private final String urlTasksForMaster = "http://autocomponent.motorcum.ru/get_tasks_for_master.php";
-    private final String urlAuthWorker = "http://autocomponent.motorcum.ru/select_worker_auth.php";
-    private final String urlAuthMaster = "http://autocomponent.motorcum.ru/select_master_auth.php";
-    private final String urlCreateTask = "http://autocomponent.motorcum.ru/insert_task.php";
-    private final String urlUpdateDefect = "http://autocomponent.motorcum.ru/update_defect.php";
-    private final String urlStop = "http://autocomponent.motorcum.ru/update_downtime.php";
-    private final String urlGetDefectForMaster = "http://autocomponent.motorcum.ru/get_brak_for_master.php";
-    private final String urlGetStopForMaster = "http://autocomponent.motorcum.ru/get_stop_for_master.php";
-    String login, password;
+    private final String BASE_URL = "http://autocomponent.motorcum.ru";
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
     URL urlRequest;
@@ -66,7 +54,7 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("dateStart", dateBefore));
         pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
         pairs.add(new BasicNameValuePair("comment", commentEdit));
-        new JSONSAsyncTask().execute(urlCreateTask);
+        new JSONSAsyncTask().execute(BASE_URL + "/insert_task.php");
     }
 
 
@@ -77,7 +65,7 @@ public class Transmission implements ITransmission {
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("statusId", Integer.toString(statusId)));
-        new JSONSAsyncTask().execute(urlTaskStatus);
+        new JSONSAsyncTask().execute(BASE_URL + "/update_statusId_by_task.php");
     }
 
     // Запрос на обновление статуса текущего ко-ва и статуса при завершении задания
@@ -88,7 +76,7 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("currentCount", Integer.toString(currentCount)));
         pairs.add(new BasicNameValuePair("statusId", Integer.toString(statusId)));
-        new JSONSAsyncTask().execute(urlCountAndStatus);
+        new JSONSAsyncTask().execute(BASE_URL + "/update_count_and_status.php");
     }
 
     // Запрос на обновление текущего кол-ва при переходе назад
@@ -98,7 +86,7 @@ public class Transmission implements ITransmission {
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("id", Integer.toString(taskId)));
         pairs.add(new BasicNameValuePair("currentCount", Integer.toString(currentCount)));
-        new JSONSAsyncTask().execute(urlCurrentCount);
+        new JSONSAsyncTask().execute(BASE_URL + "/update_currentCount_by_task.php");
     }
 
     @Override
@@ -110,7 +98,7 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("defectCount", Integer.toString(defectCount)));
         pairs.add(new BasicNameValuePair("defectDate", date));
         pairs.add(new BasicNameValuePair("defectTime", time));
-        new JSONSAsyncTask().execute(urlUpdateDefect);
+        new JSONSAsyncTask().execute(BASE_URL + "/update_defect.php");
     }
 
     @Override
@@ -121,20 +109,18 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("stopId", Integer.toString(stopId)));
         pairs.add(new BasicNameValuePair("stopDate", date));
         pairs.add(new BasicNameValuePair("stopTime", time));
-        new JSONSAsyncTask().execute(urlStop);
+        new JSONSAsyncTask().execute(BASE_URL + "/update_downtime.php");
     }
 
 
     // Запрос на авторизацию
     @Override
     public String DoAuthorize(String login, String password, String role){
-        this.login = login;
-        this.password = password;
         if(role.equals("Работник")) {
-            return makeHttpRequestForAuth(urlAuthWorker);
+            return makeHttpRequestForAuth(login, password, BASE_URL + "/select_worker_auth.php");
         }
         else{
-            return makeHttpRequestForAuth(urlAuthMaster);
+            return makeHttpRequestForAuth(login, password, BASE_URL + "/select_master_auth.php");
         }
     }
 
@@ -143,21 +129,21 @@ public class Transmission implements ITransmission {
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("sessionKey", sessionKey));
-        return makeHttpRequestForWorker(urlTasksForWorker);
+        return makeHttpRequestForWorker(BASE_URL + "/get_tasks_by_worker.php");
     }
 
     // Запрос на получение задач в системе Руководитель
     public JSONObject getTasksForMaster(){
-        return makeHttpRequestForMaster(urlTasksForMaster);
+        return makeHttpRequestForMaster(BASE_URL + "/get_tasks_for_master.php");
     }
     //Запрос на полусение списка браков
     public JSONObject getBrakForMaster(int taskId){
-        return makeHttpRequestBrakAndStop(taskId, urlGetDefectForMaster);
+        return makeHttpRequestBrakAndStop(taskId, BASE_URL + "/get_brak_for_master.php");
     }
 
     //Запрос на полусение списка простоев
     public JSONObject getStopForMaster(int taskId){
-        return makeHttpRequestBrakAndStop(taskId, urlGetStopForMaster);
+        return makeHttpRequestBrakAndStop(taskId, BASE_URL + "/get_stop_for_master.php");
     }
 
     // Выполнение щапроса брака по заданию на странице мастера
@@ -204,7 +190,7 @@ public class Transmission implements ITransmission {
     }
 
     // Выполнение запроса авторизации
-    private String makeHttpRequestForAuth(String url) {
+    private String makeHttpRequestForAuth(String login, String password ,String url) {
 
         String result = null;
         InputStream is = null;
