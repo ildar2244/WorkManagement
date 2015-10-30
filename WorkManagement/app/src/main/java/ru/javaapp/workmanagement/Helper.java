@@ -22,6 +22,7 @@ public class Helper {
         return false;
     }
 
+    // Метод замены даты
     public static String parseDate(String date){
         String year = date.substring(0, 4);
         String month = date.substring(5, 7);

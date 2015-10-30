@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.fragments.DatePickerFragmentAfter;
 import ru.javaapp.workmanagement.fragments.DatePickerFragmentBefore;
@@ -40,12 +43,12 @@ public class CreateTaskActivity extends AppCompatActivity {
 
     // inin all components
     private void componentsInitialize(){
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         whomSpinner = (Spinner) findViewById(R.id.whomSpinner);
         whatSpinner = (Spinner) findViewById(R.id.whatSpinner);
         whereSpinner = (Spinner) findViewById(R.id.whereSpinner);
         countPlan = (EditText) findViewById(R.id.howManyEt);
         comment = (EditText) findViewById(R.id.cta_comment);
-
         whomSpinner.setAdapter(fillWhomSpinner());
         whomSpinner.setFocusable(true);
         whatSpinner.setAdapter(fillWhatSpinner());
@@ -54,8 +57,10 @@ public class CreateTaskActivity extends AppCompatActivity {
         whereSpinner.setFocusable(true);
 
         tvDateBefore = (TextView) findViewById(R.id.tv_input_dateBefore);
+        tvDateBefore.setText(date);
         tvTimeBefore = (TextView) findViewById(R.id.tv_input_timeBefore);
         tvDateAfter = (TextView) findViewById(R.id.tv_input_dateAfter);
+        tvDateAfter.setText(date);
         tvTimeAfter = (TextView) findViewById(R.id.tv_input_timeAfter);
 
         send_btn = (Button) findViewById(R.id.btn_send);
