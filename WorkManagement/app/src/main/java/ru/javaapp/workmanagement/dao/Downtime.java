@@ -8,6 +8,23 @@ public class Downtime {
     private int idDowntime;
     private int quantumDowntime;
     private String nameDowntime;
+    private String date, time;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public int getIdDowntime() {
         return idDowntime;

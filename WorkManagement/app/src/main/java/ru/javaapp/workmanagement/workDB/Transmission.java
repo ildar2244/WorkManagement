@@ -2,7 +2,6 @@ package ru.javaapp.workmanagement.workDB;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.text.format.Time;
 import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -20,7 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
@@ -41,6 +39,7 @@ public class Transmission implements ITransmission {
     private final String urlUpdateDefect = "http://autocomponent.motorcum.ru/update_defect.php";
     private final String urlStop = "http://autocomponent.motorcum.ru/update_downtime.php";
     private final String urlGetDefectForMaster = "http://autocomponent.motorcum.ru/get_brak_for_master.php";
+    private final String urlGetStopForMaster = "http://autocomponent.motorcum.ru/get_stop_for_master.php";
     String login, password;
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
@@ -153,11 +152,16 @@ public class Transmission implements ITransmission {
     }
     //Запрос на полусение списка браков
     public JSONObject getBrakForMaster(int taskId){
-        return makeHttpRequestBrak(taskId, urlGetDefectForMaster);
+        return makeHttpRequestBrakAndStop(taskId, urlGetDefectForMaster);
+    }
+
+    //Запрос на полусение списка простоев
+    public JSONObject getStopForMaster(int taskId){
+        return makeHttpRequestBrakAndStop(taskId, urlGetStopForMaster);
     }
 
     // Выполнение щапроса брака по заданию на странице мастера
-    private JSONObject makeHttpRequestBrak(int taskId, String url){
+    private JSONObject makeHttpRequestBrakAndStop(int taskId, String url){
         String result = null;
         InputStream is = null;
 

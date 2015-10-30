@@ -47,6 +47,14 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnStopInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskAboutForMasterActivity.this, StopInfoActivity.class);
+                intent.putExtra("taskId", taskId);
+                startActivity(intent);
+            }
+        });
     }
 
     private void takeFieldsFromPreviousActivity() {
@@ -101,6 +109,7 @@ public class TaskAboutForMasterActivity extends AppCompatActivity {
         tvPlaceName.setText(taskGetAbout.getPlaceName());
         tvCountPlan.setText(Integer.toString(taskGetAbout.getCountPlanTask()));
         tvCountCurrent.setText(Integer.toString(taskGetAbout.getCountCurrentTask()));
+        tvComment.setText(taskGetAbout.getCommentTask());
 
         diffCount = taskGetAbout.getCountPlanTask() - taskGetAbout.getCountCurrentTask();
         tvDiffCount.setText(Integer.toString(diffCount));
