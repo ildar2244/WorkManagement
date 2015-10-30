@@ -3,32 +3,57 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp">
-
-    <TextView
-        android:layout_width="0dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_brakCause"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_weight="1" />
+        android:layout_marginTop="4dp"
+        android:layout_weight="0.3">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp"
+            android:id="@+id/tv_brakCause"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextPrimary"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_brakDate"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPrimary"
+                android:textStyle="italic"
+                android:layout_weight="1" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_brakTime"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPrimary"
+                android:textStyle="italic"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="8dp"
         android:id="@+id/tv_brakCount"
-        android:gravity="center_horizontal"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_weight="0.5" />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_brakDate"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_weight="1" />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_brakTime"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_weight="0.6" />
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/btn_brak"
+        android:layout_weight="0.7"
+        android:gravity="center" />
 </LinearLayout>

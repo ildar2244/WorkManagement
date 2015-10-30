@@ -59,40 +59,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/cta_spn_padding_lr"
-                                android:text="@string/from"
-                                android:gravity="center_vertical|left"
-                                android:textColor="@color/colorTextSecondary"
-                                android:fontFamily="sans-serif"
-                                android:textSize="20dp"
-                                android:layout_gravity="center" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/cta_spn_padding_lr"
                                 android:id="@+id/taa_datestart"
                                 android:fontFamily="sans-serif"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/taa_font_size"
+                                android:textColor="@color/colorPrimary"
                                 android:gravity="center"
                                 android:layout_gravity="center" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/cta_spn_padding_lr"
-                                android:text=" / "
-                                android:fontFamily="sans-serif"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorAccent"
-                                android:gravity="center"
-                                android:layout_gravity="center"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/cta_spn_padding_lr"
+                                android:paddingLeft="16dp"
                                 android:id="@+id/taa_timestart"
                                 android:fontFamily="sans-serif"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/taa_font_size"
+                                android:textColor="@color/colorPrimary"
                                 android:gravity="center"
                                 android:layout_gravity="center" />
                         </LinearLayout>
@@ -106,40 +86,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="@dimen/cta_spn_padding_lr"
-                                android:text="@string/tv_finish"
-                                android:gravity="center_vertical|left"
-                                android:textColor="@color/colorTextSecondary"
-                                android:fontFamily="sans-serif"
-                                android:textSize="20dp"
-                                android:layout_gravity="center" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/cta_spn_padding_lr"
                                 android:id="@+id/taa_datefinish"
                                 android:fontFamily="sans-serif"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/taa_font_size"
+                                android:textColor="@color/colorPrimary"
                                 android:gravity="center"
                                 android:layout_gravity="center" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/cta_spn_padding_lr"
-                                android:text=" / "
-                                android:fontFamily="sans-serif"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorAccent"
-                                android:gravity="center"
-                                android:layout_gravity="center"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/cta_spn_padding_lr"
+                                android:paddingLeft="16dp"
                                 android:id="@+id/taa_timefinish"
                                 android:fontFamily="sans-serif"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/taa_font_size"
+                                android:textColor="@color/colorPrimary"
                                 android:gravity="center"
                                 android:layout_gravity="center" />
                         </LinearLayout>
@@ -163,7 +123,7 @@
                         android:paddingLeft="@dimen/tba_padding_left_of_iv"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:textSize="20dp"/>
+                        android:textSize="@dimen/taa_font_size"/>
                 </LinearLayout>
                 <!-- PLACE name-->
                 <LinearLayout
@@ -183,7 +143,7 @@
                         android:paddingLeft="@dimen/tba_padding_left_of_iv"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:textSize="20dp" />
+                        android:textSize="@dimen/taa_font_size" />
                 </LinearLayout>
                 <!-- COUNT_PLAN -->
                 <LinearLayout
@@ -204,7 +164,7 @@
                         android:text="План:"
                         android:textColor="@color/colorTextPrimary"
                         android:fontFamily="sans-serif"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/taa_font_size"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:id="@+id/taa_countplan"
@@ -213,7 +173,7 @@
                         android:paddingLeft="@dimen/tba_tv_padding_left"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/taa_font_size"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -222,7 +182,7 @@
                         android:text="шт."
                         android:textColor="@color/colorTextPrimary"
                         android:fontFamily="sans-serif"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/taa_font_size"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>
                 <!-- COMMENT -->
@@ -240,7 +200,11 @@
                         android:id="@+id/taa_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/tba_padding_left_of_iv" />
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/taa_font_size"
+                        android:textStyle="italic"
+                        android:paddingLeft="@dimen/tba_padding_left_of_iv"
+                        android:gravity="center_vertical" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
