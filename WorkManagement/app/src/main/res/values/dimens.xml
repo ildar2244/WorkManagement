@@ -28,5 +28,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="taa_font_size">20dp</dimen>
     <dimen name="tba_font_size">20dp</dimen>
+    <dimen name="taam_font_size">20dp</dimen>
 
 </resources>
