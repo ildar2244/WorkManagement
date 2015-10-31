@@ -36,7 +36,6 @@ public class TrackingActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabHost tabHost;
-    private String urlGetTasks = "http://autocomponent.motorcum.ru/get_tasks_for_master.php";
     private RecyclerView rvTasksCurrent;
     private RecyclerView rvTasksFinish;
     private RVAdaptersTasksForMaster adaptersTasksCurrent;

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
 import ru.javaapp.workmanagement.workDB.Transmission;
@@ -64,20 +65,32 @@ public class StopActivity extends AppCompatActivity {
         btnOk = (Button) findViewById(R.id.btn_ok);
         btnCancel = (Button) findViewById(R.id.btn_cancel);
         lvStop = (ListView) findViewById(R.id.lvStop);
-        ArrayAdapter adapter = new ArrayAdapter(StopActivity.this, android.R.layout.simple_list_item_single_choice, getResources().getStringArray(R.array.stop_cause));
+        ArrayAdapter adapter = new ArrayAdapter(StopActivity.this, android.R.layout.simple_list_item_single_choice,
+                getResources().getStringArray(R.array.stop_cause));
         lvStop.setAdapter(adapter);
+    }
+
+    private boolean checkFields(){
+        if(lvStop.getCheckedItemCount() != 0){
+            return true;
+        }
+        else{
+            Toast.makeText(getApplicationContext(), R.string.no_cause_stop, Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     private void setListeners() {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(taskId != 0) {
-                    String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-                    String time = new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis()));
-                    Transmission transmission = new Transmission();
-                    transmission.UpdateDownTime(taskId, stopId, getApplicationContext(), date, time);
-                    finish();
+                if(checkFields()) {
+                    if (taskId != 0) {
+                        Transmission transmission = new Transmission();
+                        transmission.UpdateDownTime(taskId, stopId, getApplicationContext(),
+                                Helper.getCurrentDate(), Helper.getCurrentTime());
+                        finish();
+                    }
                 }
             }
         });

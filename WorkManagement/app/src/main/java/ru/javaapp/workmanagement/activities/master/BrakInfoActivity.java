@@ -115,8 +115,8 @@ public class BrakInfoActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(BrakInfoActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Без брака");
-                    builder.setMessage("Качество на уровне мировых стандартов.");
+                    builder.setTitle(getString(R.string.without_defect));
+                    builder.setMessage(getString(R.string.quality_world_standart));
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -128,7 +128,7 @@ public class BrakInfoActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             } catch (JSONException e) {
-                Toast.makeText(BrakInfoActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BrakInfoActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             dialog.dismiss();
@@ -151,9 +151,9 @@ public class BrakInfoActivity extends AppCompatActivity {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             defect.setNameDefect(jsonObject.getString("cause_name"));
             defect.setQuantumDefect(jsonObject.getInt("defect_count"));
-            String date = jsonObject.getString("defect_date").replace("-", ".");
+            String date = jsonObject.getString("defect_date");
             String time = jsonObject.getString("defect_time").substring(0, 5);
-            defect.setDate(date);
+            defect.setDate(Helper.parseDate(date));
             defect.setTime(time);
 
             brakList.add(defect);

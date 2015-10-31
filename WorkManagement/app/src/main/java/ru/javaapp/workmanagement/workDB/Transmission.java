@@ -41,7 +41,7 @@ public class Transmission implements ITransmission {
     @Override
     public void CreateTask(int masterId, int workerId, int whatId, int whereId, String countPlan,
                            String commentEdit, String timeBefore,
-                           String timeAfter, String dateBefore, String dateAfter, Context context){
+                           String timeAfter, String dateBefore, String dateAfter, Context context, String dateCreate){
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("masterId", Integer.toString(masterId)));
@@ -53,6 +53,7 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("timeFinish", timeAfter));
         pairs.add(new BasicNameValuePair("dateStart", dateBefore));
         pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
+        pairs.add(new BasicNameValuePair("dateCreate", dateCreate));
         pairs.add(new BasicNameValuePair("comment", commentEdit));
         new JSONSAsyncTask().execute(BASE_URL + "/insert_task.php");
     }
@@ -383,7 +384,7 @@ public class Transmission implements ITransmission {
             }
             if (code == 1) {}
             else {
-                Toast.makeText(context, "Что-то пошло не так",
+                Toast.makeText(context, R.string.wrong_server_responce,
                         Toast.LENGTH_LONG).show();
                 return;
             }

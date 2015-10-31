@@ -56,19 +56,19 @@ public class TaskRunActivity extends AppCompatActivity {
     }
 
     private final Handler handler = new Handler();
+
+    // Синхронизация с сервером
     private Runnable getResponceAfterInterval = new Runnable() {
 
         public void run() {
 
             try
             {
-                int taskId = taskGet.getIdTask();
-                int currentcount = currentCount;
                 Transmission responce = new Transmission();
-                responce.UpdateCurrentCount(taskId, currentcount, getApplicationContext());
+                responce.UpdateCurrentCount(taskGet.getIdTask(), currentCount, getApplicationContext());
 
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
 
             handler.postDelayed(this, 10000*60);
@@ -236,11 +236,9 @@ public class TaskRunActivity extends AppCompatActivity {
 
     // возврат в список всех заданий
     private void backTaskList(){
-        int taskId = taskGet.getIdTask();
-        int currentcount = currentCount;
         try{
             Transmission responce = new Transmission();
-            responce.UpdateCurrentCount(taskId, currentcount, getApplicationContext());
+            responce.UpdateCurrentCount(taskGet.getIdTask(), currentCount, getApplicationContext());
             startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
             finish();
         }
@@ -262,13 +260,9 @@ public class TaskRunActivity extends AppCompatActivity {
         quitDialog.setPositiveButton("Да", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                int taskId = taskGet.getIdTask();
-                int statusid = 3;
-                int currentcount = currentCount;
-
                 try {
                     Transmission responce = new Transmission();
-                    responce.UpdateCountAndStatus(taskId, currentcount, statusid, getApplicationContext());
+                    responce.UpdateCountAndStatus(taskGet.getIdTask(), currentCount, 3, getApplicationContext());
                     startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
                     finish();
                 }

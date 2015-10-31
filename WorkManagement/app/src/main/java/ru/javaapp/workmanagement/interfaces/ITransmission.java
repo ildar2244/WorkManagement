@@ -9,7 +9,7 @@ public interface ITransmission {
 
     void CreateTask(int masterId, int workerId, int whatId, int whereId, String countPlan,
                            String commentEdit, String timeBefore,
-                           String timeAfter, String dateBefore, String dateAfter, Context context);
+                           String timeAfter, String dateBefore, String dateAfter, Context context, String dateCreate);
 
     void UpdateTaskStatus(int taskId, int statusId, Context context);
 
