@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.workDB.Transmission;
 
@@ -65,17 +66,18 @@ public class BrakActivity extends AppCompatActivity {
         btnCancel = (Button) findViewById(R.id.btn_brak_cancel);
         lvBrak = (ListView) findViewById(R.id.lvBrak);
         etBrakCount = (EditText) findViewById(R.id.et_brakCount);
-        ArrayAdapter adapter = new ArrayAdapter(BrakActivity.this, android.R.layout.simple_list_item_single_choice, getResources().getStringArray(R.array.brak_cause));
+        ArrayAdapter adapter = new ArrayAdapter(BrakActivity.this, android.R.layout.simple_list_item_single_choice,
+                getResources().getStringArray(R.array.brak_cause));
         lvBrak.setAdapter(adapter);
     }
 
     private boolean checkFields(){
-        if(etBrakCount.getText().toString().trim().length() != 0 ||
-                lvBrak.isSelected()){
+        if(etBrakCount.getText().toString().trim().length() != 0 &&
+                lvBrak.getCheckedItemCount() != 0){
             return true;
         }
         else{
-            Toast.makeText(getApplicationContext(), "Ничего не выбрано", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.no_cause_brak, Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -86,10 +88,9 @@ public class BrakActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkFields()){
                     if(taskId != 0) {
-                        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-                        String time = new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis()));
                         Transmission transmission = new Transmission();
-                        transmission.UpdateDefect(taskId, defectId, Integer.parseInt(etBrakCount.getText().toString()), getApplicationContext(), date, time);
+                        transmission.UpdateDefect(taskId, defectId, Integer.parseInt(etBrakCount.getText().toString()),
+                                getApplicationContext(), Helper.getCurrentDate(), Helper.getCurrentTime());
                         finish();
                     }
                 }

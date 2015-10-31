@@ -6,6 +6,9 @@ import android.net.NetworkInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Handler;
+
+import ru.javaapp.workmanagement.workDB.Transmission;
 
 /**
  * Created by User on 27.10.2015.
@@ -32,5 +35,18 @@ public class Helper {
         return newDate;
     }
 
+    // Получение текущей даты
+    public static String getCurrentDate(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(new Date());
+        return date;
+    }
+
+    // Получение текущего времени
+    public static String getCurrentTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        String time = dateFormat.format(new Date(System.currentTimeMillis()));
+        return time;
+    }
 
 }

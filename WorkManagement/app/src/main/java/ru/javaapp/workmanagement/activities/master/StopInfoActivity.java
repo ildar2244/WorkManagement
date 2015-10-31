@@ -115,8 +115,8 @@ public class StopInfoActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(StopInfoActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Без простоя");
-                    builder.setMessage("Нет приостановок на производстве.");
+                    builder.setTitle(getString(R.string.without_stop));
+                    builder.setMessage(getString(R.string.no_stop_on_manufactering));
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -128,7 +128,7 @@ public class StopInfoActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             } catch (JSONException e) {
-                Toast.makeText(StopInfoActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
+                Toast.makeText(StopInfoActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             dialog.dismiss();
@@ -150,9 +150,9 @@ public class StopInfoActivity extends AppCompatActivity {
 
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             stop.setNameDowntime(jsonObject.getString("downtime_name"));
-            String date = jsonObject.getString("downtime_date").replace("-", ".");
+            String date = jsonObject.getString("downtime_date");
             String time = jsonObject.getString("downtime_time").substring(0, 5);
-            stop.setDate(date);
+            stop.setDate(Helper.parseDate(date));
             stop.setTime(time);
 
             stopList.add(stop);

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.fragments.DatePickerFragmentAfter;
 import ru.javaapp.workmanagement.fragments.DatePickerFragmentBefore;
@@ -151,7 +152,7 @@ public class CreateTaskActivity extends AppCompatActivity {
                     String dateAfter = tvDateAfter.getText().toString();
                     Transmission responce = new Transmission();
                     responce.CreateTask(1, workerId, whatId, whereId, plan, commentEdit, timeBefore,
-                            timeAfter, dateBefore, dateAfter, getApplicationContext());
+                            timeAfter, dateBefore, dateAfter, getApplicationContext(), Helper.getCurrentDate());
                     finish();
                 }
                 else{
