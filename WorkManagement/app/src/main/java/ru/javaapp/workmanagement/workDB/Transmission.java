@@ -147,6 +147,53 @@ public class Transmission implements ITransmission {
         return makeHttpRequestBrakAndStop(taskId, BASE_URL + "/get_stop_for_master.php");
     }
 
+    public JSONObject getComplectsForProduct(int productId){
+        return makeHttpRequestForComponents(productId, BASE_URL + "/get_complects_for_reports.php");
+    }
+
+    // Выполнение щапроса брака по заданию на странице мастера
+    private JSONObject makeHttpRequestForComponents(int productId, String url){
+        String result = null;
+        InputStream is = null;
+
+        ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("productsId", Integer.toString(productId)));
+
+        try {
+            urlRequest = new URL(url);
+            urlConnection = (HttpURLConnection) urlRequest.openConnection();
+            urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
+            urlConnection.setDoInput(true); // use Get request
+            urlConnection.setDoOutput(true);
+            OutputStream os = urlConnection.getOutputStream(); // get output parameters
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getQuery(pairs)); // write our pairs
+            writer.flush();
+            writer.close();
+            os.close();
+            urlConnection.connect(); // connect with our server
+
+            is = urlConnection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            result = sb.toString();
+            jsonObject = new JSONObject(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+
+        return jsonObject;
+    }
+
     // Выполнение щапроса брака по заданию на странице мастера
     private JSONObject makeHttpRequestBrakAndStop(int taskId, String url){
         String result = null;

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.activities.reports.ReportsMainActivity;
 import ru.javaapp.workmanagement.fragments.FragmentDrawer;
 
 public class MasterMainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -73,7 +74,7 @@ public class MasterMainActivity extends AppCompatActivity implements View.OnClic
                 startActivity(trackingIntent);
                 break;
             case R.id.btn_reports:
-                Intent reportsActivity = new Intent(getApplicationContext(), ReportsActivity.class);
+                Intent reportsActivity = new Intent(getApplicationContext(), ReportsMainActivity.class);
                 startActivity(reportsActivity);
                 break;
         }
