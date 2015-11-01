@@ -41,62 +41,59 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tba_ll_margin_top"
                     android:layout_marginBottom="@dimen/tba_ll_margin_bottom">
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <TextView
-                            android:id="@+id/taafm_timestart"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:textSize="16dp"
-                            android:gravity="center_vertical" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:paddingLeft="@dimen/tba_tv_padding_left"
-                            android:paddingRight="@dimen/tba_tv_padding_left"
-                            android:text="-"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:gravity="center_vertical" />
-                        <TextView
-                            android:id="@+id/taafm_timefinish"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:textSize="16dp"
-                            android:gravity="center_vertical" />
-                    </LinearLayout>
+                        android:src="@drawable/ic_access_time_black_24dp"
+                        android:layout_gravity="center_vertical" />
                     <LinearLayout
                         android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <TextView
-                            android:id="@+id/taafm_datestart"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:paddingLeft="@dimen/tba_tv_padding_left"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:textSize="16dp"
-                            android:layout_weight="1"
-                            android:gravity="right" />
-                        <TextView
-                            android:id="@+id/taafm_datefinish"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:paddingLeft="@dimen/tba_tv_padding_left"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:textSize="16dp"
-                            android:layout_weight="1"
-                            android:gravity="right" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <!-- START -->
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/taafm_datestart"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="6dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/taam_font_size"
+                                android:gravity="center" />
+                            <TextView
+                                android:id="@+id/taafm_timestart"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="16dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/taam_font_size"
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <!-- FINISH -->
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/taafm_datefinish"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="6dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/taam_font_size"
+                                android:gravity="center" />
+                            <TextView
+                                android:id="@+id/taafm_timefinish"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="16dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/taam_font_size"
+                                android:gravity="center" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
                 <!-- WHAT name-->
