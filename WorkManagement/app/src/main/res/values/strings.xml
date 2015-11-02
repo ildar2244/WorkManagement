@@ -73,6 +73,20 @@
         <item>Упаковка</item>
     </array>
 
+    <!-- Готовый продукт -->
+    <array name="productsName">
+        <item>Стойка с амортизатором 5350-1109130-25</item>
+        <item>Стойка с амортизатором 5350-1109110</item>
+        <item>Стойка с амортизатором 6520-1109110</item>
+        <item>Стойка 65115-1109130-75</item>
+        <item>Кронштейн 65115-3506185</item>
+        <item>Кронштейн 65115-3419030</item>
+        <item>Кронштейн 53205-8120032</item>
+        <item>Кронштейн 54115-1302047-10</item>
+        <item>Скоба</item>
+        <item>Втулка</item>
+    </array>
+
     <!-- NavigationDrawerFragment-->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -106,6 +120,14 @@
     <string name="sos">SOS</string>
     <string name="cause_stop">Причина простоя</string>
     <string name="cause_brak">Причина брака</string>
+    <string name="no_stop_on_manufactering">Нет приостановок на производстве.</string>
+    <string name="without_stop">Без простоя</string>
+    <string name="error">Ошибка</string>
+    <string name="without_defect">Без брака</string>
+    <string name="quality_world_standart">Качество на уровне мировых стандартов.</string>
+    <string name="no_cause_brak">Не выбрана причина или не введено количество</string>
+    <string name="no_cause_stop">Выберите причину простоя</string>
+    <string name="wrong_server_responce">Что-то пошло не так</string>
 
     <array name="stop_cause">
         <item>Оборудование</item>

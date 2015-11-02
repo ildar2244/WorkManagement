@@ -52,12 +52,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activities.master.ReportsActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:label="@string/title_activity_reports"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".activities.worker.TaskListActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_task_list"
@@ -121,6 +115,20 @@
         <activity
             android:name=".activities.master.StopInfoActivity"
             android:label="@string/cause_stop"
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activities.reports.ReportsMainActivity"
+            android:label="Изготовлено"
+            android:theme="@style/AppTheme"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activities.reports.ComplectsForProductsActivity"
+            android:label="Комплектующие"
             android:theme="@style/AppTheme"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait">

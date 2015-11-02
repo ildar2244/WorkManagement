@@ -41,7 +41,7 @@ public class Transmission implements ITransmission {
     @Override
     public void CreateTask(int masterId, int workerId, int whatId, int whereId, String countPlan,
                            String commentEdit, String timeBefore,
-                           String timeAfter, String dateBefore, String dateAfter, Context context){
+                           String timeAfter, String dateBefore, String dateAfter, Context context, String dateCreate){
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("masterId", Integer.toString(masterId)));
@@ -53,6 +53,7 @@ public class Transmission implements ITransmission {
         pairs.add(new BasicNameValuePair("timeFinish", timeAfter));
         pairs.add(new BasicNameValuePair("dateStart", dateBefore));
         pairs.add(new BasicNameValuePair("dateFinish", dateAfter));
+        pairs.add(new BasicNameValuePair("dateCreate", dateCreate));
         pairs.add(new BasicNameValuePair("comment", commentEdit));
         new JSONSAsyncTask().execute(BASE_URL + "/insert_task.php");
     }
@@ -144,6 +145,53 @@ public class Transmission implements ITransmission {
     //Запрос на полусение списка простоев
     public JSONObject getStopForMaster(int taskId){
         return makeHttpRequestBrakAndStop(taskId, BASE_URL + "/get_stop_for_master.php");
+    }
+
+    public JSONObject getComplectsForProduct(int productId){
+        return makeHttpRequestForComponents(productId, BASE_URL + "/get_complects_for_reports.php");
+    }
+
+    // Выполнение щапроса брака по заданию на странице мастера
+    private JSONObject makeHttpRequestForComponents(int productId, String url){
+        String result = null;
+        InputStream is = null;
+
+        ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("productsId", Integer.toString(productId)));
+
+        try {
+            urlRequest = new URL(url);
+            urlConnection = (HttpURLConnection) urlRequest.openConnection();
+            urlConnection.setRequestMethod("POST"); // set POST request? because we are send parameters
+            urlConnection.setDoInput(true); // use Get request
+            urlConnection.setDoOutput(true);
+            OutputStream os = urlConnection.getOutputStream(); // get output parameters
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getQuery(pairs)); // write our pairs
+            writer.flush();
+            writer.close();
+            os.close();
+            urlConnection.connect(); // connect with our server
+
+            is = urlConnection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            result = sb.toString();
+            jsonObject = new JSONObject(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+
+        return jsonObject;
     }
 
     // Выполнение щапроса брака по заданию на странице мастера
@@ -383,7 +431,7 @@ public class Transmission implements ITransmission {
             }
             if (code == 1) {}
             else {
-                Toast.makeText(context, "Что-то пошло не так",
+                Toast.makeText(context, R.string.wrong_server_responce,
                         Toast.LENGTH_LONG).show();
                 return;
             }

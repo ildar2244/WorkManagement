@@ -128,6 +128,7 @@ public class TaskBeginActivity extends AppCompatActivity {
                 try {
                     Transmission responce = new Transmission();
                     responce.UpdateTaskStatus(taskId, statusid, getApplicationContext());
+                    finish();
                 }
                 catch (Exception e){
                     e.printStackTrace();

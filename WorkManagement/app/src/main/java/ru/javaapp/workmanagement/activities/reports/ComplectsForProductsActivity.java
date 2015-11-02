@@ -1,4 +1,4 @@
-package ru.javaapp.workmanagement.activities.master;
+package ru.javaapp.workmanagement.activities.reports;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -17,39 +17,62 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.adapters.RVStopInfoMaster;
-import ru.javaapp.workmanagement.dao.Downtime;
+import ru.javaapp.workmanagement.activities.auth.LoginActivity;
+import ru.javaapp.workmanagement.adapters.RVAdaptersTasks;
+import ru.javaapp.workmanagement.adapters.RVComplectAdapter;
+import ru.javaapp.workmanagement.dao.Complects;
+import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.list.DividerItemDecoration;
+import ru.javaapp.workmanagement.list.RecyclerItemClickListener;
 import ru.javaapp.workmanagement.workDB.Transmission;
 
 /**
- * Created by User on 30.10.2015.
+ * Created by User on 01.11.2015.
  */
-public class StopInfoActivity extends AppCompatActivity {
-
-    private RecyclerView rvStopInfo;
+public class ComplectsForProductsActivity extends AppCompatActivity {
+    RecyclerView rvComplects;
     Toolbar toolbar;
-    private RVStopInfoMaster stopInfoAdapter;
-    List<Downtime> stopList;
-    int taskId;
+    RVComplectAdapter complectsAdapter;
+    List<Complects> complectsList;
+    int productId;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stop_info_for_master);
-        toolbarInitialize(); // init toolbar
-        taskId = getIntent().getIntExtra("taskId", 0);
-        componentsInitialize(); //init components in activity
+        setContentView(R.layout.activity_complects_for_products);
+
+        toolbarInitialize();
+        componentsInitialize();
+        setListeners();
         new JsonReadByWorker().execute();
+    }
+
+    private void setListeners() {
+        rvComplects.addOnItemTouchListener(
+                new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                    }
+                })
+        );
+    }
+
+    private void componentsInitialize() {
+        rvComplects = (RecyclerView) findViewById(R.id.rv_complects);
+        rvComplects.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        productId = getIntent().getIntExtra("productId", 0);
     }
 
     private void toolbarInitialize() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        try {
+        try{
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -57,7 +80,6 @@ public class StopInfoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        // Click Listener
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,15 +88,10 @@ public class StopInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void componentsInitialize() {
-        rvStopInfo = (RecyclerView) findViewById(R.id.rv_stopInfo);
-        rvStopInfo.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-    }
-
     public class JsonReadByWorker extends AsyncTask<String, String, JSONObject> {
 
         JSONObject object;
-        ProgressDialog dialog = new ProgressDialog(StopInfoActivity.this);
+        ProgressDialog dialog = new ProgressDialog(ComplectsForProductsActivity.this);
 
         @Override
         protected void onPreExecute() {
@@ -98,7 +115,7 @@ public class StopInfoActivity extends AppCompatActivity {
 
             if(Helper.isConnected(getApplicationContext())) {
                 Transmission responce = new Transmission();
-                object = responce.getStopForMaster(taskId);
+                object = responce.getComplectsForProduct(productId);
                 return object;
             }
             else
@@ -113,27 +130,27 @@ public class StopInfoActivity extends AppCompatActivity {
                     ListDrawer(json);
                 }
                 else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(StopInfoActivity.this,  R.style.AlertDialogStyle);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ComplectsForProductsActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle(getString(R.string.without_stop));
-                    builder.setMessage(getString(R.string.no_stop_on_manufactering));
+                    builder.setTitle("Ошибка");
+                    builder.setMessage("Нет соединения с интернетом.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss(); // Отпускает диалоговое окно
-                            finish();
                         }
                     });
                     builder.show();
                     dialog.dismiss();
                 }
             } catch (JSONException e) {
-                Toast.makeText(StopInfoActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ComplectsForProductsActivity.this, "Ошибка", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             dialog.dismiss();
         }
     }
+
 
     /**
      * Tasks elements getting from JSONObject to String and create RecyclerView
@@ -142,27 +159,21 @@ public class StopInfoActivity extends AppCompatActivity {
      */
     public void ListDrawer(JSONObject json) throws JSONException {
         JSONArray jsonArray = null;
-        jsonArray = json.getJSONArray("allStop");
-        stopList = new ArrayList<Downtime>();
+        complectsList = new ArrayList<Complects>();
+        jsonArray = json.getJSONArray("allComplects");
 
         for (int i = 0; i < jsonArray.length(); i++) {
-            Downtime stop = new Downtime();
-
+            Complects complect = new Complects();
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            stop.setNameDowntime(jsonObject.getString("downtime_name"));
-            String date = jsonObject.getString("downtime_date");
-            String time = jsonObject.getString("downtime_time").substring(0, 5);
-            stop.setDate(Helper.parseDate(date));
-            stop.setTime(time);
-
-            stopList.add(stop);
+            complect.setName(jsonObject.getString("nameWhat"));
+            complect.setCount(0);
+            complectsList.add(complect);
         }
 
-        stopInfoAdapter = new RVStopInfoMaster(getApplicationContext(), stopList);
-        LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        rvStopInfo.setAdapter(stopInfoAdapter);
-        rvStopInfo.setLayoutManager(llm1);
+        complectsAdapter = new RVComplectAdapter(getApplicationContext(), complectsList);
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        rvComplects.setAdapter(complectsAdapter);
+        rvComplects.setLayoutManager(llm);
 
     }
-
 }

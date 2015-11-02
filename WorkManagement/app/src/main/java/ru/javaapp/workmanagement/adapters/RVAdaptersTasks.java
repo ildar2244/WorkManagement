@@ -63,6 +63,7 @@ public class RVAdaptersTasks extends RecyclerView.Adapter<RVAdaptersTasks.EventV
         holder.tvWhatName.setText(taskList.get(position).getWhatName());
         holder.tvPlaceName.setText(taskList.get(position).getPlaceName());
 
+
     }
 
     @Override
