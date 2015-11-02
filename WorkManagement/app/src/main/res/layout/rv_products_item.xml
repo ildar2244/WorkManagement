@@ -4,33 +4,30 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="4dp"
-        android:layout_weight="0.3">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="8dp"
-            android:id="@+id/tv_productName"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_weight="1"/>
-    </LinearLayout>
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:id="@+id/tv_productName"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorTextPrimary"
+        android:layout_weight="0.3"
+        android:gravity="center_vertical" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:layout_marginRight="8dp"
+        android:paddingRight="8dp"
         android:id="@+id/tv_productCount"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:background="@color/btn_brak"
+        android:background="@color/item_three"
         android:layout_weight="0.7"
-        android:gravity="center" />
+        android:gravity="center_vertical|right" />
 </LinearLayout>

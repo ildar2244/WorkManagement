@@ -137,6 +137,10 @@ public class Transmission implements ITransmission {
     public JSONObject getTasksForMaster(){
         return makeHttpRequestForMaster(BASE_URL + "/get_tasks_for_master.php");
     }
+    //Запрос на получение отчета по готовым продуктам в системе Руководитель
+    public JSONObject getReportAllProduct() {
+        return makeHttpRequestForMaster(BASE_URL + "/get_report.php");
+    }
     //Запрос на полусение списка браков
     public JSONObject getBrakForMaster(int taskId){
         return makeHttpRequestBrakAndStop(taskId, BASE_URL + "/get_brak_for_master.php");
