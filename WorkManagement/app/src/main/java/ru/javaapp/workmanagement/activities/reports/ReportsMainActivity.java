@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -33,10 +35,13 @@ import ru.javaapp.workmanagement.workDB.Transmission;
  */
 public class ReportsMainActivity extends AppCompatActivity {
 
-    RecyclerView rvProducts;
     Toolbar toolbar;
+    TabHost tabHost;
+    RecyclerView rvProducts;
+    RecyclerView rvDates;
     RVProductsAdapter productsAdapter;
     List<Complects> productList;
+    Button postDates;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,11 +68,6 @@ public class ReportsMainActivity extends AppCompatActivity {
         );
     }
 
-    private void componentsInitialize() {
-        rvProducts = (RecyclerView) findViewById(R.id.rv_products);
-        rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-    }
-
     private void toolbarInitialize() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,6 +85,25 @@ public class ReportsMainActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    private void componentsInitialize() {
+        tabHost = (TabHost) findViewById(R.id.tabHost3);
+        tabHost.setup();
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tabOne");
+        tabSpec.setContent(R.id.linearLayout4);
+        tabSpec.setIndicator("Сегодня");
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("tabTwo");
+        tabSpec.setContent(R.id.linearLayout5);
+        tabSpec.setIndicator("Период");
+        tabHost.addTab(tabSpec);
+
+        postDates = (Button) findViewById(R.id.rma_btn);
+
+        rvProducts = (RecyclerView) findViewById(R.id.rv_products);
+        rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
     }
 
     public class JsonReportAsyncTask extends AsyncTask<String, String, JSONObject> {
@@ -114,7 +133,8 @@ public class ReportsMainActivity extends AppCompatActivity {
 
             if (Helper.isConnected(getApplicationContext())) {
                 Transmission productReport = new Transmission();
-                jsonAllProduct = productReport.getReportAllProduct();
+                //jsonAllProduct = productReport.getReportAllProduct();
+                jsonAllProduct = productReport.getReportProductsToday();
                 return jsonAllProduct;
             } else {
                 return null;
