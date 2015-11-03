@@ -142,9 +142,6 @@ public class ReportsMainActivity extends AppCompatActivity {
         rvProducts = (RecyclerView) findViewById(R.id.rv_products);
         rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
-        // Список за период
-        rvPeriods = (RecyclerView) findViewById(R.id.rv_periods);
-        rvPeriods.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
     }
 
     /**
@@ -284,7 +281,7 @@ public class ReportsMainActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReportsMainActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
                     builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setMessage("Нет данных за этот период.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -320,9 +317,15 @@ public class ReportsMainActivity extends AppCompatActivity {
             periodsList.add(complect);
         }
 
-        periodsAdapter = new RVProductsAdapter(getApplicationContext(), periodsList);
-        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        rvPeriods.setAdapter(periodsAdapter);
-        rvPeriods.setLayoutManager(llm);
+        // Список за период
+        if (!periodsList.isEmpty()) {
+            rvPeriods = (RecyclerView) findViewById(R.id.rv_periods);
+            rvPeriods.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+            periodsAdapter = new RVProductsAdapter(getApplicationContext(), periodsList);
+            LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+            rvPeriods.setAdapter(periodsAdapter);
+            rvPeriods.setLayoutManager(llm);
+            rvPeriods.setVisibility(View.VISIBLE);
+        }
     }
 }
