@@ -14,7 +14,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/colorTextPrimary"
-        android:layout_weight="0.3"
+        android:layout_weight="0.2"
         android:gravity="center_vertical" />
     <TextView
         android:layout_width="match_parent"
@@ -26,8 +26,7 @@
         android:id="@+id/tv_productCount"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@color/item_three"
+        android:textColor="@color/item_three"
         android:layout_weight="0.7"
         android:gravity="center_vertical|right" />
 </LinearLayout>
