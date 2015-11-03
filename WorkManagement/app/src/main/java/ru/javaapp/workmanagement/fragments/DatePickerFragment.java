@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import ru.javaapp.workmanagement.R;
-
 /**
- * Created by User on 05.10.2015.
+ * Created by User on 01.10.2015.
  */
-public class DatePickerFragmentAfter extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+    int tvR;
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -25,17 +25,24 @@ public class DatePickerFragmentAfter extends DialogFragment implements DatePicke
 
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
+
+    public DatePickerFragment(int v) {
+        this.tvR = v;
+    }
+
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        TextView tvInputDateBefore = (TextView) getActivity().findViewById(R.id.tv_input_dateAfter);
+        TextView tvInputDateBefore = (TextView) getActivity().findViewById(tvR);
         String date = year + "-" + plug(monthOfYear + 1) + "-" + plug(dayOfMonth);
 
         tvInputDateBefore.setText(date);
     }
+
     private String plug(int value) {
         if (value < 10) {
             return "0"+value;
         }
         return ""+value;
     }
+
 }
