@@ -48,7 +48,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
                         <android.support.v7.widget.RecyclerView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/rv_products">
                         </android.support.v7.widget.RecyclerView>
@@ -64,21 +64,29 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:id="@+id/rma_tv_ot"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="clear text"
-                                android:layout_weight="0.4"/>
+                                android:layout_weight="0.3"/>
                             <TextView
+                                android:id="@+id/rma_tv_do"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0.4"/>
+                                android:text="second text"
+                                android:layout_weight="0.3"/>
                             <Button
                                 android:id="@+id/rma_btn"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0.2"
+                                android:layout_weight="0.4"
                                 android:text="OK"/>
                         </LinearLayout>
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rv_periods">
+                        </android.support.v7.widget.RecyclerView>
                     </LinearLayout>
                 </FrameLayout>
             </LinearLayout>

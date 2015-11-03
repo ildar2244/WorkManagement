@@ -141,9 +141,18 @@ public class Transmission implements ITransmission {
     public JSONObject getReportAllProduct() {
         return makeHttpRequestForMaster(BASE_URL + "/get_report.php");
     }
-    // Запрос на полчение ответа за СЕГОДНЯ в системе Руководитель
-    public JSONObject getReportProductsToday() {
-        return makeHttpRequestForMaster(BASE_URL + "/get_report_today.php");
+    // Запрос на получение отчета за СЕГОДНЯ в системе Руководитель
+    public JSONObject getReportProductsToday(String date) {
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("currentDate", date));
+        return makeHttpRequestForWorker(BASE_URL + "/get_report_today.php");
+    }
+    // Запрос на получение отчета за выбранный период в с.Руков-ль
+    public JSONObject getReportProductPeriods(String before, String after) {
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("dateBefore", before));
+        pairs.add(new BasicNameValuePair("dateAfter", after));
+        return makeHttpRequestForWorker(BASE_URL + "/get_report_periods.php");
     }
     //Запрос на полусение списка браков
     public JSONObject getBrakForMaster(int taskId){
