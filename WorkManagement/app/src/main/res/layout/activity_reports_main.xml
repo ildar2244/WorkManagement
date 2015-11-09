@@ -74,8 +74,10 @@
                                 android:background="@drawable/xml_la_et"
                                 android:textStyle="bold"
                                 android:textColor="@color/colorTextPrimary"
+                                android:textSize="16dp"
                                 android:gravity="center"
-                                android:layout_weight="0.3"/>
+                                android:layout_weight="0.3"
+                                android:layout_gravity="center_vertical" />
                             <TextView
                                 android:id="@+id/rma_tv_do"
                                 android:layout_width="match_parent"
@@ -85,18 +87,25 @@
                                 android:background="@drawable/xml_la_et"
                                 android:textStyle="bold"
                                 android:textColor="@color/colorTextPrimary"
+                                android:textSize="16dp"
                                 android:gravity="center"
-                                android:layout_weight="0.3"/>
-                            <Button
-                                android:id="@+id/rma_btn"
+                                android:layout_weight="0.3"
+                                android:layout_gravity="center_vertical" />
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="8dp"
-                                android:layout_weight="0.4"
-                                android:background="@drawable/xml_rma_btn"
-                                android:text="OK"
-                                android:textStyle="bold"
-                                android:textColor="@color/white"/>
+                                android:layout_weight="0.4">
+                                <Button
+                                    android:id="@+id/rma_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/xml_rma_btn"
+                                    android:text="OK"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"/>
+                            </LinearLayout>
                         </LinearLayout>
                         <android.support.v7.widget.RecyclerView
                             android:layout_width="match_parent"

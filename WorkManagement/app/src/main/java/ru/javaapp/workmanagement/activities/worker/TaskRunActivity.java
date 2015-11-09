@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.workDB.Transmission;
@@ -51,8 +52,13 @@ public class TaskRunActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        handler.removeCallbacks(getResponceAfterInterval);
-        handler.post(getResponceAfterInterval);
+        if (Helper.isConnected(getApplicationContext())) {
+            handler.removeCallbacks(getResponceAfterInterval);
+            handler.post(getResponceAfterInterval);
+        } else {
+            Toast.makeText(getApplicationContext(),R.string.error_connection_wifi,
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     private final Handler handler = new Handler();

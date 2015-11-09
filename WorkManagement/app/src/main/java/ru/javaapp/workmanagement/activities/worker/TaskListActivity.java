@@ -229,15 +229,20 @@ public class TaskListActivity extends AppCompatActivity {
         }
 
         // Creating 2 adapters and 2 recyclerviews for two Tabs
-        adaptersTasksOneTwo = new RVAdaptersTasks(getApplicationContext(), taskOneTwo, statusList);
-        adaptersTasksThree = new RVAdaptersTasks(getApplicationContext(), taskThree, statusList);
-        LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        LinearLayoutManager llm2 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        rvTasksOne.setAdapter(adaptersTasksOneTwo);
-        rvTasksOne.setLayoutManager(llm1);
-        rvTasksTwo.setAdapter(adaptersTasksThree);
-        rvTasksTwo.setLayoutManager(llm2);
-
+        if (!taskOneTwo.isEmpty()) {
+            adaptersTasksOneTwo = new RVAdaptersTasks(getApplicationContext(), taskOneTwo, statusList);
+            LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+            rvTasksOne.setAdapter(adaptersTasksOneTwo);
+            rvTasksOne.setLayoutManager(llm1);
+            rvTasksOne.setVisibility(View.VISIBLE);
+        }
+        if (!taskThree.isEmpty()) {
+            adaptersTasksThree = new RVAdaptersTasks(getApplicationContext(), taskThree, statusList);
+            LinearLayoutManager llm2 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+            rvTasksTwo.setAdapter(adaptersTasksThree);
+            rvTasksTwo.setLayoutManager(llm2);
+            rvTasksTwo.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

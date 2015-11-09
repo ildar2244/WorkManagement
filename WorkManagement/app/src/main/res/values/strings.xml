@@ -128,6 +128,7 @@
     <string name="no_cause_brak">Не выбрана причина или не введено количество</string>
     <string name="no_cause_stop">Выберите причину простоя</string>
     <string name="wrong_server_responce">Что-то пошло не так</string>
+    <string name="error_connection_wifi">Необходимо возобновить Wi-Fi соединение.</string>
 
     <array name="stop_cause">
         <item>Оборудование</item>

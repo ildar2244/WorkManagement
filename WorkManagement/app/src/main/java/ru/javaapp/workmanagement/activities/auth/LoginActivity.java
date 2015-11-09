@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this,  R.style.AlertDialogStyle);
                 builder.setCancelable(false);
                 builder.setTitle("Ошибка");
-                builder.setMessage("Нет соединения с интернетом.");
+                builder.setMessage(R.string.error_connection_wifi);
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
