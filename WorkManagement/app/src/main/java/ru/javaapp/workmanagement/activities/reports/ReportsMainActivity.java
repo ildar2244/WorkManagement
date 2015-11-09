@@ -189,8 +189,8 @@ public class ReportsMainActivity extends AppCompatActivity {
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReportsMainActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
-                    builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setTitle("Список пустой");
+                    builder.setMessage("Возможно нет данных или нет связи.");
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -226,10 +226,13 @@ public class ReportsMainActivity extends AppCompatActivity {
             productList.add(complect);
         }
 
-        productsAdapter = new RVProductsAdapter(getApplicationContext(), productList);
-        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        rvProducts.setAdapter(productsAdapter);
-        rvProducts.setLayoutManager(llm);
+        if (!productList.isEmpty()) {
+            productsAdapter = new RVProductsAdapter(getApplicationContext(), productList);
+            LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+            rvProducts.setAdapter(productsAdapter);
+            rvProducts.setLayoutManager(llm);
+            rvProducts.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
