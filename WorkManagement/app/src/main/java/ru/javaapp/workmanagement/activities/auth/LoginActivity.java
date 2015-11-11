@@ -228,5 +228,9 @@ public class LoginActivity extends AppCompatActivity {
         LoginActivity.name = name;
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        android.os.Debug.stopMethodTracing();
+    }
 }
