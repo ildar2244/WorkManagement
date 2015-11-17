@@ -83,6 +83,8 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="22dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:gravity="center"
                 android:layout_gravity="center_vertical" />
         </LinearLayout>

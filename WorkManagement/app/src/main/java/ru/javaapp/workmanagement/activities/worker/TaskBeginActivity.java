@@ -137,6 +137,7 @@ public class TaskBeginActivity extends AppCompatActivity {
                 Intent intentTba = new Intent(TaskBeginActivity.this, TaskRunActivity.class);
                 intentTba.putExtra("taskObj", taskGet);
                 startActivity(intentTba);
+                finish();
             }
         });
     }

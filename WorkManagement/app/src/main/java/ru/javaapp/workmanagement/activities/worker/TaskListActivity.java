@@ -278,6 +278,7 @@ public class TaskListActivity extends AppCompatActivity {
                             Intent intentTba = new Intent(TaskListActivity.this, TaskBeginActivity.class);
                             intentTba.putExtra("taskObj", task);
                             startActivity(intentTba);
+                            finish();
                         }
                         if(statusId == 2){
                             Intent intentTba = new Intent(TaskListActivity.this, TaskRunActivity.class);
