@@ -136,6 +136,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/cta_spn_padding_lr"
                         android:inputType="number"
+                        android:hint="@string/cta_hint_plan"
                         android:id="@+id/howManyEt"
                         android:layout_weight="0.1" />
                 </LinearLayout>
@@ -259,6 +260,7 @@
                         android:paddingLeft="@dimen/cta_spn_padding_lr"
                         android:maxLength="300"
                         android:id="@+id/cta_comment"
+                        android:hint="@string/cta_hint_comment"
                         android:layout_weight="0.1" />
                 </LinearLayout>
                 <!-- output-button data -->
