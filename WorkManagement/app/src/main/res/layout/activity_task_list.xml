@@ -50,7 +50,8 @@
                             android:id="@+id/rv_tasks_one"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"/>
+                            android:layout_marginTop="8dp"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -62,7 +63,8 @@
                             android:id="@+id/rv_tasks_two"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"/>
+                            android:layout_marginTop="8dp"
+                            android:visibility="gone"/>
                     </LinearLayout>
                 </FrameLayout>
             </LinearLayout>

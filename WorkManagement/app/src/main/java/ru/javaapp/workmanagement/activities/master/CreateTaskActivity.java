@@ -17,10 +17,8 @@ import java.util.Date;
 
 import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
-import ru.javaapp.workmanagement.fragments.DatePickerFragmentAfter;
-import ru.javaapp.workmanagement.fragments.DatePickerFragmentBefore;
-import ru.javaapp.workmanagement.fragments.TimePickerFragmentAfter;
-import ru.javaapp.workmanagement.fragments.TimePickerFragmentBefore;
+import ru.javaapp.workmanagement.fragments.DatePickerFragment;
+import ru.javaapp.workmanagement.fragments.TimePickerFragment;
 import ru.javaapp.workmanagement.workDB.Transmission;
 
 public class CreateTaskActivity extends AppCompatActivity {
@@ -112,28 +110,28 @@ public class CreateTaskActivity extends AppCompatActivity {
         tvDateBefore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new DatePickerFragmentBefore();
+                DialogFragment newFragment = new DatePickerFragment(R.id.tv_input_dateBefore);
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
         tvTimeBefore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new TimePickerFragmentBefore();
+                DialogFragment newFragment = new TimePickerFragment(R.id.tv_input_timeBefore);
                 newFragment.show(getSupportFragmentManager(), "timePicker");
             }
         });
         tvDateAfter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new DatePickerFragmentAfter();
+                DialogFragment newFragment = new DatePickerFragment(R.id.tv_input_dateAfter);
                 newFragment.show(getSupportFragmentManager(), "dateAfterPicker");
             }
         });
         tvTimeAfter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new TimePickerFragmentAfter();
+                DialogFragment newFragment = new TimePickerFragment(R.id.tv_input_timeAfter);
                 newFragment.show(getSupportFragmentManager(), "timeAfterPicker");
             }
         });

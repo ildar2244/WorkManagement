@@ -1,7 +1,10 @@
 package ru.javaapp.workmanagement.adapters;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,7 @@ public class RVAdaptersTasksForMaster extends RecyclerView.Adapter<RVAdaptersTas
     private Context context;
     private LayoutInflater layoutInflater;
     private List statusTask;
+    private GradientDrawable gd;
 
     @Override
     public RVAdaptersTasksForMaster.EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,27 +40,36 @@ public class RVAdaptersTasksForMaster extends RecyclerView.Adapter<RVAdaptersTas
         layoutInflater = LayoutInflater.from(context);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(EventViewHolder holder, int position) {
+
+        gd = new GradientDrawable();
+        gd.setShape(GradientDrawable.RECTANGLE);
+        gd.setCornerRadius(15.0f);
 
         holder.tvNumber.setText(Integer.toString(taskList.get(position).getIdTask()));
         holder.tvTimeFinish.setText(taskList.get(position).getTimeFinish());
         holder.tvDateFinish.setText(taskList.get(position).getDateFinish());
         if (taskList.get(position).getIdStatus() == 1) {
             holder.tvCount.setText(Integer.toString(taskList.get(position).getCountPlanTask()));
-            holder.tvCount.setBackgroundColor(Color.parseColor("#727272"));
+            gd.setColor(Color.parseColor("#727272"));
+            holder.tvCount.setBackground(gd);
         }
         if (taskList.get(position).getIdStatus() == 2) {
             holder.tvCount.setText(Integer.toString(taskList.get(position).getCountCurrentTask()));
-            holder.tvCount.setBackgroundColor(Color.parseColor("#1976D2"));
+            gd.setColor(Color.parseColor("#1976D2"));
+            holder.tvCount.setBackground(gd);
         }
         if (taskList.get(position).getIdStatus() == 3) {
             holder.tvCount.setText(Integer.toString(taskList.get(position).getCountCurrentTask()));
             if (taskList.get(position).getCountCurrentTask() < taskList.get(position).getCountPlanTask()) {
-                holder.tvCount.setBackgroundColor(Color.parseColor("#c80b18"));
+                gd.setColor(Color.parseColor("#c80b18"));
+                holder.tvCount.setBackground(gd);
             }
             else {
-                holder.tvCount.setBackgroundColor(Color.parseColor("#5FB219"));
+                gd.setColor(Color.parseColor("#5FB219"));
+                holder.tvCount.setBackground(gd);
             }
         }
         holder.tvHowName.setText(taskList.get(position).getPerformer());

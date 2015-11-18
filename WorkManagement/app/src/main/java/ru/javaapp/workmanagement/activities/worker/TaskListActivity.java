@@ -167,7 +167,7 @@ public class TaskListActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(TaskListActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
                     builder.setTitle("Ошибка");
-                    builder.setMessage("Нет соединения с интернетом.");
+                    builder.setMessage(R.string.error_connection_wifi);
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -229,15 +229,20 @@ public class TaskListActivity extends AppCompatActivity {
         }
 
         // Creating 2 adapters and 2 recyclerviews for two Tabs
-        adaptersTasksOneTwo = new RVAdaptersTasks(getApplicationContext(), taskOneTwo, statusList);
-        adaptersTasksThree = new RVAdaptersTasks(getApplicationContext(), taskThree, statusList);
-        LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        LinearLayoutManager llm2 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        rvTasksOne.setAdapter(adaptersTasksOneTwo);
-        rvTasksOne.setLayoutManager(llm1);
-        rvTasksTwo.setAdapter(adaptersTasksThree);
-        rvTasksTwo.setLayoutManager(llm2);
-
+        if (!taskOneTwo.isEmpty()) {
+            adaptersTasksOneTwo = new RVAdaptersTasks(getApplicationContext(), taskOneTwo, statusList);
+            LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+            rvTasksOne.setAdapter(adaptersTasksOneTwo);
+            rvTasksOne.setLayoutManager(llm1);
+            rvTasksOne.setVisibility(View.VISIBLE);
+        }
+        if (!taskThree.isEmpty()) {
+            adaptersTasksThree = new RVAdaptersTasks(getApplicationContext(), taskThree, statusList);
+            LinearLayoutManager llm2 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+            rvTasksTwo.setAdapter(adaptersTasksThree);
+            rvTasksTwo.setLayoutManager(llm2);
+            rvTasksTwo.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -273,6 +278,7 @@ public class TaskListActivity extends AppCompatActivity {
                             Intent intentTba = new Intent(TaskListActivity.this, TaskBeginActivity.class);
                             intentTba.putExtra("taskObj", task);
                             startActivity(intentTba);
+                            finish();
                         }
                         if(statusId == 2){
                             Intent intentTba = new Intent(TaskListActivity.this, TaskRunActivity.class);

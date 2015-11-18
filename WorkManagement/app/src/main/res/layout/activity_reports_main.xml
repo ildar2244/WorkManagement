@@ -21,10 +21,103 @@
         android:layout_height="match_parent"
         android:layout_below="@id/rm_toolbar"
         android:orientation="vertical">
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rv_products">
-        </android.support.v7.widget.RecyclerView>
+
+        <TabHost
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tabHost3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TabWidget>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rv_products"
+                            android:visibility="gone">
+                        </android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorPrimaryLight">
+                            <TextView
+                                android:id="@+id/rma_tv_ot"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:padding="4dp"
+                                android:background="@drawable/xml_la_et"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="16dp"
+                                android:gravity="center"
+                                android:layout_weight="0.3"
+                                android:layout_gravity="center_vertical" />
+                            <TextView
+                                android:id="@+id/rma_tv_do"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:padding="4dp"
+                                android:background="@drawable/xml_la_et"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="16dp"
+                                android:gravity="center"
+                                android:layout_weight="0.3"
+                                android:layout_gravity="center_vertical" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:layout_weight="0.4">
+                                <Button
+                                    android:id="@+id/rma_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/xml_rma_btn"
+                                    android:text="OK"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rv_periods"
+                            android:visibility="gone">
+                        </android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+
+
     </LinearLayout>
 </RelativeLayout>

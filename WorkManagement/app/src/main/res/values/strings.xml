@@ -49,6 +49,7 @@
         <item>Кронштейн 54115-1302047-10</item>
         <item>Скоба</item>
         <item>Втулка</item>
+        <item>Переналадка</item>
     </array>
 
     <!-- Где делать -->
@@ -71,6 +72,19 @@
         <item>Вставка амортизаторов</item>
         <item>Комплектовка болтами</item>
         <item>Упаковка</item>
+        <item>Приварка заглушки</item>
+        <item>Приварка упора</item>
+        <item>Приварка планки</item>
+        <item>Отправка на покраску</item>
+        <item>Выставка амортизаторов</item>
+        <item>Приварка накладок</item>
+        <item>Приварка косынки</item>
+        <item>Получение с покраски</item>
+        <item>Приварка усилителя</item>
+        <item>Отправка на фрезеровку</item>
+        <item>Получение с фрезеровки</item>
+        <item>Голтовка</item>
+        <item>Штамп</item>
     </array>
 
     <!-- Готовый продукт -->
@@ -128,6 +142,9 @@
     <string name="no_cause_brak">Не выбрана причина или не введено количество</string>
     <string name="no_cause_stop">Выберите причину простоя</string>
     <string name="wrong_server_responce">Что-то пошло не так</string>
+    <string name="error_connection_wifi">Необходимо возобновить Wi-Fi соединение.</string>
+    <string name="cta_hint_plan">План</string>
+    <string name="cta_hint_comment">Комментарии</string>
 
     <array name="stop_cause">
         <item>Оборудование</item>

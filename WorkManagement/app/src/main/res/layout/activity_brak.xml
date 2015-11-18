@@ -40,15 +40,15 @@
             <EditText
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:inputType="number"
                 android:ems="10"
                 android:maxLength="4"
-                android:background="@drawable/xml_tra_et"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/colorTextPrimary"
                 android:textStyle="bold"
-                android:layout_marginLeft="8dp"
+                android:background="@drawable/xml_tra_et"
                 android:id="@+id/et_brakCount" />
             <TextView
                 android:layout_width="wrap_content"

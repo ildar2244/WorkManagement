@@ -10,12 +10,12 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-import ru.javaapp.workmanagement.R;
-
 /**
- * Created by User on 05.10.2015.
+ * Created by User on 01.10.2015.
  */
-public class TimePickerFragmentAfter extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+
+    int tvTimeR;
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -28,9 +28,13 @@ public class TimePickerFragmentAfter extends DialogFragment implements TimePicke
                 DateFormat.is24HourFormat(getActivity()));
     }
 
+    public TimePickerFragment(int time) {
+        this.tvTimeR = time;
+    }
+
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        TextView tvInputtimeBefore = (TextView) getActivity().findViewById(R.id.tv_input_timeAfter);
+        TextView tvInputtimeBefore = (TextView) getActivity().findViewById(tvTimeR);
         String time = pad(hourOfDay) + ":" + pad(minute);
         tvInputtimeBefore.setText(time);
 

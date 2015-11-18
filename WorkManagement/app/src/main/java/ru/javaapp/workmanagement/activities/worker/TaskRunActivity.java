@@ -3,7 +3,6 @@ package ru.javaapp.workmanagement.activities.worker;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ru.javaapp.workmanagement.Helper;
 import ru.javaapp.workmanagement.R;
 import ru.javaapp.workmanagement.dao.Task;
 import ru.javaapp.workmanagement.workDB.Transmission;
@@ -47,34 +47,6 @@ public class TaskRunActivity extends AppCompatActivity {
         componentsInitialize(); //init components in activity
         setListeners(); // set all listeners
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        handler.removeCallbacks(getResponceAfterInterval);
-        handler.post(getResponceAfterInterval);
-    }
-
-    private final Handler handler = new Handler();
-
-    // Синхронизация с сервером
-    private Runnable getResponceAfterInterval = new Runnable() {
-
-        public void run() {
-
-            try
-            {
-                Transmission responce = new Transmission();
-                responce.UpdateCurrentCount(taskGet.getIdTask(), currentCount, getApplicationContext());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            handler.postDelayed(this, 10000*60);
-
-        }
-    };
 
     /**
      * initialize toolbar
@@ -237,8 +209,6 @@ public class TaskRunActivity extends AppCompatActivity {
     // возврат в список всех заданий
     private void backTaskList(){
         try{
-            Transmission responce = new Transmission();
-            responce.UpdateCurrentCount(taskGet.getIdTask(), currentCount, getApplicationContext());
             startActivity(new Intent(TaskRunActivity.this, TaskListActivity.class));
             finish();
         }
@@ -286,38 +256,70 @@ public class TaskRunActivity extends AppCompatActivity {
 
     // делать минус
     private void doMinus(){
-        if(checkFillField()){
-            String text = mathMinus();
-            if(text == null){
+        if (Helper.isConnected(getApplicationContext())){
+
+            if (checkFillField()) {
+                String text = mathMinus();
+                if (text == null) {
+                    return;
+                } else {
+                    tvCurrentAdd.setText(text);
+                    tvCountToGo.setText(Integer.toString(currentCountToGo));
+                    postCurrent();
+                }
+
+            } else {
+                Toast.makeText(TaskRunActivity.this,
+                        "Введите цифру в поле ДОБАВИТЬ.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            else{
-                tvCurrentAdd.setText(text);
-                tvCountToGo.setText(Integer.toString(currentCountToGo));
-            }
-
         }
-        else{
-            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_SHORT).show();
+        else {
+            Toast.makeText(TaskRunActivity.this,
+                    R.string.error_connection_wifi, Toast.LENGTH_SHORT).show();
             return;
         }
     }
 
     // делать плюс
     private void doPlus(){
-        if(checkFillField()){
-            String text = mathPlus();
-            if(text == null){
-                return;
+        if (Helper.isConnected(getApplicationContext())) {
+
+            if(checkFillField()){
+                String text = mathPlus();
+                if(text == null){
+                    return;
+                }
+                else{
+                    tvCurrentAdd.setText(text);
+                    tvCountToGo.setText(Integer.toString(currentCountToGo));
+                    postCurrent();
+                }
             }
             else{
-                tvCurrentAdd.setText(text);
-                tvCountToGo.setText(Integer.toString(currentCountToGo));
+                Toast.makeText(TaskRunActivity.this,
+                        "Введите цифру в поле ДОБАВИТЬ.", Toast.LENGTH_SHORT).show();
+                return;
             }
-        }
-        else{
-            Toast.makeText(TaskRunActivity.this, "Введите цифру в поле ДОБАВИТЬ", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(TaskRunActivity.this,
+                    R.string.error_connection_wifi, Toast.LENGTH_SHORT).show();
             return;
+        }
+    }
+
+    // Отправка данных на сервер
+    public void postCurrent() {
+
+        if (Helper.isConnected(getApplicationContext())) {
+
+            try {
+                Transmission responce = new Transmission();
+                responce.UpdateCurrentCount(taskGet.getIdTask(), currentCount, getApplicationContext());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

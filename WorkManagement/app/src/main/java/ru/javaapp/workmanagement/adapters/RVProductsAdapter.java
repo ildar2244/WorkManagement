@@ -10,12 +10,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.dao.Complects;
 
 /**
  * Created by User on 01.11.2015.
  */
 public class RVProductsAdapter extends RecyclerView.Adapter<RVProductsAdapter.ViewHolder> {
-    private List productList;
+    private List<Complects> productList;
     private Context context;
     private LayoutInflater layoutInflater;
 
@@ -26,7 +27,7 @@ public class RVProductsAdapter extends RecyclerView.Adapter<RVProductsAdapter.Vi
         return vh;
     }
 
-    public RVProductsAdapter(Context context, List productList){
+    public RVProductsAdapter(Context context, List<Complects> productList){
         this.context = context;
         this.productList = productList;
         this.layoutInflater = LayoutInflater.from(context);
@@ -34,8 +35,8 @@ public class RVProductsAdapter extends RecyclerView.Adapter<RVProductsAdapter.Vi
 
     @Override
     public void onBindViewHolder(RVProductsAdapter.ViewHolder holder, int position) {
-        holder.tvProductName.setText(productList.get(position).toString());
-        holder.tvProductCount.setText("");
+        holder.tvProductName.setText(productList.get(position).getName());
+        holder.tvProductCount.setText(Integer.toString(productList.get(position).getCount()));
     }
 
     @Override
