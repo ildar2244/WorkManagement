@@ -244,6 +244,7 @@ public class TrackingActivity extends AppCompatActivity {
         }
 
         // Creating 2 adapters and 2 recyclerviews for two Tabs
+        //TODO: проверка на пустой список
         adaptersTasksCurrent = new RVAdaptersTasksForMaster(getApplicationContext(), taskListCurrent, statusList);
         adaptersTasksFinish = new RVAdaptersTasksForMaster(getApplicationContext(), taskListFinish, statusList);
         LinearLayoutManager llm1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);

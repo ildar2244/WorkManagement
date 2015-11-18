@@ -143,6 +143,7 @@
     <string name="no_cause_stop">Выберите причину простоя</string>
     <string name="wrong_server_responce">Что-то пошло не так</string>
     <string name="error_connection_wifi">Необходимо возобновить Wi-Fi соединение.</string>
+    <string name="error_empty_list">Нет заданий или нет Wi-Fi соединение.</string>
     <string name="cta_hint_plan">План</string>
     <string name="cta_hint_comment">Комментарии</string>
 

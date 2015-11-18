@@ -167,7 +167,7 @@ public class TaskListActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(TaskListActivity.this,  R.style.AlertDialogStyle);
                     builder.setCancelable(false);
                     builder.setTitle("Ошибка");
-                    builder.setMessage(R.string.error_connection_wifi);
+                    builder.setMessage(R.string.error_empty_list);
                     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
