@@ -28,7 +28,7 @@ import ru.javaapp.workmanagement.interfaces.ITransmission;
  * Created by User on 26.10.2015.
  */
 public class Transmission implements ITransmission {
-    private final String BASE_URL = "http://autocomponent.motorcum.ru";
+    private final String BASE_URL = "http://datakama.ru/iLean";
     HttpURLConnection urlConnection;
     StringBuilder result = new StringBuilder();
     URL urlRequest;
