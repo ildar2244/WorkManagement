@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import ru.javaapp.workmanagement.R;
+import ru.javaapp.workmanagement.TaskPushService;
+import ru.javaapp.workmanagement.activities.auth.LoginActivity;
 import ru.javaapp.workmanagement.fragments.FragmentDrawer;
 
 public class WorkerMainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -78,5 +80,17 @@ public class WorkerMainActivity extends AppCompatActivity implements View.OnClic
                 startActivity(new Intent(getApplicationContext(), TaskListActivity.class));
                 break;
         }
+    }
+
+    private void startTaskPushService() {
+        Intent i = new Intent(this, TaskPushService.class);
+        i.putExtra("sessionKey", LoginActivity.sessionKey);
+        startService(i);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startTaskPushService();
     }
 }

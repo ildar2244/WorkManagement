@@ -133,6 +133,14 @@ public class Transmission implements ITransmission {
         return makeHttpRequestForWorker(BASE_URL + "/get_tasks_by_worker.php");
     }
 
+    // Запрос на получение уведомления о новой задаче в системе Работник
+    public JSONObject getPushForWorker(String sessionKey){
+        this.context = context;
+        pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("sessionKey", sessionKey));
+        return makeHttpRequestForWorker(BASE_URL + "/get_tasks_by_worker.php");
+    }
+
     // Запрос на получение задач в системе Руководитель
     public JSONObject getTasksForMaster(){
         return makeHttpRequestForMaster(BASE_URL + "/get_tasks_for_master.php");
