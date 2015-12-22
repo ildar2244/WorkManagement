@@ -138,7 +138,7 @@ public class Transmission implements ITransmission {
         this.context = context;
         pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("sessionKey", sessionKey));
-        return makeHttpRequestForWorker(BASE_URL + "/get_tasks_by_worker.php");
+        return makeHttpRequestForWorker(BASE_URL + "/push_new_task_by_worker.php");
     }
 
     // Запрос на получение задач в системе Руководитель

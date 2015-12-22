@@ -147,6 +147,7 @@
     <string name="error_empty_list">Нет заданий или нет Wi-Fi соединение.</string>
     <string name="cta_hint_plan">План</string>
     <string name="cta_hint_comment">Комментарии</string>
+    <string name="new_notification">ONE</string>
 
     <array name="stop_cause">
         <item>Оборудование</item>
