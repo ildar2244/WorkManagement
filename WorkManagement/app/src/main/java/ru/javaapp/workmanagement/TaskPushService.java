@@ -23,7 +23,7 @@ import ru.javaapp.workmanagement.workDB.Transmission;
 public class TaskPushService extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
+     * Сервис для получения пуш-уведомлеия о новом задании
      */
     public TaskPushService() {
         super("TaskPushService");
